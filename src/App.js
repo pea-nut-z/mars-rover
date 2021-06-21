@@ -4,7 +4,8 @@ import "./App.css";
 
 function App() {
   const [frontViewImg, setFrontViewImg] = useState();
-  const [otherImgs, setotherImgs] = useState();
+  const [otherImgs, setotherImgs] = useState([]);
+  const [cameraLabels, setCameraLabels] = useState([]);
 
   const getTodayDate = () => {
     const date = new Date();
@@ -31,23 +32,39 @@ function App() {
     return [preYear, preMonth, preDay];
   };
 
-  const getOtherImgs = async (year, month, day) => {
-    const cameras = ["RHAZ", "MAST", "CHEMCAM", "MAHLI", "MARDI", "NAVCAM"];
-    const images = [];
-    await cameras.forEach((camera) => {
+  const getOtherImgs = (year, month, day) => {
+    const camerasAbbr = ["RHAZ", "MAST", "CHEMCAM", "MAHLI", "MARDI", "NAVCAM"];
+    const camerasFullNames = [
+      "Rear Hazard Avoidance Camera",
+      "Mast Camera",
+      "Chemistry and Camera Complex",
+      "Mars Hand Lens Imager",
+      "Mars Descent Imager",
+      "Navigation Camera",
+    ];
+    const selectedImg = [];
+    const selectedCameras = [];
+    camerasAbbr.forEach((camera, index) => {
       const API_URL = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?camera=${camera}&earth_date=${year}-${month}-${day}&page=1&api_key=${process.env.REACT_APP_API_KEY}`;
       fetch(API_URL)
         .then((res) => res.json())
         .then((data) => {
           if (data.photos.length === 0) {
             return;
+          } else {
+            const image = data.photos[0];
+            selectedImg.push(image);
+            selectedCameras.push(camerasFullNames[index]);
           }
-          const image = data.photos[0];
-          images.push(image);
-          console.log({ images });
+        })
+        .catch((error) => {
+          console.error(error);
+        })
+        .finally(() => {
+          setotherImgs([...otherImgs, ...selectedImg]);
+          setCameraLabels([...cameraLabels, ...selectedCameras]);
         });
     });
-    setotherImgs(images);
   };
 
   const getPhotos = (array) => {
@@ -55,7 +72,7 @@ function App() {
     const API_URL = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?camera=FHAZ&earth_date=${year}-${month}-${day}&page=1&api_key=${process.env.REACT_APP_API_KEY}`;
     fetch(API_URL)
       .then((res) => res.json())
-      .then(async (data) => {
+      .then((data) => {
         if (data.photos.length === 0) {
           if (day === 1) {
             const previousMonthDate = getPreviousMonthDate(year, month);
@@ -65,19 +82,13 @@ function App() {
           }
         } else {
           const image = data.photos[0];
-          await getOtherImgs(year, month, day);
-
+          getOtherImgs(year, month, day);
           setFrontViewImg(image);
         }
       })
       .catch((error) => {
-        console.log("There is an error.", error);
+        console.error(error);
       });
-    // .finally(() => {
-    //   console.log(images);
-
-    //   setFrontViewImg(images);
-    // });
   };
 
   useEffect(() => {
@@ -85,22 +96,41 @@ function App() {
     getPhotos(todayDate);
   }, []);
 
-  // useEffect(() => {
-  //   console.log(frontViewImg);
-  // });
-
   return (
     <div>
-      {otherImgs &&
-        otherImgs.map((image, index) => {
-          console.log(image);
-          return (
-            <img key={index} src={image.img_src} alt="Image of Mars taken by Curiosity Rover" />
-          );
-        })}
-      {frontViewImg && (
-        <img src={frontViewImg.img_src} alt="Image of Mars taken by Curiosity Rover" />
-      )}
+      <div id="title">
+        <h1>Lastest images of Mars</h1>
+        <h3>on {frontViewImg && frontViewImg.earth_date}</h3>
+      </div>
+      <div id="images-container">
+        {frontViewImg && (
+          <div className="image-container">
+            <img
+              className="fetched-img"
+              src={frontViewImg.img_src}
+              alt="Image of Mars taken by Curiosity Rover"
+            />
+            <h4>Front Hazard Avoidance Camera</h4>
+          </div>
+        )}
+        <div id="other-imgs-container">
+          {otherImgs &&
+            otherImgs.map((image, index) => {
+              console.log("check", image);
+              return (
+                <div className="image-container">
+                  <img
+                    className="fetched-img"
+                    key={index}
+                    src={image.img_src}
+                    alt="Image of Mars taken by Curiosity Rover"
+                  />
+                  <h4>{cameraLabels[index]}</h4>
+                </div>
+              );
+            })}
+        </div>
+      </div>
     </div>
   );
 }
