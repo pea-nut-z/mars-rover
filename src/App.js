@@ -1,11 +1,23 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
+import Carousel from "react-bootstrap/Carousel";
+import "bootstrap/dist/css/bootstrap.min.css";
 // 2021-6-16
 
 function App() {
-  const [frontViewImg, setFrontViewImg] = useState();
-  const [otherImgs, setotherImgs] = useState([]);
-  const [cameraLabels, setCameraLabels] = useState([]);
+  const [images, setImages] = useState([]);
+  const [cameras, setCameras] = useState();
+  const [fetchDone, setFetchDone] = useState(false);
+
+  const camerasAbbr = ["RHAZ", "MAST", "CHEMCAM", "MAHLI", "MARDI", "NAVCAM"];
+  const camerasFullNames = [
+    "Rear Hazard Avoidance Camera",
+    "Mast Camera",
+    "Chemistry and Camera Complex",
+    "Mars Hand Lens Imager",
+    "Mars Descent Imager",
+    "Navigation Camera",
+  ];
 
   const getTodayDate = () => {
     const date = new Date();
@@ -32,45 +44,12 @@ function App() {
     return [preYear, preMonth, preDay];
   };
 
-  const getOtherImgs = (year, month, day) => {
-    const camerasAbbr = ["RHAZ", "MAST", "CHEMCAM", "MAHLI", "MARDI", "NAVCAM"];
-    const camerasFullNames = [
-      "Rear Hazard Avoidance Camera",
-      "Mast Camera",
-      "Chemistry and Camera Complex",
-      "Mars Hand Lens Imager",
-      "Mars Descent Imager",
-      "Navigation Camera",
-    ];
-    const selectedImg = [];
-    const selectedCameras = [];
-    camerasAbbr.forEach((camera, index) => {
-      const API_URL = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?camera=${camera}&earth_date=${year}-${month}-${day}&page=1&api_key=${process.env.REACT_APP_API_KEY}`;
-      fetch(API_URL)
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.photos.length === 0) {
-            return;
-          } else {
-            const image = data.photos[0];
-            selectedImg.push(image);
-            selectedCameras.push(camerasFullNames[index]);
-          }
-        })
-        .catch((error) => {
-          console.error(error);
-        })
-        .finally(() => {
-          setotherImgs([...otherImgs, ...selectedImg]);
-          setCameraLabels([...cameraLabels, ...selectedCameras]);
-        });
-    });
-  };
-
   const getPhotos = (array) => {
     let [year, month, day] = array;
-    const API_URL = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?camera=FHAZ&earth_date=${year}-${month}-${day}&page=1&api_key=${process.env.REACT_APP_API_KEY}`;
-    fetch(API_URL)
+    let selectedImages = [];
+    let selectedCameras = [];
+    const frontCameraImg = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?camera=FHAZ&earth_date=${year}-${month}-${day}&page=1&api_key=${process.env.REACT_APP_API_KEY}`;
+    fetch(frontCameraImg)
       .then((res) => res.json())
       .then((data) => {
         if (data.photos.length === 0) {
@@ -81,9 +60,25 @@ function App() {
             getPhotos([year, month, day - 1]);
           }
         } else {
-          const image = data.photos[0];
-          getOtherImgs(year, month, day);
-          setFrontViewImg(image);
+          selectedImages.push(data.photos[0]);
+          camerasAbbr.forEach((camera, index) => {
+            const otherImgs = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?camera=${camera}&earth_date=${year}-${month}-${day}&page=1&api_key=${process.env.REACT_APP_API_KEY}`;
+            fetch(otherImgs)
+              .then((res) => res.json())
+              .then((data) => {
+                if (data.photos.length === 0) {
+                  return;
+                } else {
+                  selectedImages.push(data.photos[0]);
+                  selectedCameras.push(camerasFullNames[index]);
+                }
+              })
+              .finally(() => {
+                setImages([...images, ...selectedImages]);
+                setCameras(selectedCameras);
+                setFetchDone(true);
+              });
+          });
         }
       })
       .catch((error) => {
@@ -97,40 +92,28 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <div style={{ display: "block", width: 700, padding: 30 }}>
       <div id="title">
-        <h1>Lastest images of Mars</h1>
-        <h3>on {frontViewImg && frontViewImg.earth_date}</h3>
+        <h1>How's Mars looking </h1>
+        <h3>on {fetchDone && images[0].earth_date}</h3>
       </div>
-      <div id="images-container">
-        {frontViewImg && (
-          <div className="image-container">
-            <img
-              className="fetched-img"
-              src={frontViewImg.img_src}
-              alt="Image of Mars taken by Curiosity Rover"
-            />
-            <h4>Front Hazard Avoidance Camera</h4>
-          </div>
-        )}
-        <div id="other-imgs-container">
-          {otherImgs &&
-            otherImgs.map((image, index) => {
-              console.log("check", image);
-              return (
-                <div className="image-container">
-                  <img
-                    className="fetched-img"
-                    key={index}
-                    src={image.img_src}
-                    alt="Image of Mars taken by Curiosity Rover"
-                  />
-                  <h4>{cameraLabels[index]}</h4>
-                </div>
-              );
-            })}
-        </div>
-      </div>
+      <Carousel>
+        {fetchDone &&
+          images.map((image, index) => {
+            // console.log("check", image);
+            return (
+              <Carousel.Item key={index} style={{ height: "300px" }}>
+                <img
+                  className="d-block w-100"
+                  src={image.img_src}
+                  alt={`Mars captured with ${cameras[index]}`}
+                  style={{ height: "300px" }}
+                />
+                <Carousel.Caption>{cameras[index]}</Carousel.Caption>
+              </Carousel.Item>
+            );
+          })}
+      </Carousel>
     </div>
   );
 }
