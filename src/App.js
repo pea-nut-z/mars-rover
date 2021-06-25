@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import Carousel from "react-bootstrap/Carousel";
-import "bootstrap/dist/css/bootstrap.min.css";
 // 2021-6-16
 
-function App() {
+export default function App() {
   const [images, setImages] = useState([]);
   const [cameras, setCameras] = useState();
-  const [fetchDone, setFetchDone] = useState(false);
+  const [weather, setWeather] = useState();
+  const [imagesFetched, setImagesFetched] = useState(false);
+  const [weatherFetched, setWeatherFetched] = useState(false);
+  console.log({ weather });
 
   const camerasAbbr = ["RHAZ", "MAST", "CHEMCAM", "MAHLI", "MARDI", "NAVCAM"];
   const camerasFullNames = [
@@ -18,6 +20,12 @@ function App() {
     "Mars Descent Imager",
     "Navigation Camera",
   ];
+
+  useEffect(() => {
+    // const todayDate = getTodayDate();
+    // getPhotos(todayDate);
+    getWeather();
+  }, []);
 
   const getTodayDate = () => {
     const date = new Date();
@@ -61,6 +69,7 @@ function App() {
           }
         } else {
           selectedImages.push(data.photos[0]);
+          selectedCameras.push("Front Hazard Avoidance Camera");
           camerasAbbr.forEach((camera, index) => {
             const otherImgs = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?camera=${camera}&earth_date=${year}-${month}-${day}&page=1&api_key=${process.env.REACT_APP_API_KEY}`;
             fetch(otherImgs)
@@ -76,7 +85,7 @@ function App() {
               .finally(() => {
                 setImages([...images, ...selectedImages]);
                 setCameras(selectedCameras);
-                setFetchDone(true);
+                setImagesFetched(true);
               });
           });
         }
@@ -86,36 +95,89 @@ function App() {
       });
   };
 
-  useEffect(() => {
-    const todayDate = getTodayDate();
-    getPhotos(todayDate);
-  }, []);
+  const getWeather = () => {
+    const weather = "https://api.maas2.apollorion.com/";
+    return fetch(weather)
+      .then((res) => res.json())
+      .then((data) => {
+        setWeather(data);
+      });
+  };
+
+  const renderWeather = () => {
+    const {
+      sol,
+      atmo_opacity,
+      local_uv_irradiance_index,
+      max_temp,
+      min_temp,
+      wind_speed,
+      wind_direction,
+      sunrise,
+      sunset,
+    } = weather;
+
+    let earthISOStr = weather.terrestrial_date.split("T")[0].replace(/-/g, "/");
+    let earthDate = new Date(earthISOStr).toString().split(" ");
+    const [_, earthMonth, earthDay] = earthDate;
+
+    const seasons = ["Autumn", "Winter", "Spring", "Summer"];
+    const marsSeasonsEnd = [3, 6, 9, 12];
+    const marsMonth = weather.season.split(" ")[1] * 1;
+    let marsSeason;
+
+    for (let [index, val] of marsSeasonsEnd.entries()) {
+      if (marsMonth <= val) {
+        marsSeason = seasons[index];
+        break;
+      }
+    }
+
+    return (
+      <div>
+        <div>{sol}</div>
+        <div>
+          {earthMonth} {earthDay}
+        </div>
+
+        <div>{atmo_opacity}</div>
+        <div>{local_uv_irradiance_index}</div>
+        <div>{marsSeason}</div>
+
+        <div>{max_temp}</div>
+        <div>{min_temp}</div>
+        <div>{wind_speed ? wind_speed : "N/A"}</div>
+        <div>{wind_direction ? wind_direction : "N/A"}</div>
+
+        <div>{sunrise}</div>
+        <div>{sunset}</div>
+      </div>
+    );
+  };
 
   return (
-    <div style={{ display: "block", width: 700, padding: 30 }}>
-      <div id="title">
-        <h1>How's Mars looking </h1>
-        <h3>on {fetchDone && images[0].earth_date}</h3>
+    <>
+      <div>{weather && renderWeather()}</div>
+
+      <div>
+        <h3>IMAGES CAPTURED BY CURIOSITY ROVER</h3>
+        <h4>on {imagesFetched && images[0].earth_date}</h4>
+        <Carousel style={{ display: "block", width: 300, padding: 30 }}>
+          {imagesFetched &&
+            images.map((image, index) => {
+              return (
+                <Carousel.Item key={index} interval={2000}>
+                  <img
+                    className="d-block w-100"
+                    src={image.img_src}
+                    alt={`Mars captured with ${cameras[index]}`}
+                  />
+                  <Carousel.Caption>{cameras[index]}</Carousel.Caption>
+                </Carousel.Item>
+              );
+            })}
+        </Carousel>
       </div>
-      <Carousel>
-        {fetchDone &&
-          images.map((image, index) => {
-            // console.log("check", image);
-            return (
-              <Carousel.Item key={index} style={{ height: "300px" }}>
-                <img
-                  className="d-block w-100"
-                  src={image.img_src}
-                  alt={`Mars captured with ${cameras[index]}`}
-                  style={{ height: "300px" }}
-                />
-                <Carousel.Caption>{cameras[index]}</Carousel.Caption>
-              </Carousel.Item>
-            );
-          })}
-      </Carousel>
-    </div>
+    </>
   );
 }
-
-export default App;
