@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import Carousel from "react-bootstrap/Carousel";
-// 2021-6-16
+import { IoSunnyOutline } from "react-icons/io5";
 
 export default function App() {
   const [images, setImages] = useState([]);
   const [cameras, setCameras] = useState();
   const [weather, setWeather] = useState();
+  const [news, setNews] = useState();
   const [imagesFetched, setImagesFetched] = useState(false);
-  const [weatherFetched, setWeatherFetched] = useState(false);
+  // const [weatherFetched, setWeatherFetched] = useState(false);
   console.log({ weather });
 
   const camerasAbbr = ["RHAZ", "MAST", "CHEMCAM", "MAHLI", "MARDI", "NAVCAM"];
@@ -25,6 +26,7 @@ export default function App() {
     // const todayDate = getTodayDate();
     // getPhotos(todayDate);
     getWeather();
+    // getNews();
   }, []);
 
   const getTodayDate = () => {
@@ -56,7 +58,7 @@ export default function App() {
     let [year, month, day] = array;
     let selectedImages = [];
     let selectedCameras = [];
-    const frontCameraImg = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?camera=FHAZ&earth_date=${year}-${month}-${day}&page=1&api_key=${process.env.REACT_APP_API_KEY}`;
+    const frontCameraImg = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?camera=FHAZ&earth_date=${year}-${month}-${day}&page=1&api_key=${process.env.REACT_APP_NASA_API_KEY}`;
     fetch(frontCameraImg)
       .then((res) => res.json())
       .then((data) => {
@@ -104,6 +106,24 @@ export default function App() {
       });
   };
 
+  const getNews = () => {
+    const news = `https://newsapi.org/v2/everything?qInTitle=%22mars%22&domains=nature.com&sortBy=publishedAt&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`;
+    fetch(news)
+      .then((res) => res.json())
+      .then((data) => {
+        const { articles } = data;
+        const selectedArticles = articles.reduce((arr, article) => {
+          const repeated = arr.some((obj) => {
+            return obj.title === article.title;
+          });
+          !repeated && arr.push(article);
+          return arr;
+        }, []);
+        console.log(selectedArticles);
+        setNews(selectedArticles);
+      });
+  };
+
   const renderWeather = () => {
     const {
       sol,
@@ -134,35 +154,70 @@ export default function App() {
     }
 
     return (
-      <div>
-        <div>{sol}</div>
-        <div>
-          {earthMonth} {earthDay}
+      <div className="container">
+        <div className="title">LATEST WEATHER AT ELYSIUM PLANTITIA</div>
+        <div className="row">
+          <div>
+            <div className="sol">Sol {sol}</div>
+            <div className="earth-date text-right">
+              {earthMonth} {earthDay}
+            </div>
+          </div>
+          <div className="col text-right">
+            <div>High: {max_temp}°C</div>
+            <div>Low: {min_temp}°C</div>
+            <div>{wind_speed ? wind_speed : "N/A"}</div>
+            <div>{wind_direction ? wind_direction : "N/A"}</div>
+
+            {/* <div>{sunrise}</div>
+            <div>{sunset}</div> */}
+          </div>
+
+          <div className="col text-right">
+            <div>
+              <IoSunnyOutline />
+              {atmo_opacity}
+            </div>
+            <div>{marsSeason}</div>
+            <div>UV Index: {local_uv_irradiance_index}</div>
+          </div>
         </div>
-
-        <div>{atmo_opacity}</div>
-        <div>{local_uv_irradiance_index}</div>
-        <div>{marsSeason}</div>
-
-        <div>{max_temp}</div>
-        <div>{min_temp}</div>
-        <div>{wind_speed ? wind_speed : "N/A"}</div>
-        <div>{wind_direction ? wind_direction : "N/A"}</div>
-
-        <div>{sunrise}</div>
-        <div>{sunset}</div>
       </div>
     );
   };
 
-  return (
-    <>
-      <div>{weather && renderWeather()}</div>
-
+  const renderNews = () => {
+    return (
       <div>
-        <h3>IMAGES CAPTURED BY CURIOSITY ROVER</h3>
-        <h4>on {imagesFetched && images[0].earth_date}</h4>
-        <Carousel style={{ display: "block", width: 300, padding: 30 }}>
+        {news.map((article, index) => {
+          let date = article.publishedAt.split("T")[0];
+          return (
+            <div key={index}>
+              <div>{article.title}</div>
+              <div>{date}</div>
+              <div>{article.description}</div>
+              <a href={article.url}>
+                <img
+                  src={article.urlToImage}
+                  alt={`Article ${index} image`}
+                  style={{ width: "15%" }}
+                ></img>
+              </a>
+            </div>
+          );
+        })}
+      </div>
+    );
+  };
+  return (
+    <div style={{ height: "100vh" }}>
+      {/* <div className="horizontal-divider" />
+      <div className="vertical-divider" /> */}
+      <div className="weather-section">{weather && renderWeather()}</div>
+      <div>
+        {/* <h3>IMAGES CAPTURED BY CURIOSITY ROVER</h3> */}
+        {/* <h4>on {imagesFetched && images[0].earth_date}</h4> */}
+        {/* <Carousel style={{ display: "block", width: 300, padding: 30 }}>
           {imagesFetched &&
             images.map((image, index) => {
               return (
@@ -176,8 +231,9 @@ export default function App() {
                 </Carousel.Item>
               );
             })}
-        </Carousel>
+        </Carousel> */}
+        <div>{news && renderNews()}</div>
       </div>
-    </>
+    </div>
   );
 }
