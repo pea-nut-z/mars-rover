@@ -1,7 +1,22 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import Carousel from "react-bootstrap/Carousel";
-import { IoSunnyOutline } from "react-icons/io5";
+import { IoSunnyOutline, IoInformationCircleSharp } from "react-icons/io5";
+import Modal from "react-modal";
+import info from "./info";
+
+const modalStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+  },
+};
+
+Modal.setAppElement("#root");
 
 export default function App() {
   const [images, setImages] = useState([]);
@@ -9,8 +24,10 @@ export default function App() {
   const [weather, setWeather] = useState();
   const [news, setNews] = useState();
   const [imagesFetched, setImagesFetched] = useState(false);
-  // const [weatherFetched, setWeatherFetched] = useState(false);
-  console.log({ weather });
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+  // console.log({ weather });
+  // console.log(modalIsOpen);
 
   const camerasAbbr = ["RHAZ", "MAST", "CHEMCAM", "MAHLI", "MARDI", "NAVCAM"];
   const camerasFullNames = [
@@ -23,11 +40,19 @@ export default function App() {
   ];
 
   useEffect(() => {
-    // const todayDate = getTodayDate();
-    // getPhotos(todayDate);
+    const todayDate = getTodayDate();
+    getPhotos(todayDate);
     getWeather();
     // getNews();
   }, []);
+
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
 
   const getTodayDate = () => {
     const date = new Date();
@@ -73,7 +98,7 @@ export default function App() {
           selectedImages.push(data.photos[0]);
           selectedCameras.push("Front Hazard Avoidance Camera");
           camerasAbbr.forEach((camera, index) => {
-            const otherImgs = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?camera=${camera}&earth_date=${year}-${month}-${day}&page=1&api_key=${process.env.REACT_APP_API_KEY}`;
+            const otherImgs = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?camera=${camera}&earth_date=${year}-${month}-${day}&page=1&api_key=${process.env.REACT_APP_NASA_API_KEY}`;
             fetch(otherImgs)
               .then((res) => res.json())
               .then((data) => {
@@ -157,35 +182,70 @@ export default function App() {
       <div className="container">
         <div className="title">LATEST WEATHER AT ELYSIUM PLANTITIA</div>
         <div className="row">
-          <div>
-            <div className="sol">Sol {sol}</div>
-            <div className="earth-date text-right">
+          <div className="text-right">
+            <div className="sol display-4">Sol {sol}</div>
+            <div className="h2 gray">
               {earthMonth} {earthDay}
             </div>
+            <IoInformationCircleSharp className="h4 text-primary" onClick={openModal} />
+            <Modal isOpen={modalIsOpen} onRequestClose={closeModal} style={modalStyles}>
+              <div>
+                {info.map((item, index) => {
+                  return <p key={index}>{item}</p>;
+                })}
+              </div>
+            </Modal>
           </div>
-          <div className="col text-right">
-            <div>High: {max_temp}°C</div>
-            <div>Low: {min_temp}°C</div>
-            <div>{wind_speed ? wind_speed : "N/A"}</div>
-            <div>{wind_direction ? wind_direction : "N/A"}</div>
-
-            {/* <div>{sunrise}</div>
-            <div>{sunset}</div> */}
+          <div className="divider" />
+          <div className="col text-right ">
+            <div className="h5">High: {max_temp}°C</div>
+            <div className="h5">Low: {min_temp}°C</div>
+            <br />
+            <div className="gray">Wind Speed: {wind_speed ? wind_speed : "N/A"}</div>
+            <div className="gray">
+              Wind Direction: {wind_direction ? `${wind_direction} kph` : "N/A"}
+            </div>
           </div>
 
           <div className="col text-right">
-            <div>
+            <div className="h5">
               <IoSunnyOutline />
               {atmo_opacity}
             </div>
-            <div>{marsSeason}</div>
-            <div>UV Index: {local_uv_irradiance_index}</div>
+            <div className="gray">
+              <div>{marsSeason}</div>
+              <div>UV Index: {local_uv_irradiance_index}</div>
+              <div>Sunrise: {sunrise}</div>
+              <div>Sunset: {sunset}</div>
+            </div>
           </div>
         </div>
       </div>
     );
   };
 
+  const renderImages = () => {
+    return (
+      <div className="container d-flex flex-column justify-content-center">
+        <div className="title text-center">IMAGES CAPTURED BY CURIOSITY ROVER</div>
+        <Carousel style={{ width: 300, height: 300, padding: 30 }}>
+          {images.map((image, index) => {
+            return (
+              <Carousel.Item key={index} interval={2000}>
+                <img
+                  className="d-block w-100"
+                  src={image.img_src}
+                  alt={`Mars captured with ${cameras[index]}`}
+                />
+                <Carousel.Caption>{cameras[index]}</Carousel.Caption>
+              </Carousel.Item>
+            );
+          })}
+        </Carousel>
+        <div className="h5 text-center">({images[0].earth_date})</div>
+      </div>
+    );
+  };
   const renderNews = () => {
     return (
       <div>
@@ -211,29 +271,9 @@ export default function App() {
   };
   return (
     <div style={{ height: "100vh" }}>
-      {/* <div className="horizontal-divider" />
-      <div className="vertical-divider" /> */}
       <div className="weather-section">{weather && renderWeather()}</div>
-      <div>
-        {/* <h3>IMAGES CAPTURED BY CURIOSITY ROVER</h3> */}
-        {/* <h4>on {imagesFetched && images[0].earth_date}</h4> */}
-        {/* <Carousel style={{ display: "block", width: 300, padding: 30 }}>
-          {imagesFetched &&
-            images.map((image, index) => {
-              return (
-                <Carousel.Item key={index} interval={2000}>
-                  <img
-                    className="d-block w-100"
-                    src={image.img_src}
-                    alt={`Mars captured with ${cameras[index]}`}
-                  />
-                  <Carousel.Caption>{cameras[index]}</Carousel.Caption>
-                </Carousel.Item>
-              );
-            })}
-        </Carousel> */}
-        <div>{news && renderNews()}</div>
-      </div>
+      <div className="image-section">{imagesFetched && renderImages()}</div>
+      <div>{news && renderNews()}</div>
     </div>
   );
 }
