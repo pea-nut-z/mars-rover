@@ -12,6 +12,8 @@ const modalStyles = {
     right: "auto",
     bottom: "auto",
     marginRight: "-50%",
+    color: "black",
+    zIndex: 2,
     transform: "translate(-50%, -50%)",
   },
 };
@@ -23,10 +25,11 @@ export default function App() {
   const [cameras, setCameras] = useState();
   const [weather, setWeather] = useState();
   const [news, setNews] = useState();
-  const [imagesFetched, setImagesFetched] = useState(false);
+  const [cel, setCel] = useState(true);
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [imagesFetched, setImagesFetched] = useState(false);
 
-  // console.log({ weather });
+  // console.log({ cel });
   // console.log(modalIsOpen);
 
   const camerasAbbr = ["RHAZ", "MAST", "CHEMCAM", "MAHLI", "MARDI", "NAVCAM"];
@@ -43,8 +46,17 @@ export default function App() {
     const todayDate = getTodayDate();
     getPhotos(todayDate);
     getWeather();
-    // getNews();
+    getNews();
   }, []);
+
+  const toggleUnit = () => {
+    setCel(!cel);
+  };
+
+  const convertCelToFah = (cel) => {
+    const fah = (cel * 9) / 5 + 32;
+    return fah.toFixed(2);
+  };
 
   const openModal = () => {
     setIsOpen(true);
@@ -144,7 +156,6 @@ export default function App() {
           !repeated && arr.push(article);
           return arr;
         }, []);
-        console.log(selectedArticles);
         setNews(selectedArticles);
       });
   };
@@ -179,12 +190,27 @@ export default function App() {
     }
 
     return (
-      <div className="container">
-        <div className="title">LATEST WEATHER AT ELYSIUM PLANTITIA</div>
-        <div className="row">
+      <div>
+        <div className="d-flex justify-content-between">
+          <div className="section-title">LATEST WEATHER AT ELYSIUM PLANTITIA</div>
+
+          <div className="unit">
+            <label for="cel" className="h5">
+              °C
+            </label>
+            <input type="radio" id="cel" name="unit" checked={cel && "checked"} />
+            <button className="unit__toggle" onClick={toggleUnit}></button>
+            <label for="fah" className="h5">
+              °F
+            </label>
+            <input type="radio" id="fah" name="unit" checked={!cel && "checked"} />
+          </div>
+        </div>
+
+        <div className="d-flex">
           <div className="text-right">
             <div className="sol display-4">Sol {sol}</div>
-            <div className="h2 gray">
+            <div className="h2 text-muted">
               {earthMonth} {earthDay}
             </div>
             <IoInformationCircleSharp className="h4 text-primary" onClick={openModal} />
@@ -197,12 +223,14 @@ export default function App() {
             </Modal>
           </div>
           <div className="divider" />
-          <div className="col text-right ">
-            <div className="h5">High: {max_temp}°C</div>
-            <div className="h5">Low: {min_temp}°C</div>
+          <div className="col">
+            <div className="h5">
+              High: {cel ? max_temp + "°C" : convertCelToFah(max_temp) + "°F"}
+            </div>
+            <div className="h5">Low: {cel ? min_temp + "°C" : convertCelToFah(min_temp) + "°F"}</div>
             <br />
-            <div className="gray">Wind Speed: {wind_speed ? wind_speed : "N/A"}</div>
-            <div className="gray">
+            <div className="text-muted">Wind Speed: {wind_speed ? wind_speed : "N/A"}</div>
+            <div className="text-muted">
               Wind Direction: {wind_direction ? `${wind_direction} kph` : "N/A"}
             </div>
           </div>
@@ -212,7 +240,7 @@ export default function App() {
               <IoSunnyOutline />
               {atmo_opacity}
             </div>
-            <div className="gray">
+            <div className="text-muted">
               <div>{marsSeason}</div>
               <div>UV Index: {local_uv_irradiance_index}</div>
               <div>Sunrise: {sunrise}</div>
@@ -226,9 +254,9 @@ export default function App() {
 
   const renderImages = () => {
     return (
-      <div className="container d-flex flex-column justify-content-center">
-        <div className="title text-center">IMAGES CAPTURED BY CURIOSITY ROVER</div>
-        <Carousel style={{ width: 300, height: 300, padding: 30 }}>
+      <div className="d-flex align-items-center flex-column">
+        <div className="section-title text-white">IMAGES CAPTURED BY CURIOSITY ROVER</div>
+        <Carousel>
           {images.map((image, index) => {
             return (
               <Carousel.Item key={index} interval={2000}>
@@ -237,32 +265,35 @@ export default function App() {
                   src={image.img_src}
                   alt={`Mars captured with ${cameras[index]}`}
                 />
-                <Carousel.Caption>{cameras[index]}</Carousel.Caption>
+                <Carousel.Caption>
+                  <div className="bg-dark">{cameras[index]}</div>
+                </Carousel.Caption>
               </Carousel.Item>
             );
           })}
         </Carousel>
-        <div className="h5 text-center">({images[0].earth_date})</div>
+        <div className="h5 mt-2">({images[0].earth_date})</div>
       </div>
     );
   };
   const renderNews = () => {
+    const test =
+      "https://media.nature.com/lw1024/magazine-assets/d41586-021-01770-w/d41586-021-01770-w_19298050.jpg";
     return (
       <div>
         {news.map((article, index) => {
           let date = article.publishedAt.split("T")[0];
+          const { title, description, url, urlToImage } = article;
           return (
-            <div key={index}>
-              <div>{article.title}</div>
-              <div>{date}</div>
-              <div>{article.description}</div>
-              <a href={article.url}>
-                <img
-                  src={article.urlToImage}
-                  alt={`Article ${index} image`}
-                  style={{ width: "15%" }}
-                ></img>
+            <div key={index} className="d-flex flex-row">
+              <a href={url}>
+                <img className="news-images" src={urlToImage} alt={`Article ${index} image`} />
               </a>
+              <div>
+                <div className="font-weight-bold">{title}</div>
+                <div className="font-italic">{date}</div>
+                <div>{description}</div>
+              </div>
             </div>
           );
         })}
@@ -270,10 +301,10 @@ export default function App() {
     );
   };
   return (
-    <div style={{ height: "100vh" }}>
+    <div>
       <div className="weather-section">{weather && renderWeather()}</div>
       <div className="image-section">{imagesFetched && renderImages()}</div>
-      <div>{news && renderNews()}</div>
+      <div className="news-section">{news && renderNews()}</div>
     </div>
   );
 }

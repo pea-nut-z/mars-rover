@@ -7,7 +7,7 @@ body {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  color: black;
+  color: white;
   font-family: "Montserrat", sans-serif;
 }
 
@@ -26,41 +26,50 @@ body {
   --clr-dark: #444;
   --clr-accent: #d06d6d;
   --clr-accent-dark: #613131;
-  --bk-opacity: 50%;
   --pad-normal: 30px;
+  --margin-normal: 2%;
+  --white-background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1));
+  --black-background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
 }
 
 .weather-section {
-  background-color: var(--clr-light);
+  background: var(--white-background);
   width: 45%;
-  opacity: var(--bk-opacity);
   padding: var(--pad-normal);
-  margin: 5%;
+  margin: var(--margin-normal);
 }
 
 .image-section {
-  background-color: var(--clr-light);
+  background: var(--black-background);
   width: 35%;
-  opacity: var(--bk-opacity);
   padding: var(--pad-normal);
-  margin: 5%;
-  margin-left: 15%;
+  margin: var(--margin-normal);
+  margin-left: 12%;
 }
 
-.title {
+.news-section {
+  position: absolute;
+  background: var(--black-background);
+  width: 49%;
+  height: 91%;
+  padding: var(--pad-normal);
+  margin: var(--margin-normal);
+  top: 0;
+  left: 47%;
+  overflow: auto;
+}
+
+.section-title {
   color: var(--clr-accent);
   font-weight: var(--fw-semi);
   font-size: var(--fs-h1);
   padding-bottom: var(--pad-normal);
 }
 
-.gray {
-  color: var(--clr-dark);
-}
-
 .divider {
   width: 5px;
   margin-left: var(--pad-normal);
+  margin-right: var(--pad-normal);
   background-color: var(--clr-accent);
 }
 
@@ -73,34 +82,127 @@ body {
   transform: translate(-50%, -50%);
 }
 
-/* .horizontal-divider{
- height
-}
-
-.vertical-divider{
-
-} */
-/* 
-
-
-#images-container {
+.unit {
+  -ms-grid-column: 3;
+  -ms-grid-column-span: 1;
+  grid-column: 3 / 4;
+  place-self: end;
+  color: var(--clr-light);
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
+  opacity: 0.7;
+  -webkit-transition: opacity 275ms linear;
+  transition: opacity 275ms linear;
 }
 
-#other-imgs-container {
-  display: flex;
-  flex-direction: row;
+@media (max-width: 900px) {
+  .unit {
+    position: absolute;
+    left: 3em;
+    top: 3em;
+  }
 }
 
-.image-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+.unit:hover {
+  opacity: 1;
 }
 
-.fetched-img {
-  border-radius: 8px;
-  width: 25%;
-} */
+.unit label {
+  cursor: pointer;
+}
+
+.unit input {
+  clip: rect(0 0 0 0);
+  -webkit-clip-path: inset(50%);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.unit__toggle {
+  cursor: pointer;
+  width: 4em;
+  border: 2px solid var(--clr-light);
+  background: transparent;
+  padding: 0;
+  border-radius: 100vmax;
+  margin: 0 1em;
+}
+
+.unit__toggle::after {
+  content: "";
+  display: block;
+  background: var(--clr-accent);
+  border-radius: 50%;
+  height: 1rem;
+  margin: 3px;
+  margin-left: auto;
+  width: 1rem;
+}
+
+:checked ~ .unit__toggle::after {
+  margin-left: 3px;
+}
+
+.unit__toggle:focus {
+  outline: none;
+  text-decoration: none;
+}
+
+.slide {
+  width: 400px;
+  height: 400px;
+  border: solid 2px white;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 100px;
+  width: 100px;
+  background-image: none;
+}
+
+.carousel-control-next-icon:after {
+  content: ">";
+  font-size: 55px;
+  color: var(--clr-accent);
+}
+
+.carousel-control-prev-icon:after {
+  content: "<";
+  font-size: 55px;
+  color: var(--clr-accent);
+}
+.carousel-indicators li {
+  background-color: var(--clr-accent);
+}
+
+.news-images {
+  margin-bottom: var(--pad-normal);
+  margin-right: var(--pad-normal);
+  border: solid 2px white;
+  width: 250px;
+  height: 160px;
+}
+
+.news-images:hover {
+  border: solid 2px var(--clr-accent);
+}
+
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--clr-accent);
+  border-radius: 10px;
+}
