@@ -8,24 +8,13 @@ body {
   padding: 0;
   overflow: hidden;
   color: white;
+  font-size: 15px;
   font-family: "Montserrat", sans-serif;
 }
 
 :root {
-  --fw-light: 300;
-  --fw-normal: 400;
-  --fw-semi: 500;
-  --fw-bold: 700;
-  --fs-h1: 1.3rem;
-  --fs-h2: 2.25rem;
-  --fs-h3: 3.25rem;
-  --fs-body: 1rem;
-  --fs-xl: 4.5rem;
   --clr-light: #fff;
-  --clr-gray: #989898;
-  --clr-dark: #444;
   --clr-accent: #d06d6d;
-  --clr-accent-dark: #613131;
   --pad-normal: 30px;
   --margin-normal: 2%;
   --white-background: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1));
@@ -61,8 +50,8 @@ body {
 
 .section-title {
   color: var(--clr-accent);
-  font-weight: var(--fw-semi);
-  font-size: var(--fs-h1);
+  font-weight: 500;
+  font-size: 21px;
   padding-bottom: var(--pad-normal);
 }
 
@@ -94,14 +83,6 @@ body {
   opacity: 0.7;
   -webkit-transition: opacity 275ms linear;
   transition: opacity 275ms linear;
-}
-
-@media (max-width: 900px) {
-  .unit {
-    position: absolute;
-    left: 3em;
-    top: 3em;
-  }
 }
 
 .unit:hover {
@@ -139,7 +120,7 @@ body {
   background: var(--clr-accent);
   border-radius: 50%;
   height: 1rem;
-  margin: 3px;
+  margin: 1px;
   margin-left: auto;
   width: 1rem;
 }
@@ -205,4 +186,112 @@ body {
 ::-webkit-scrollbar-thumb {
   background: var(--clr-accent);
   border-radius: 10px;
+}
+
+@media (max-width: 576px) {
+  body {
+    font-size: 14px;
+    overflow: auto;
+  }
+
+  .unit {
+    position: relative;
+    left: 6%;
+  }
+
+  .unit__toggle {
+    width: 3em;
+    border: 1px solid var(--clr-light);
+    margin: 4px;
+  }
+
+  .unit__toggle::after {
+    background: white;
+  }
+
+  .label {
+    font-size: 13px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .weather-section {
+    width: 100%;
+    margin: 0;
+  }
+
+  .weather-container {
+    flex-direction: column;
+  }
+
+  .section-title {
+    font-size: 15px;
+    width: 70%;
+  }
+
+  /* IMAGES */
+  .image-section {
+    width: 100%;
+    margin: 0;
+  }
+
+  .image-title {
+    text-align: center;
+  }
+
+  .slide {
+    width: 270px;
+    height: 270px;
+  }
+
+  /* NEWS */
+  .news-section {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center !important;
+    left: 0;
+    margin: 0;
+    width: 100%;
+    background: var(--white-background);
+  }
+
+  .news-container {
+    display: flex;
+    flex-direction: column !important;
+  }
+  .news-images {
+    width: 240px;
+    height: 150px;
+    margin-bottom: var(--margin-normal);
+    margin-top: var(--pad-normal);
+  }
+}
+
+@media (max-width: 768px) {
+  .weather-section {
+    width: 100%;
+    margin: 0;
+  }
+
+  /* IMAGES */
+  .image-section {
+    position: relative;
+
+    width: 100%;
+    margin: 0;
+  }
+
+  .slide {
+    width: 270px;
+    height: 270px;
+  }
+
+  .news-section {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    left: 0;
+    overflow: auto;
+  }
 }

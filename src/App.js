@@ -21,6 +21,7 @@ const modalStyles = {
 Modal.setAppElement("#root");
 
 export default function App() {
+  const [loading, setLoading] = useState(true);
   const [images, setImages] = useState([]);
   const [cameras, setCameras] = useState();
   const [weather, setWeather] = useState();
@@ -28,9 +29,6 @@ export default function App() {
   const [cel, setCel] = useState(true);
   const [modalIsOpen, setIsOpen] = useState(false);
   const [imagesFetched, setImagesFetched] = useState(false);
-
-  // console.log({ cel });
-  // console.log(modalIsOpen);
 
   const camerasAbbr = ["RHAZ", "MAST", "CHEMCAM", "MAHLI", "MARDI", "NAVCAM"];
   const camerasFullNames = [
@@ -44,9 +42,11 @@ export default function App() {
 
   useEffect(() => {
     const todayDate = getTodayDate();
+    console.log({ todayDate });
+
     getPhotos(todayDate);
     getWeather();
-    getNews();
+    // getNews();
   }, []);
 
   const toggleUnit = () => {
@@ -68,9 +68,10 @@ export default function App() {
 
   const getTodayDate = () => {
     const date = new Date();
-    const year = date.getUTCFullYear();
-    const month = date.getUTCMonth() + 1;
-    const day = date.getUTCDate() - 1;
+
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
     return [year, month, day];
   };
 
@@ -93,6 +94,8 @@ export default function App() {
 
   const getPhotos = (array) => {
     let [year, month, day] = array;
+    console.log({ array });
+
     let selectedImages = [];
     let selectedCameras = [];
     const frontCameraImg = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?camera=FHAZ&earth_date=${year}-${month}-${day}&page=1&api_key=${process.env.REACT_APP_NASA_API_KEY}`;
@@ -125,6 +128,7 @@ export default function App() {
                 setImages([...images, ...selectedImages]);
                 setCameras(selectedCameras);
                 setImagesFetched(true);
+                setLoading(false);
               });
           });
         }
@@ -140,6 +144,10 @@ export default function App() {
       .then((res) => res.json())
       .then((data) => {
         setWeather(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error(error);
       });
   };
 
@@ -157,6 +165,10 @@ export default function App() {
           return arr;
         }, []);
         setNews(selectedArticles);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error(error);
       });
   };
 
@@ -190,24 +202,24 @@ export default function App() {
     }
 
     return (
-      <div>
+      <div className="weather-section">
         <div className="d-flex justify-content-between">
           <div className="section-title">LATEST WEATHER AT ELYSIUM PLANTITIA</div>
 
           <div className="unit">
-            <label for="cel" className="h5">
+            <label for="cel" className="label h5">
               °C
             </label>
             <input type="radio" id="cel" name="unit" checked={cel && "checked"} />
             <button className="unit__toggle" onClick={toggleUnit}></button>
-            <label for="fah" className="h5">
+            <label for="fah" className="label h5">
               °F
             </label>
             <input type="radio" id="fah" name="unit" checked={!cel && "checked"} />
           </div>
         </div>
 
-        <div className="d-flex">
+        <div className="weather-container d-flex">
           <div className="text-right">
             <div className="sol display-4">Sol {sol}</div>
             <div className="h2 text-muted">
@@ -228,10 +240,9 @@ export default function App() {
               High: {cel ? max_temp + "°C" : convertCelToFah(max_temp) + "°F"}
             </div>
             <div className="h5">Low: {cel ? min_temp + "°C" : convertCelToFah(min_temp) + "°F"}</div>
-            <br />
-            <div className="text-muted">Wind Speed: {wind_speed ? wind_speed : "N/A"}</div>
-            <div className="text-muted">
-              Wind Direction: {wind_direction ? `${wind_direction} kph` : "N/A"}
+            <div>
+              <div>Wind Speed: {wind_speed ? wind_speed : "N/A"}</div>
+              <div>Wind Direction: {wind_direction ? `${wind_direction} kph` : "N/A"}</div>
             </div>
           </div>
 
@@ -240,7 +251,7 @@ export default function App() {
               <IoSunnyOutline />
               {atmo_opacity}
             </div>
-            <div className="text-muted">
+            <div>
               <div>{marsSeason}</div>
               <div>UV Index: {local_uv_irradiance_index}</div>
               <div>Sunrise: {sunrise}</div>
@@ -254,8 +265,10 @@ export default function App() {
 
   const renderImages = () => {
     return (
-      <div className="d-flex align-items-center flex-column">
-        <div className="section-title text-white">IMAGES CAPTURED BY CURIOSITY ROVER</div>
+      <div className="image-section d-flex align-items-center flex-column">
+        <div className="section-title image-title text-white">
+          IMAGES CAPTURED BY CURIOSITY ROVER
+        </div>
         <Carousel>
           {images.map((image, index) => {
             return (
@@ -277,15 +290,13 @@ export default function App() {
     );
   };
   const renderNews = () => {
-    const test =
-      "https://media.nature.com/lw1024/magazine-assets/d41586-021-01770-w/d41586-021-01770-w_19298050.jpg";
     return (
-      <div>
+      <div className="news-section">
         {news.map((article, index) => {
           let date = article.publishedAt.split("T")[0];
           const { title, description, url, urlToImage } = article;
           return (
-            <div key={index} className="d-flex flex-row">
+            <div key={index} className="news-container d-flex flex-row">
               <a href={url}>
                 <img className="news-images" src={urlToImage} alt={`Article ${index} image`} />
               </a>
@@ -301,10 +312,11 @@ export default function App() {
     );
   };
   return (
-    <div>
-      <div className="weather-section">{weather && renderWeather()}</div>
-      <div className="image-section">{imagesFetched && renderImages()}</div>
-      <div className="news-section">{news && renderNews()}</div>
+    <div className>
+      <div className={loading && "h3 text-center m-5"}>{loading && "Loading..."}</div>
+      {weather && renderWeather()}
+      {imagesFetched && renderImages()}
+      {news && renderNews()}
     </div>
   );
 }
