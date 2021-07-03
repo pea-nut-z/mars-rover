@@ -15,6 +15,7 @@ const modalStyles = {
     color: "black",
     zIndex: 2,
     transform: "translate(-50%, -50%)",
+    maxHeight: "100vh",
   },
 };
 
@@ -42,11 +43,9 @@ export default function App() {
 
   useEffect(() => {
     const todayDate = getTodayDate();
-    console.log({ todayDate });
-
     getPhotos(todayDate);
     getWeather();
-    // getNews();
+    getNews();
   }, []);
 
   const toggleUnit = () => {
@@ -94,8 +93,6 @@ export default function App() {
 
   const getPhotos = (array) => {
     let [year, month, day] = array;
-    console.log({ array });
-
     let selectedImages = [];
     let selectedCameras = [];
     const frontCameraImg = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?camera=FHAZ&earth_date=${year}-${month}-${day}&page=1&api_key=${process.env.REACT_APP_NASA_API_KEY}`;
@@ -143,6 +140,8 @@ export default function App() {
     return fetch(weather)
       .then((res) => res.json())
       .then((data) => {
+        console.error(data);
+
         setWeather(data);
         setLoading(false);
       })
@@ -207,15 +206,15 @@ export default function App() {
           <div className="section-title">LATEST WEATHER AT ELYSIUM PLANTITIA</div>
 
           <div className="unit">
-            <label for="cel" className="label h5">
+            <label htmlFor="cel" className="label h5">
               °C
             </label>
-            <input type="radio" id="cel" name="unit" checked={cel && "checked"} />
-            <button className="unit__toggle" onClick={toggleUnit}></button>
-            <label for="fah" className="label h5">
+            <input type="radio" id="cel" name="unit" checked={cel && "checked"} readOnly />
+            <button className="unit-toggle" onClick={toggleUnit}></button>
+            <label htmlFor="fah" className="label h5">
               °F
             </label>
-            <input type="radio" id="fah" name="unit" checked={!cel && "checked"} />
+            <input type="radio" id="fah" name="unit" checked={!cel && "checked"} readOnly />
           </div>
         </div>
 
@@ -228,6 +227,9 @@ export default function App() {
             <IoInformationCircleSharp className="h4 text-primary" onClick={openModal} />
             <Modal isOpen={modalIsOpen} onRequestClose={closeModal} style={modalStyles}>
               <div>
+                <button className="modalBtn" onClick={closeModal}>
+                  Close
+                </button>
                 {info.map((item, index) => {
                   return <p key={index}>{item}</p>;
                 })}
@@ -248,7 +250,7 @@ export default function App() {
 
           <div className="col text-right">
             <div className="h5">
-              <IoSunnyOutline />
+              {/* <IoSunnyOutline /> */}
               {atmo_opacity}
             </div>
             <div>
@@ -315,7 +317,7 @@ export default function App() {
     <div className>
       <div className={loading && "h3 text-center m-5"}>{loading && "Loading..."}</div>
       {weather && renderWeather()}
-      {imagesFetched && renderImages()}
+      {imagesFetched && !modalIsOpen && renderImages()}
       {news && renderNews()}
     </div>
   );
