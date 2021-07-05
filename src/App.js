@@ -19,7 +19,7 @@ const modalStyles = {
   },
 };
 
-Modal.setAppElement("#root");
+if (process.env.REACT_APP_TEST !== "TRUE") Modal.setAppElement("#root");
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -220,7 +220,9 @@ export default function App() {
 
         <div className="weather-container d-flex">
           <div className="text-right">
-            <div className="sol display-4">Sol {sol}</div>
+            <div data-testid="sol" className="sol display-4">
+              Sol {sol}
+            </div>
             <div className="h2 text-muted">
               {earthMonth} {earthDay}
             </div>
