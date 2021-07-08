@@ -4,6 +4,7 @@ import App from "./App";
 import axios from "axios";
 import { weatherData } from "./mocked-data";
 import renderer, { act } from "react-test-renderer";
+import Modal from "react-modal";
 
 jest.mock("axios");
 
@@ -30,16 +31,11 @@ describe("testing", () => {
     let component;
 
     await act(() => {
-      return axios.get("https://api.maas2.apollorion.com/").then(async (users) => {
+      return axios.get("https://api.maas2.apollorion.com/").then(async (res) => {
         component = renderer.create(<App />);
-        expect(component.toJSON()).toMatchSnapshot();
+        console.log(res.data.terrestrial_date);
       });
     });
-
-    // mockedAxiosGet("https://api.maas2.apollorion.com/").then((test) => {
-    //   console.log(test.data);
-
-    //   expect(component.toJSON()).toMatchSnapshot();
-    // });
+    expect(component.toJSON()).toMatchSnapshot();
   });
 });

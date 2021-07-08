@@ -3,9 +3,8 @@ import axios from "axios";
 import "./App.css";
 import Carousel from "react-bootstrap/Carousel";
 import { IoInformationCircleSharp } from "react-icons/io5";
-import Modal from "react-modal";
+// import Modal from "react-modal";
 import info from "./info";
-// import { fetchData } from "./fetchData";
 
 const modalStyles = {
   content: {
@@ -21,7 +20,7 @@ const modalStyles = {
   },
 };
 
-if (process.env.REACT_APP_TEST !== "TRUE") Modal.setAppElement("#root");
+// if (process.env.REACT_APP_TEST !== "TRUE") Modal.setAppElement("#root");
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -224,7 +223,7 @@ export default function App() {
             <div className="h2 text-muted">
               {earthMonth} {earthDay}
             </div>
-            <IoInformationCircleSharp className="h4 text-primary" onClick={openModal} />
+            {/* <IoInformationCircleSharp className="h4 text-primary" onClick={openModal} />
             <Modal isOpen={modalIsOpen} onRequestClose={closeModal} style={modalStyles}>
               <div>
                 <button className="modalBtn" onClick={closeModal}>
@@ -234,7 +233,7 @@ export default function App() {
                   return <p key={index}>{item}</p>;
                 })}
               </div>
-            </Modal>
+            </Modal> */}
           </div>
           <div className="divider" />
           <div className="col">
