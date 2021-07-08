@@ -1,33 +1,45 @@
-/**
- * @jest-environment jsdom
- */
-
-import { configure } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
-configure({ adapter: new Adapter() });
-
 import React from "react";
 import "@testing-library/jest-dom";
-import fetchMock from "fetch-mock";
-import { render, screen, act, waitForElementToBeRemoved } from "@testing-library/react/pure";
 import App from "./App";
-import Modal from "react-modal";
-import { shallow, mount } from "enzyme";
+import axios from "axios";
+import { weatherData } from "./mocked-data";
+import renderer, { act } from "react-test-renderer";
+
+jest.mock("axios");
+
+axios.get.mockImplementation((url) => {
+  switch (url) {
+    case "https://api.maas2.apollorion.com/":
+      return Promise.resolve({ data: weatherData });
+    default:
+      return Promise.reject(new Error("not found"));
+  }
+});
+
+// axios.get.mockImplementation(() => mockedAxiosGet());
 
 describe("testing", () => {
-  it("should do async work", async () => {
-    let component = mount(<App />);
-    requests.pop().respond(200);
+  // let axiosGetSpy;
 
-    setTimeout(() => {
-      try {
-        component.update();
-        // assertNewBehaviour();
-        done();
-      } catch (error) {
-        done(error);
-      }
-    }, 1000);
-    console.log(component.debug());
+  // afterEach(() => {
+  // component.unmount();
+  // axiosGetSpy.mockRestore();
+  // });
+
+  it("should work.", async () => {
+    let component;
+
+    await act(() => {
+      return axios.get("https://api.maas2.apollorion.com/").then(async (users) => {
+        component = renderer.create(<App />);
+        expect(component.toJSON()).toMatchSnapshot();
+      });
+    });
+
+    // mockedAxiosGet("https://api.maas2.apollorion.com/").then((test) => {
+    //   console.log(test.data);
+
+    //   expect(component.toJSON()).toMatchSnapshot();
+    // });
   });
 });

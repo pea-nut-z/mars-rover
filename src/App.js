@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import "./App.css";
 import Carousel from "react-bootstrap/Carousel";
-import { IoSunnyOutline, IoInformationCircleSharp } from "react-icons/io5";
+import { IoInformationCircleSharp } from "react-icons/io5";
 import Modal from "react-modal";
 import info from "./info";
+// import { fetchData } from "./fetchData";
 
 const modalStyles = {
   content: {
@@ -43,9 +45,9 @@ export default function App() {
 
   useEffect(() => {
     const todayDate = getTodayDate();
-    getPhotos(todayDate);
+    // getPhotos(todayDate);
     getWeather();
-    getNews();
+    // getNews();
   }, []);
 
   const toggleUnit = () => {
@@ -137,12 +139,10 @@ export default function App() {
 
   const getWeather = () => {
     const weather = "https://api.maas2.apollorion.com/";
-    return fetch(weather)
-      .then((res) => res.json())
-      .then((data) => {
-        console.error(data);
-
-        setWeather(data);
+    return axios
+      .get(weather)
+      .then((res) => {
+        setWeather(res.data);
         setLoading(false);
       })
       .catch((error) => {
@@ -220,9 +220,7 @@ export default function App() {
 
         <div className="weather-container d-flex">
           <div className="text-right">
-            <div data-testid="sol" className="sol display-4">
-              Sol {sol}
-            </div>
+            <div className="sol display-4">Sol {sol}</div>
             <div className="h2 text-muted">
               {earthMonth} {earthDay}
             </div>
@@ -302,7 +300,7 @@ export default function App() {
           return (
             <div key={index} className="news-container d-flex flex-row">
               <a href={url}>
-                <img className="news-images" src={urlToImage} alt={`Article ${index} image`} />
+                <img className="news-images" src={urlToImage} alt={`Article ${index}`} />
               </a>
               <div>
                 <div className="font-weight-bold">{title}</div>
@@ -316,11 +314,11 @@ export default function App() {
     );
   };
   return (
-    <div className>
-      <div className={loading && "h3 text-center m-5"}>{loading && "Loading..."}</div>
+    <div>
+      <div className={loading ? "h3 text-center m-5" : undefined}>{loading && "Loading..."}</div>
       {weather && renderWeather()}
-      {imagesFetched && !modalIsOpen && renderImages()}
-      {news && renderNews()}
+      {/* {imagesFetched && !modalIsOpen && renderImages()} */}
+      {/* {news && renderNews()} */}
     </div>
   );
 }
