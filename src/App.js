@@ -4,6 +4,7 @@ import "./App.css";
 import Carousel from "react-bootstrap/Carousel";
 import { IoInformationCircleSharp } from "react-icons/io5";
 // import Modal from "react-modal";
+import { weatherUrl, getFtImgUrl, getOtherImgUrl, getTodayDate, camerasAbbr } from "./helper";
 import info from "./info";
 
 const modalStyles = {
@@ -32,19 +33,9 @@ export default function App() {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [imagesFetched, setImagesFetched] = useState(false);
 
-  const camerasAbbr = ["RHAZ", "MAST", "CHEMCAM", "MAHLI", "MARDI", "NAVCAM"];
-  const camerasFullNames = [
-    "Rear Hazard Avoidance Camera",
-    "Mast Camera",
-    "Chemistry and Camera Complex",
-    "Mars Hand Lens Imager",
-    "Mars Descent Imager",
-    "Navigation Camera",
-  ];
-
   useEffect(() => {
     const todayDate = getTodayDate();
-    // getPhotos(todayDate);
+    getPhotos(todayDate);
     getWeather();
     // getNews();
   }, []);
@@ -66,15 +57,6 @@ export default function App() {
     setIsOpen(false);
   };
 
-  const getTodayDate = () => {
-    const date = new Date();
-
-    const year = date.getFullYear();
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
-    return [year, month, day];
-  };
-
   const getPreviousMonthDate = (year, month) => {
     const monthsWith30Days = [4, 6, 9, 11];
     const preMonth = month === 1 ? 12 : month - 1;
@@ -92,15 +74,16 @@ export default function App() {
     return [preYear, preMonth, preDay];
   };
 
-  const getPhotos = (array) => {
-    let [year, month, day] = array;
+  const getPhotos = (dateArray) => {
+    let [year, month, day] = dateArray;
     let selectedImages = [];
     let selectedCameras = [];
-    const frontCameraImg = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?camera=FHAZ&earth_date=${year}-${month}-${day}&page=1&api_key=${process.env.REACT_APP_NASA_API_KEY}`;
-    fetch(frontCameraImg)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.photos.length === 0) {
+    const frontCameraImg = getFtImgUrl(dateArray);
+    return axios
+      .get(frontCameraImg)
+      .then((res) => {
+        const imagesFetched = res.data.photos;
+        if (imagesFetched.length === 0) {
           if (day === 1) {
             const previousMonthDate = getPreviousMonthDate(year, month);
             getPhotos(previousMonthDate);
@@ -108,18 +91,19 @@ export default function App() {
             getPhotos([year, month, day - 1]);
           }
         } else {
-          selectedImages.push(data.photos[0]);
+          selectedImages.push(imagesFetched[0]);
           selectedCameras.push("Front Hazard Avoidance Camera");
-          camerasAbbr.forEach((camera, index) => {
-            const otherImgs = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?camera=${camera}&earth_date=${year}-${month}-${day}&page=1&api_key=${process.env.REACT_APP_NASA_API_KEY}`;
-            fetch(otherImgs)
-              .then((res) => res.json())
-              .then((data) => {
-                if (data.photos.length === 0) {
+          camerasAbbr.forEach((cameraAbbr) => {
+            const otherImg = getOtherImgUrl(cameraAbbr, dateArray);
+            return axios
+              .get(otherImg)
+              .then((res) => {
+                const imagesFetched = res.data.photos;
+                if (imagesFetched.length === 0) {
                   return;
                 } else {
-                  selectedImages.push(data.photos[0]);
-                  selectedCameras.push(camerasFullNames[index]);
+                  selectedImages.push(imagesFetched[0]);
+                  selectedCameras.push(imagesFetched[0].camera.full_name);
                 }
               })
               .finally(() => {
@@ -137,9 +121,8 @@ export default function App() {
   };
 
   const getWeather = () => {
-    const weather = "https://api.maas2.apollorion.com/";
     return axios
-      .get(weather)
+      .get(weatherUrl)
       .then((res) => {
         setWeather(res.data);
         setLoading(false);
@@ -316,7 +299,7 @@ export default function App() {
     <div>
       <div className={loading ? "h3 text-center m-5" : undefined}>{loading && "Loading..."}</div>
       {weather && renderWeather()}
-      {/* {imagesFetched && !modalIsOpen && renderImages()} */}
+      {imagesFetched && !modalIsOpen && renderImages()}
       {/* {news && renderNews()} */}
     </div>
   );
