@@ -3,8 +3,15 @@ import "@testing-library/jest-dom";
 import renderer, { act } from "react-test-renderer";
 import axios from "axios";
 import App from "./App";
-import { fakeWeatherData, fakeFtImgData } from "./fake.data";
-import { weatherUrl, getFtImgUrl, getOtherImgUrl, getTodayDate, camerasAbbr } from "./helper";
+import { fakeWeatherData, fakeImgData, fakeNewsData } from "./fake.data";
+import {
+  weatherUrl,
+  getFtImgUrl,
+  getOtherImgUrl,
+  newsUrl,
+  getTodayDate,
+  cameraAbbrs,
+} from "./helper";
 
 import Modal from "react-modal";
 
@@ -12,17 +19,20 @@ jest.mock("axios");
 
 const dateArray = getTodayDate();
 const frontCameraImgUrl = getFtImgUrl(dateArray);
-const fakeRHAZImgUrl = getOtherImgUrl(cameraAbbr, dateArray);
+// const fakeRHAZImgUrl = getOtherImgUrl(cameraAbbr, dateArray);
 
 const axiosGetSpy = jest.spyOn(axios, "get").mockImplementation((url) => {
-  switch (url) {
-    case weatherUrl:
-      return Promise.resolve({ data: fakeWeatherData });
-    case frontCameraImgUrl:
-      return Promise.resolve({ data: { photos: fakeFtImgData } });
-    default:
-      return Promise.reject(new Error("not found"));
+  let res;
+  if (url === weatherUrl) {
+    res = Promise.resolve({ data: fakeWeatherData });
+  } else if (url === frontCameraImgUrl) {
+    res = Promise.resolve({ data: fakeImgData });
+  } else if (url === newsUrl) {
+    res = Promise.resolve({ data: fakeNewsData });
+  } else {
+    res = Promise.reject(new Error("not found"));
   }
+  return res;
 });
 
 describe("Fetch Data", () => {
@@ -44,14 +54,16 @@ describe("Fetch Data", () => {
     expect(axiosGetSpy).toBeCalledWith(weatherUrl);
   });
 
-  it("fetches from correct url with queries for image data.", async () => {
-    // expect(axiosGetSpy).toBeCalledWith(frontCameraImgUrl);
+  // it("fetches from correct url with queries for image data.", async () => {
+  //   expect(axiosGetSpy).toBeCalledWith(frontCameraImgUrl);
 
-    await act(() => {
-      return axios.get(frontCameraImgUrl).then((res) => {
-        console.log(res);
-      });
-    });
+  it("fetches from correct url for news data.", async () => {
+    // await act(() => {
+    //   return axios.get(newsUrl).then((res) => {
+    //     console.log(res.data.articles);
+    //   });
+    // });
+    expect(axiosGetSpy).toBeCalledWith(newsUrl);
   });
 });
 

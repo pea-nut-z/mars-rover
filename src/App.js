@@ -4,7 +4,14 @@ import "./App.css";
 import Carousel from "react-bootstrap/Carousel";
 import { IoInformationCircleSharp } from "react-icons/io5";
 // import Modal from "react-modal";
-import { weatherUrl, getFtImgUrl, getOtherImgUrl, getTodayDate, camerasAbbr } from "./helper";
+import {
+  weatherUrl,
+  getFtImgUrl,
+  getOtherImgUrl,
+  newsUrl,
+  getTodayDate,
+  cameraAbbrs,
+} from "./helper";
 import info from "./info";
 
 const modalStyles = {
@@ -36,7 +43,7 @@ export default function App() {
   useEffect(() => {
     const todayDate = getTodayDate();
     getPhotos(todayDate);
-    getWeather();
+    // getWeather();
     // getNews();
   }, []);
 
@@ -93,7 +100,7 @@ export default function App() {
         } else {
           selectedImages.push(imagesFetched[0]);
           selectedCameras.push("Front Hazard Avoidance Camera");
-          camerasAbbr.forEach((cameraAbbr) => {
+          cameraAbbrs.forEach((cameraAbbr) => {
             const otherImg = getOtherImgUrl(cameraAbbr, dateArray);
             return axios
               .get(otherImg)
@@ -133,11 +140,10 @@ export default function App() {
   };
 
   const getNews = () => {
-    const news = `https://newsapi.org/v2/everything?qInTitle=%22mars%22&domains=nature.com&sortBy=publishedAt&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`;
-    fetch(news)
-      .then((res) => res.json())
-      .then((data) => {
-        const { articles } = data;
+    return axios
+      .get(newsUrl)
+      .then((res) => {
+        const { articles } = res.data;
         const selectedArticles = articles.reduce((arr, article) => {
           const repeated = arr.some((obj) => {
             return obj.title === article.title;
@@ -300,7 +306,7 @@ export default function App() {
       <div className={loading ? "h3 text-center m-5" : undefined}>{loading && "Loading..."}</div>
       {weather && renderWeather()}
       {imagesFetched && !modalIsOpen && renderImages()}
-      {/* {news && renderNews()} */}
+      {news && renderNews()}
     </div>
   );
 }
