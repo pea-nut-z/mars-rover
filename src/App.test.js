@@ -11,6 +11,7 @@ import {
   newsUrl,
   getTodayDate,
   cameraAbbrs,
+  checkImgUrl,
 } from "./helper";
 
 import Modal from "react-modal";
@@ -19,20 +20,22 @@ jest.mock("axios");
 
 const dateArray = getTodayDate();
 const frontCameraImgUrl = getFtImgUrl(dateArray);
-// const fakeRHAZImgUrl = getOtherImgUrl(cameraAbbr, dateArray);
 
 const axiosGetSpy = jest.spyOn(axios, "get").mockImplementation((url) => {
-  let res;
-  if (url === weatherUrl) {
-    res = Promise.resolve({ data: fakeWeatherData });
-  } else if (url === frontCameraImgUrl) {
-    res = Promise.resolve({ data: fakeImgData });
-  } else if (url === newsUrl) {
-    res = Promise.resolve({ data: fakeNewsData });
-  } else {
-    res = Promise.reject(new Error("not found"));
+  if (checkImgUrl(url)) url = "otherImgUrl";
+  console.log({ url });
+
+  switch (url) {
+    case weatherUrl:
+      return Promise.resolve({ data: fakeWeatherData });
+    case frontCameraImgUrl:
+    case "otherImgUrl":
+      return Promise.resolve({ data: fakeImgData });
+    case newsUrl:
+      return Promise.resolve({ data: fakeNewsData });
+    default:
+      return Promise.reject(new Error("not found"));
   }
-  return res;
 });
 
 describe("Fetch Data", () => {

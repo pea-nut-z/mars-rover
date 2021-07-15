@@ -3,7 +3,7 @@ import axios from "axios";
 import "./App.css";
 import Carousel from "react-bootstrap/Carousel";
 import { IoInformationCircleSharp } from "react-icons/io5";
-// import Modal from "react-modal";
+import Modal from "react-modal";
 import {
   weatherUrl,
   getFtImgUrl,
@@ -28,8 +28,6 @@ const modalStyles = {
   },
 };
 
-// if (process.env.REACT_APP_TEST !== "TRUE") Modal.setAppElement("#root");
-
 export default function App() {
   const [loading, setLoading] = useState(true);
   const [images, setImages] = useState([]);
@@ -41,10 +39,12 @@ export default function App() {
   const [imagesFetched, setImagesFetched] = useState(false);
 
   useEffect(() => {
+    if (process.env.REACT_APP_TEST !== "TRUE") Modal.setAppElement("#root");
+
     const todayDate = getTodayDate();
     getPhotos(todayDate);
-    // getWeather();
-    // getNews();
+    getWeather();
+    getNews();
   }, []);
 
   const toggleUnit = () => {
@@ -189,7 +189,7 @@ export default function App() {
     }
 
     return (
-      <div className="weather-section">
+      <div data-testid="weather-section" className="weather-section">
         <div className="d-flex justify-content-between">
           <div className="section-title">LATEST WEATHER AT ELYSIUM PLANTITIA</div>
 
@@ -212,7 +212,7 @@ export default function App() {
             <div className="h2 text-muted">
               {earthMonth} {earthDay}
             </div>
-            {/* <IoInformationCircleSharp className="h4 text-primary" onClick={openModal} />
+            <IoInformationCircleSharp className="h4 text-primary" onClick={openModal} />
             <Modal isOpen={modalIsOpen} onRequestClose={closeModal} style={modalStyles}>
               <div>
                 <button className="modalBtn" onClick={closeModal}>
@@ -222,7 +222,7 @@ export default function App() {
                   return <p key={index}>{item}</p>;
                 })}
               </div>
-            </Modal> */}
+            </Modal>
           </div>
           <div className="divider" />
           <div className="col">
@@ -255,7 +255,10 @@ export default function App() {
 
   const renderImages = () => {
     return (
-      <div className="image-section d-flex align-items-center flex-column">
+      <div
+        data-testid="image-section"
+        className="image-section d-flex align-items-center flex-column"
+      >
         <div className="section-title image-title text-white">
           IMAGES CAPTURED BY CURIOSITY ROVER
         </div>
@@ -302,7 +305,7 @@ export default function App() {
     );
   };
   return (
-    <div>
+    <div data-testid="container">
       <div className={loading ? "h3 text-center m-5" : undefined}>{loading && "Loading..."}</div>
       {weather && renderWeather()}
       {imagesFetched && !modalIsOpen && renderImages()}
