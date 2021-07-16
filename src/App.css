@@ -62,14 +62,14 @@ body {
   background-color: var(--clr-accent);
 }
 
-.modalBtn {
+.closeModalBtn {
   background-color: var(--clr-accent);
   margin: 10px;
   border-radius: 10px;
   margin-left: 45%;
 }
 
-.modalBtn:focus {
+.closeModalBtn:focus {
   outline: none;
   text-decoration: none;
 }

@@ -10,6 +10,7 @@ import {
   getOtherImgUrl,
   newsUrl,
   getTodayDate,
+  getPreviousMonthDate,
   cameraAbbrs,
 } from "./helper";
 import info from "./info";
@@ -62,23 +63,6 @@ export default function App() {
 
   const closeModal = () => {
     setIsOpen(false);
-  };
-
-  const getPreviousMonthDate = (year, month) => {
-    const monthsWith30Days = [4, 6, 9, 11];
-    const preMonth = month === 1 ? 12 : month - 1;
-    let preYear = year;
-    let preDay;
-
-    if (preMonth === 2) {
-      preDay = 28;
-    } else if (monthsWith30Days.includes(preMonth)) {
-      preDay = 30;
-    } else {
-      preYear = preMonth === 12 && year - 1;
-      preDay = 31;
-    }
-    return [preYear, preMonth, preDay];
   };
 
   const getPhotos = (dateArray) => {
@@ -212,10 +196,19 @@ export default function App() {
             <div className="h2 text-muted">
               {earthMonth} {earthDay}
             </div>
-            <IoInformationCircleSharp className="h4 text-primary" onClick={openModal} />
-            <Modal isOpen={modalIsOpen} onRequestClose={closeModal} style={modalStyles}>
-              <div>
-                <button className="modalBtn" onClick={closeModal}>
+            <IoInformationCircleSharp
+              data-testid="info"
+              className="h4 text-primary"
+              onClick={openModal}
+            />
+            <Modal
+              isOpen={modalIsOpen}
+              onRequestClose={closeModal}
+              style={modalStyles}
+              ariaHideApp={process.env.REACT_APP_TEST === "TRUE" ? false : undefined}
+            >
+              <div data-testid="modal">
+                <button data-testid="closeModalBtn" className="closeModalBtn" onClick={closeModal}>
                   Close
                 </button>
                 {info.map((item, index) => {
@@ -237,10 +230,7 @@ export default function App() {
           </div>
 
           <div className="col text-right">
-            <div className="h5">
-              {/* <IoSunnyOutline /> */}
-              {atmo_opacity}
-            </div>
+            <div className="h5">{atmo_opacity}</div>
             <div>
               <div>{marsSeason}</div>
               <div>UV Index: {local_uv_irradiance_index}</div>

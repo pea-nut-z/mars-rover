@@ -1,0 +1,418 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Today's front camera image is AVAILABLE. displays today's images, latest weather and news data. 1`] = `
+<div
+  data-testid="container"
+>
+  <div />
+  <div
+    data-testid="weather-section"
+    class="weather-section"
+  >
+    <div
+      class="d-flex justify-content-between"
+    >
+      <div
+        class="section-title"
+      >
+        LATEST WEATHER AT ELYSIUM PLANTITIA
+      </div>
+      <div
+        class="unit"
+      >
+        <label
+          for="cel"
+          class="label h5"
+        >
+          °C
+        </label>
+        <input
+          type="radio"
+          id="cel"
+          name="unit"
+          readonly=""
+          checked=""
+        />
+        <button
+          class="unit-toggle"
+        />
+        <label
+          for="fah"
+          class="label h5"
+        >
+          °F
+        </label>
+        <input
+          type="radio"
+          id="fah"
+          name="unit"
+          readonly=""
+        />
+      </div>
+    </div>
+    <div
+      class="weather-container d-flex"
+    >
+      <div
+        class="text-right"
+      >
+        <div
+          class="sol display-4"
+        >
+          Sol 
+          1234
+        </div>
+        <div
+          class="h2 text-muted"
+        >
+          Jun
+          30
+        </div>
+        <svg
+          stroke="currentColor"
+          fill="currentColor"
+          stroke-width="0"
+          viewBox="0 0 512 512"
+          data-testid="info"
+          class="h4 text-primary"
+          height="1em"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M256 56C145.72 56 56 145.72 56 256s89.72 200 200 200 200-89.72 200-200S366.28 56 256 56zm0 82a26 26 0 11-26 26 26 26 0 0126-26zm64 226H200v-32h44v-88h-32v-32h64v120h44z"
+          />
+        </svg>
+      </div>
+      <div
+        class="divider"
+      />
+      <div
+        class="col"
+      >
+        <div
+          class="h5"
+        >
+          High: 
+          -12°C
+        </div>
+        <div
+          class="h5"
+        >
+          Low: 
+          -34°C
+        </div>
+        <div>
+          <div>
+            Wind Speed: 
+            N/A
+          </div>
+          <div>
+            Wind Direction: 
+            N/A
+          </div>
+        </div>
+      </div>
+      <div
+        class="col text-right"
+      >
+        <div
+          class="h5"
+        >
+          Sunny
+        </div>
+        <div>
+          <div>
+            Autumn
+          </div>
+          <div>
+            UV Index: 
+            Moderate
+          </div>
+          <div>
+            Sunrise: 
+            01:23
+          </div>
+          <div>
+            Sunset: 
+            12:34
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    data-testid="image-section"
+    class="image-section d-flex align-items-center flex-column"
+  >
+    <div
+      class="section-title image-title text-white"
+    >
+      IMAGES CAPTURED BY CURIOSITY ROVER
+    </div>
+    <div
+      class="carousel slide"
+    >
+      <ol
+        class="carousel-indicators"
+      >
+        <li
+          class="active"
+        />
+        <li />
+        <li />
+        <li />
+        <li />
+        <li />
+        <li />
+      </ol>
+      <div
+        class="carousel-inner"
+      >
+        <div
+          interval="2000"
+          class="active carousel-item"
+        >
+          <img
+            class="d-block w-100"
+            src="https://fakeImg.JPG"
+            alt="Mars captured with Front Hazard Avoidance Camera"
+          />
+          <div
+            class="carousel-caption"
+          >
+            <div
+              class="bg-dark"
+            >
+              Front Hazard Avoidance Camera
+            </div>
+          </div>
+        </div>
+        <div
+          interval="2000"
+          class="carousel-item"
+        >
+          <img
+            class="d-block w-100"
+            src="https://fakeImg.JPG"
+            alt="Mars captured with Camera name"
+          />
+          <div
+            class="carousel-caption"
+          >
+            <div
+              class="bg-dark"
+            >
+              Camera name
+            </div>
+          </div>
+        </div>
+        <div
+          interval="2000"
+          class="carousel-item"
+        >
+          <img
+            class="d-block w-100"
+            src="https://fakeImg.JPG"
+            alt="Mars captured with Camera name"
+          />
+          <div
+            class="carousel-caption"
+          >
+            <div
+              class="bg-dark"
+            >
+              Camera name
+            </div>
+          </div>
+        </div>
+        <div
+          interval="2000"
+          class="carousel-item"
+        >
+          <img
+            class="d-block w-100"
+            src="https://fakeImg.JPG"
+            alt="Mars captured with Camera name"
+          />
+          <div
+            class="carousel-caption"
+          >
+            <div
+              class="bg-dark"
+            >
+              Camera name
+            </div>
+          </div>
+        </div>
+        <div
+          interval="2000"
+          class="carousel-item"
+        >
+          <img
+            class="d-block w-100"
+            src="https://fakeImg.JPG"
+            alt="Mars captured with Camera name"
+          />
+          <div
+            class="carousel-caption"
+          >
+            <div
+              class="bg-dark"
+            >
+              Camera name
+            </div>
+          </div>
+        </div>
+        <div
+          interval="2000"
+          class="carousel-item"
+        >
+          <img
+            class="d-block w-100"
+            src="https://fakeImg.JPG"
+            alt="Mars captured with Camera name"
+          />
+          <div
+            class="carousel-caption"
+          >
+            <div
+              class="bg-dark"
+            >
+              Camera name
+            </div>
+          </div>
+        </div>
+        <div
+          interval="2000"
+          class="carousel-item"
+        >
+          <img
+            class="d-block w-100"
+            src="https://fakeImg.JPG"
+            alt="Mars captured with Camera name"
+          />
+          <div
+            class="carousel-caption"
+          >
+            <div
+              class="bg-dark"
+            >
+              Camera name
+            </div>
+          </div>
+        </div>
+      </div>
+      <a
+        class="carousel-control-prev"
+        role="button"
+        href="#"
+      >
+        <span
+          aria-hidden="true"
+          class="carousel-control-prev-icon"
+        />
+        <span
+          class="sr-only"
+        >
+          Previous
+        </span>
+      </a>
+      <a
+        class="carousel-control-next"
+        role="button"
+        href="#"
+      >
+        <span
+          aria-hidden="true"
+          class="carousel-control-next-icon"
+        />
+        <span
+          class="sr-only"
+        >
+          Next
+        </span>
+      </a>
+    </div>
+    <div
+      class="h5 mt-2"
+    >
+      (
+      2033-07-07
+      )
+    </div>
+  </div>
+  <div
+    class="news-section"
+  >
+    <div
+      class="news-container d-flex flex-row"
+    >
+      <a
+        href="https://www.newsurl.com"
+      >
+        <img
+          class="news-images"
+          src="https://fakeImg.JPG"
+          alt="Article 0"
+        />
+      </a>
+      <div>
+        <div
+          class="font-weight-bold"
+        >
+          News title
+        </div>
+        <div
+          class="font-italic"
+        >
+          2033-06-28
+        </div>
+        <div>
+          News description.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Today's front camera image is UNAVAILABLE. displays a modal explaining each piece of weather infomation. 1`] = `
+<div
+  data-testid="modal"
+>
+  <button
+    data-testid="closeModalBtn"
+    class="closeModalBtn"
+  >
+    Close
+  </button>
+  <p>
+    NASA’s InSight Mars lander takes continuous weather measurements (temperature, wind, pressure) on the surface of Mars at Elysium Planitia, a flat, smooth plain near Mars’ equator. Please note that there are sometimes problems with the sensors on Mars that result in missing data!
+  </p>
+  <p>
+    Atmosphere Opacity: Weather on Mars is more extreme than Earth's. Mars is cooler and with bigger differences between day and night temperatures. Moreover, dust storms lash its surface. However, Mars' and Earth's climates have important similarities, such as the polar ice caps or seasonal changes.As on Earth, on Mars we can have sunny, cloudy or windy days, for example.
+  </p>
+  <p>
+    Season: A Martian year is divided in 12 months, as Earth's. However, Martian months are from 46 to 67 sols (Martian days) long. The longest one is the month 3 (67 sols), and the shortest one is the month 9 (46 sols) Martian months mark seasonal changes. In the southern hemisphere (Curiosity rover location) the autumn starts in month 1; the winter in month 4; the spring in month 7; and the summer in month 10.
+  </p>
+  <p>
+    Sol: The term sol is used to refer to the duration of a day on Mars.A sol is about 24 hours and 40 minutes.For Curiosity, sol 0 corresponds with its landing day on Mars.
+  </p>
+  <p>
+    Sunrise: The duration of daylight varies along the Martian year, as on Earth.
+  </p>
+  <p>
+    Temperature: Mars is farther from the Sun than Earth, it makes that Mars is colder than our planet.Moreover, Martian's atmosphere, which is extremely tenuous, does not retain the heat; hence the difference between day and night's temperatures is more pronounced than in our planet.
+  </p>
+  <p>
+    Terrestrial Date: One day on Earth is about 24 hours, while a sol(Martian day) is about 24 hours and 40 minutes.So one single sol starts during one Earth day and finishes during the next Earth day.This is the Earth day on current sol at midday.
+  </p>
+  <p>
+    UV Index: Local ultraviolet(UV) irradiance index is an indicator of the intensity of the ultraviolet tradiation from the Sun at Curiosity location.UV radiation is a damaging agent for life.On Earth, ozone layer prevents damaging ultraviolet light from reaching the surface, to the benefit of both plants and animals.However, on Mars, due to the absence of ozone in the tatmosphere, ultraviolet radiation reaches the Martian surface.
+  </p>
+  <p>
+    Wind: NASA Viking landers and NASA Pathfinder rover showed that the average wind speed on their location was pretty weak: 1 to 4 meters / second(4 to 15 kilometers / hour - 2.5 to 9 miles / hour).However, during a dust storm, winds can reach 30 meters / second(110 kilometers / hour - 68 miles / hour) or more.
+  </p>
+</div>
+`;

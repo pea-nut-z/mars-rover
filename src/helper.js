@@ -9,18 +9,26 @@ export const getTodayDate = () => {
   return [year, month, day];
 };
 
+export const getPreviousMonthDate = (year, month) => {
+  const monthsWith30Days = [4, 6, 9, 11];
+  const preMonth = month === 1 ? 12 : month - 1;
+  let preYear = year;
+  let preDay;
+
+  if (preMonth === 2) {
+    preDay = 28;
+  } else if (monthsWith30Days.includes(preMonth)) {
+    preDay = 30;
+  } else {
+    preYear = preMonth === 12 && year - 1;
+    preDay = 31;
+  }
+  return [preYear, preMonth, preDay];
+};
+
 export const cameraAbbrs = ["RHAZ", "MAST", "CHEMCAM", "MAHLI", "MARDI", "NAVCAM"];
 
-// export const camerasFullNames = [
-//   "Rear Hazard Avoidance Camera",
-//   "Mast Camera",
-//   "Chemistry and Camera Complex",
-//   "Mars Hand Lens Imager",
-//   "Mars Descent Imager",
-//   "Navigation Camera",
-// ];
-
-export const checkImgUrl = (url) => {
+export const validateOtherImgUrl = (url) => {
   const validUrls = [];
   cameraAbbrs.forEach((abbr) => {
     const url = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?camera=${abbr}&earth_date=${testYear}-${testMonth}-${testDay}&page=1&api_key=${process.env.REACT_APP_NASA_API_KEY}`;
@@ -37,12 +45,9 @@ export const getFtImgUrl = (dateArray) => {
   const url = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?camera=FHAZ&earth_date=${year}-${month}-${day}&page=1&api_key=${process.env.REACT_APP_NASA_API_KEY}`;
   return url;
 };
-
-export const newsUrl = `https://newsapi.org/v2/everything?qInTitle=%22mars%22&domains=nature.com&sortBy=publishedAt&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`;
-
-// ???
 export const getOtherImgUrl = (cameraAbbr, dateArray) => {
   const [year, month, day] = dateArray;
   const url = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?camera=${cameraAbbr}&earth_date=${year}-${month}-${day}&page=1&api_key=${process.env.REACT_APP_NASA_API_KEY}`;
   return url;
 };
+export const newsUrl = `https://newsapi.org/v2/everything?qInTitle=%22mars%22&domains=nature.com&sortBy=publishedAt&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`;
