@@ -34,6 +34,7 @@ exports[`Today's front camera image is AVAILABLE. displays today's images, lates
           checked=""
         />
         <button
+          data-testid="unit-toggle"
           class="unit-toggle"
         />
         <label
@@ -91,12 +92,14 @@ exports[`Today's front camera image is AVAILABLE. displays today's images, lates
         class="col"
       >
         <div
+          data-testid="temperature"
           class="h5"
         >
           High: 
           -12°C
         </div>
         <div
+          data-testid="temperature"
           class="h5"
         >
           Low: 
@@ -142,7 +145,6 @@ exports[`Today's front camera image is AVAILABLE. displays today's images, lates
     </div>
   </div>
   <div
-    data-testid="image-section"
     class="image-section d-flex align-items-center flex-column"
   >
     <div
@@ -174,6 +176,7 @@ exports[`Today's front camera image is AVAILABLE. displays today's images, lates
           class="active carousel-item"
         >
           <img
+            data-testid="image"
             class="d-block w-100"
             src="https://fakeImg.JPG"
             alt="Mars captured with Front Hazard Avoidance Camera"
@@ -193,6 +196,7 @@ exports[`Today's front camera image is AVAILABLE. displays today's images, lates
           class="carousel-item"
         >
           <img
+            data-testid="image"
             class="d-block w-100"
             src="https://fakeImg.JPG"
             alt="Mars captured with Camera name"
@@ -212,6 +216,7 @@ exports[`Today's front camera image is AVAILABLE. displays today's images, lates
           class="carousel-item"
         >
           <img
+            data-testid="image"
             class="d-block w-100"
             src="https://fakeImg.JPG"
             alt="Mars captured with Camera name"
@@ -231,6 +236,7 @@ exports[`Today's front camera image is AVAILABLE. displays today's images, lates
           class="carousel-item"
         >
           <img
+            data-testid="image"
             class="d-block w-100"
             src="https://fakeImg.JPG"
             alt="Mars captured with Camera name"
@@ -250,6 +256,7 @@ exports[`Today's front camera image is AVAILABLE. displays today's images, lates
           class="carousel-item"
         >
           <img
+            data-testid="image"
             class="d-block w-100"
             src="https://fakeImg.JPG"
             alt="Mars captured with Camera name"
@@ -269,6 +276,7 @@ exports[`Today's front camera image is AVAILABLE. displays today's images, lates
           class="carousel-item"
         >
           <img
+            data-testid="image"
             class="d-block w-100"
             src="https://fakeImg.JPG"
             alt="Mars captured with Camera name"
@@ -288,6 +296,7 @@ exports[`Today's front camera image is AVAILABLE. displays today's images, lates
           class="carousel-item"
         >
           <img
+            data-testid="image"
             class="d-block w-100"
             src="https://fakeImg.JPG"
             alt="Mars captured with Camera name"
@@ -335,10 +344,11 @@ exports[`Today's front camera image is AVAILABLE. displays today's images, lates
       </a>
     </div>
     <div
+      data-testid="image-date"
       class="h5 mt-2"
     >
       (
-      2033-07-07
+      2033-06-30
       )
     </div>
   </div>
@@ -366,7 +376,7 @@ exports[`Today's front camera image is AVAILABLE. displays today's images, lates
         <div
           class="font-italic"
         >
-          2033-06-28
+          2033-06-30
         </div>
         <div>
           News description.
@@ -377,7 +387,7 @@ exports[`Today's front camera image is AVAILABLE. displays today's images, lates
 </div>
 `;
 
-exports[`Today's front camera image is UNAVAILABLE. displays a modal explaining each piece of weather infomation. 1`] = `
+exports[`buttons displays a modal explaining each piece of weather infomation. 1`] = `
 <div
   data-testid="modal"
 >
@@ -415,4 +425,429 @@ exports[`Today's front camera image is UNAVAILABLE. displays a modal explaining 
     Wind: NASA Viking landers and NASA Pathfinder rover showed that the average wind speed on their location was pretty weak: 1 to 4 meters / second(4 to 15 kilometers / hour - 2.5 to 9 miles / hour).However, during a dust storm, winds can reach 30 meters / second(110 kilometers / hour - 68 miles / hour) or more.
   </p>
 </div>
+`;
+
+exports[`buttons returns to main page after clicking close modal. 1`] = `
+<div
+  data-testid="container"
+>
+  <div />
+  <div
+    data-testid="weather-section"
+    class="weather-section"
+  >
+    <div
+      class="d-flex justify-content-between"
+    >
+      <div
+        class="section-title"
+      >
+        LATEST WEATHER AT ELYSIUM PLANTITIA
+      </div>
+      <div
+        class="unit"
+      >
+        <label
+          for="cel"
+          class="label h5"
+        >
+          °C
+        </label>
+        <input
+          type="radio"
+          id="cel"
+          name="unit"
+          readonly=""
+          checked=""
+        />
+        <button
+          data-testid="unit-toggle"
+          class="unit-toggle"
+        />
+        <label
+          for="fah"
+          class="label h5"
+        >
+          °F
+        </label>
+        <input
+          type="radio"
+          id="fah"
+          name="unit"
+          readonly=""
+        />
+      </div>
+    </div>
+    <div
+      class="weather-container d-flex"
+    >
+      <div
+        class="text-right"
+      >
+        <div
+          class="sol display-4"
+        >
+          Sol 
+          1234
+        </div>
+        <div
+          class="h2 text-muted"
+        >
+          Jun
+          30
+        </div>
+        <svg
+          stroke="currentColor"
+          fill="currentColor"
+          stroke-width="0"
+          viewBox="0 0 512 512"
+          data-testid="info"
+          class="h4 text-primary"
+          height="1em"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M256 56C145.72 56 56 145.72 56 256s89.72 200 200 200 200-89.72 200-200S366.28 56 256 56zm0 82a26 26 0 11-26 26 26 26 0 0126-26zm64 226H200v-32h44v-88h-32v-32h64v120h44z"
+          />
+        </svg>
+      </div>
+      <div
+        class="divider"
+      />
+      <div
+        class="col"
+      >
+        <div
+          data-testid="temperature"
+          class="h5"
+        >
+          High: 
+          -12°C
+        </div>
+        <div
+          data-testid="temperature"
+          class="h5"
+        >
+          Low: 
+          -34°C
+        </div>
+        <div>
+          <div>
+            Wind Speed: 
+            N/A
+          </div>
+          <div>
+            Wind Direction: 
+            N/A
+          </div>
+        </div>
+      </div>
+      <div
+        class="col text-right"
+      >
+        <div
+          class="h5"
+        >
+          Sunny
+        </div>
+        <div>
+          <div>
+            Autumn
+          </div>
+          <div>
+            UV Index: 
+            Moderate
+          </div>
+          <div>
+            Sunrise: 
+            01:23
+          </div>
+          <div>
+            Sunset: 
+            12:34
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="image-section d-flex align-items-center flex-column"
+  >
+    <div
+      class="section-title image-title text-white"
+    >
+      IMAGES CAPTURED BY CURIOSITY ROVER
+    </div>
+    <div
+      class="carousel slide"
+    >
+      <ol
+        class="carousel-indicators"
+      >
+        <li
+          class="active"
+        />
+        <li />
+        <li />
+        <li />
+        <li />
+        <li />
+        <li />
+      </ol>
+      <div
+        class="carousel-inner"
+      >
+        <div
+          interval="2000"
+          class="active carousel-item"
+        >
+          <img
+            data-testid="image"
+            class="d-block w-100"
+            src="https://fakeImg.JPG"
+            alt="Mars captured with Front Hazard Avoidance Camera"
+          />
+          <div
+            class="carousel-caption"
+          >
+            <div
+              class="bg-dark"
+            >
+              Front Hazard Avoidance Camera
+            </div>
+          </div>
+        </div>
+        <div
+          interval="2000"
+          class="carousel-item"
+        >
+          <img
+            data-testid="image"
+            class="d-block w-100"
+            src="https://fakeImg.JPG"
+            alt="Mars captured with Camera name"
+          />
+          <div
+            class="carousel-caption"
+          >
+            <div
+              class="bg-dark"
+            >
+              Camera name
+            </div>
+          </div>
+        </div>
+        <div
+          interval="2000"
+          class="carousel-item"
+        >
+          <img
+            data-testid="image"
+            class="d-block w-100"
+            src="https://fakeImg.JPG"
+            alt="Mars captured with Camera name"
+          />
+          <div
+            class="carousel-caption"
+          >
+            <div
+              class="bg-dark"
+            >
+              Camera name
+            </div>
+          </div>
+        </div>
+        <div
+          interval="2000"
+          class="carousel-item"
+        >
+          <img
+            data-testid="image"
+            class="d-block w-100"
+            src="https://fakeImg.JPG"
+            alt="Mars captured with Camera name"
+          />
+          <div
+            class="carousel-caption"
+          >
+            <div
+              class="bg-dark"
+            >
+              Camera name
+            </div>
+          </div>
+        </div>
+        <div
+          interval="2000"
+          class="carousel-item"
+        >
+          <img
+            data-testid="image"
+            class="d-block w-100"
+            src="https://fakeImg.JPG"
+            alt="Mars captured with Camera name"
+          />
+          <div
+            class="carousel-caption"
+          >
+            <div
+              class="bg-dark"
+            >
+              Camera name
+            </div>
+          </div>
+        </div>
+        <div
+          interval="2000"
+          class="carousel-item"
+        >
+          <img
+            data-testid="image"
+            class="d-block w-100"
+            src="https://fakeImg.JPG"
+            alt="Mars captured with Camera name"
+          />
+          <div
+            class="carousel-caption"
+          >
+            <div
+              class="bg-dark"
+            >
+              Camera name
+            </div>
+          </div>
+        </div>
+        <div
+          interval="2000"
+          class="carousel-item"
+        >
+          <img
+            data-testid="image"
+            class="d-block w-100"
+            src="https://fakeImg.JPG"
+            alt="Mars captured with Camera name"
+          />
+          <div
+            class="carousel-caption"
+          >
+            <div
+              class="bg-dark"
+            >
+              Camera name
+            </div>
+          </div>
+        </div>
+      </div>
+      <a
+        class="carousel-control-prev"
+        role="button"
+        href="#"
+      >
+        <span
+          aria-hidden="true"
+          class="carousel-control-prev-icon"
+        />
+        <span
+          class="sr-only"
+        >
+          Previous
+        </span>
+      </a>
+      <a
+        class="carousel-control-next"
+        role="button"
+        href="#"
+      >
+        <span
+          aria-hidden="true"
+          class="carousel-control-next-icon"
+        />
+        <span
+          class="sr-only"
+        >
+          Next
+        </span>
+      </a>
+    </div>
+    <div
+      data-testid="image-date"
+      class="h5 mt-2"
+    >
+      (
+      2033-06-30
+      )
+    </div>
+  </div>
+  <div
+    class="news-section"
+  >
+    <div
+      class="news-container d-flex flex-row"
+    >
+      <a
+        href="https://www.newsurl.com"
+      >
+        <img
+          class="news-images"
+          src="https://fakeImg.JPG"
+          alt="Article 0"
+        />
+      </a>
+      <div>
+        <div
+          class="font-weight-bold"
+        >
+          News title
+        </div>
+        <div
+          class="font-italic"
+        >
+          2033-06-30
+        </div>
+        <div>
+          News description.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`buttons toggles from celcius to farenheit. 1`] = `
+Array [
+  <div
+    data-testid="temperature"
+    class="h5"
+>
+    High: 
+    10.40°F
+</div>,
+  <div
+    data-testid="temperature"
+    class="h5"
+>
+    Low: 
+    -29.20°F
+</div>,
+]
+`;
+
+exports[`buttons toggles from farenheit to celcius. 1`] = `
+Array [
+  <div
+    data-testid="temperature"
+    class="h5"
+>
+    High: 
+    -12°C
+</div>,
+  <div
+    data-testid="temperature"
+    class="h5"
+>
+    Low: 
+    -34°C
+</div>,
+]
 `;

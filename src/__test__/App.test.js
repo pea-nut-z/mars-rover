@@ -7,46 +7,55 @@ import React from "react";
 import { act } from "react-dom/test-utils";
 import axios from "axios";
 import App from "../App";
-import { fakeWeatherData, fakeImgData, fakeNewsData } from "./fake.data";
+import { fakeWeatherData, fakeJunImgData, fakeImgDataJuly, fakeNewsData } from "./fake.data";
 import {
   getTodayDate,
   getPreviousMonthDate,
+  convertCelToFah,
   weatherUrl,
   getFtImgUrl,
+  validateRHAZImgUrl,
   validateOtherImgUrl,
   newsUrl,
 } from "../helper";
 
 jest.mock("axios");
 
-const dateArray = getTodayDate();
-const ftImgUrlToday = getFtImgUrl(dateArray);
-
 describe("Today's front camera image is AVAILABLE.", () => {
-  const axiosGetSpy = jest.spyOn(axios, "get").mockImplementation((url) => {
-    if (validateOtherImgUrl(url)) url = "otherImgUrl";
-    switch (url) {
-      case weatherUrl:
-        return Promise.resolve({ data: fakeWeatherData });
-      case ftImgUrlToday:
-      case "otherImgUrl":
-        return Promise.resolve({ data: fakeImgData });
-      case newsUrl:
-        return Promise.resolve({ data: fakeNewsData });
-      default:
-        return Promise.reject(new Error("Test error - url not found."));
-    }
-  });
+  let axiosGetSpy;
+  beforeEach(async () => {
+    const dateArray = getTodayDate();
+    const ftImgUrlToday = getFtImgUrl(dateArray);
 
-  beforeAll(async () => {
+    axiosGetSpy = jest.spyOn(axios, "get").mockImplementation((url) => {
+      url = validateOtherImgUrl(url) ? "otherImgUrl" : url;
+
+      switch (url) {
+        case weatherUrl:
+          return Promise.resolve({ data: fakeWeatherData });
+        case ftImgUrlToday:
+        case "otherImgUrl":
+          return Promise.resolve({ data: fakeJunImgData });
+        case newsUrl:
+          return Promise.resolve({ data: fakeNewsData });
+        default:
+          return Promise.reject(new Error("Test error - url not found."));
+      }
+    });
+
     await act(async () => {
       await render(<App />);
     });
   });
 
-  afterAll(() => {
+  afterEach(() => {
     cleanup();
     axiosGetSpy.mockRestore();
+  });
+
+  it("displays images from all cameras.", async () => {
+    const container = screen.getAllByTestId("image");
+    expect(container).toHaveLength(7);
   });
 
   it("displays today's images, latest weather and news data.", async () => {
@@ -55,39 +64,156 @@ describe("Today's front camera image is AVAILABLE.", () => {
   });
 });
 
-describe("Today's front camera image is UNAVAILABLE.", () => {
-  const dateArray = getTodayDate();
-  const [year, month, day] = dateArray;
-  const yesterday = day === 1 ? getPreviousMonthDate(year, month) : [year, month, day - 1];
-  const ftImgUrlYesterday = getFtImgUrl(yesterday);
+describe("Today is the first day of the month, front and RHAZ images are UNAVAILABLE", () => {
+  let axiosGetSpy;
+  beforeEach(async () => {
+    const today = [2033, 7, 1];
+    const yesterday = [2033, 6, 30];
 
-  const axiosGetSpy = jest.spyOn(axios, "get").mockImplementation((url) => {
-    if (validateOtherImgUrl(url)) url = "otherImgUrl";
+    const helper = require("../helper");
+    helper.getTodayDate = jest.fn(() => today);
+    const ftImgUrlToday = getFtImgUrl(today);
+    const ftImgUrlYesterday = getFtImgUrl(yesterday);
 
-    switch (url) {
-      case weatherUrl:
-        return Promise.resolve({ data: fakeWeatherData });
-      case ftImgUrlToday:
-        return Promise.resolve({ data: { photos: [] } });
-      case ftImgUrlYesterday:
-      case "otherImgUrl":
-        return Promise.resolve({ data: fakeImgData });
-      case newsUrl:
-        return Promise.resolve({ data: fakeNewsData });
-      default:
-        return Promise.reject(new Error("Test error - url not found."));
-    }
-  });
+    axiosGetSpy = jest.spyOn(axios, "get").mockImplementation((url) => {
+      url =
+        validateOtherImgUrl(url) === "valid"
+          ? "otherImgUrl"
+          : validateOtherImgUrl(url) === "valid & RHAZ"
+          ? "RHAZImgUrl"
+          : url;
 
-  beforeAll(async () => {
+      switch (url) {
+        case weatherUrl:
+          return Promise.resolve({ data: fakeWeatherData });
+        case ftImgUrlToday:
+        case "RHAZImgUrl":
+          return Promise.resolve({ data: { photos: [] } });
+        case ftImgUrlYesterday:
+        case "otherImgUrl":
+          return Promise.resolve({ data: fakeJunImgData });
+        case newsUrl:
+          return Promise.resolve({ data: fakeNewsData });
+        default:
+          return Promise.reject(new Error("Test error - url not found."));
+      }
+    });
+
     await act(async () => {
       await render(<App />);
     });
   });
 
-  afterAll(() => {
-    cleanup();
+  afterEach(() => {
     axiosGetSpy.mockRestore();
+    jest.unmock("../helper");
+    cleanup();
+  });
+
+  it("back tracks to last month.", () => {
+    const date = screen.getByTestId("image-date");
+    expect(date.textContent).toBe("(2033-06-30)");
+  });
+
+  it("is missing a RHAZ image.", () => {
+    const container = screen.getAllByTestId("image");
+    expect(container).toHaveLength(6);
+  });
+});
+
+describe("Today is the second day of the month and front camera image is UNAVAILABLE", () => {
+  let axiosGetSpy;
+  beforeEach(async () => {
+    const today = [2033, 7, 2];
+    const yesterday = [2033, 7, 1];
+
+    const helper = require("../helper");
+    helper.getTodayDate = jest.fn(() => today);
+    const ftImgUrlToday = getFtImgUrl(today);
+
+    const ftImgUrlYesterday = getFtImgUrl(yesterday);
+
+    axiosGetSpy = jest.spyOn(axios, "get").mockImplementation((url) => {
+      url = validateOtherImgUrl(url) ? "otherImgUrl" : url;
+
+      switch (url) {
+        case weatherUrl:
+          return Promise.resolve({ data: fakeWeatherData });
+        case ftImgUrlToday:
+          return Promise.resolve({ data: { photos: [] } });
+        case ftImgUrlYesterday:
+        case "otherImgUrl":
+          return Promise.resolve({ data: fakeImgDataJuly });
+        case newsUrl:
+          return Promise.resolve({ data: fakeNewsData });
+        default:
+          return Promise.reject(new Error("Test error - url not found."));
+      }
+    });
+
+    await act(async () => {
+      await render(<App />);
+    });
+  });
+
+  afterEach(() => {
+    axiosGetSpy.mockRestore();
+    jest.unmock("../helper");
+    cleanup();
+  });
+
+  it("back tracks to first day of the month.", () => {
+    const date = screen.getByTestId("image-date");
+    expect(date.textContent).toBe("(2033-07-01)");
+  });
+});
+
+describe("buttons", () => {
+  let axiosGetSpy;
+  beforeEach(async () => {
+    const dateArray = getTodayDate();
+    const ftImgUrlToday = getFtImgUrl(dateArray);
+
+    axiosGetSpy = jest.spyOn(axios, "get").mockImplementation((url) => {
+      url = validateOtherImgUrl(url) ? "otherImgUrl" : url;
+
+      switch (url) {
+        case weatherUrl:
+          return Promise.resolve({ data: fakeWeatherData });
+        case ftImgUrlToday:
+        case "otherImgUrl":
+          return Promise.resolve({ data: fakeJunImgData });
+        case newsUrl:
+          return Promise.resolve({ data: fakeNewsData });
+        default:
+          return Promise.reject(new Error("Test error - url not found."));
+      }
+    });
+
+    await act(async () => {
+      await render(<App />);
+    });
+  });
+
+  afterEach(() => {
+    axiosGetSpy.mockRestore();
+    jest.unmock("../helper");
+    cleanup();
+  });
+
+  it("toggles from celcius to farenheit.", () => {
+    const toggleBtn = screen.getByTestId("unit-toggle");
+    fireEvent.click(toggleBtn);
+    const tempNodes = screen.getAllByTestId("temperature");
+    expect(tempNodes).toMatchSnapshot();
+  });
+
+  it("toggles from farenheit to celcius.", () => {
+    const toggleBtn = screen.getByTestId("unit-toggle");
+    fireEvent.click(toggleBtn);
+    fireEvent.click(toggleBtn);
+    const tempNodes = screen.getAllByTestId("temperature");
+    expect(tempNodes).toMatchSnapshot();
   });
 
   it("displays a modal explaining each piece of weather infomation.", async () => {
@@ -97,8 +223,13 @@ describe("Today's front camera image is UNAVAILABLE.", () => {
     expect(modal).toMatchSnapshot();
   });
 
-  it("back tracks to the latest images available", () => {
-    expect(axiosGetSpy).toBeCalledWith(ftImgUrlYesterday);
+  it("returns to main page after clicking close modal.", () => {
+    const info = screen.getByTestId("info");
+    fireEvent.click(info);
+    const closeBtn = screen.getByTestId("closeModalBtn");
+    fireEvent.click(closeBtn);
+    const container = screen.getByTestId("container");
+    expect(container).toMatchSnapshot();
   });
 });
 
@@ -110,5 +241,10 @@ describe("Help functions", () => {
     expect(date1).toEqual([2020, 12, 31]);
     expect(date2).toEqual([2021, 4, 30]);
     expect(date3).toEqual([2021, 2, 28]);
+  });
+
+  it("converts celsius to fahrenheit.", () => {
+    const fah = convertCelToFah(1);
+    expect(fah).toEqual("33.80");
   });
 });

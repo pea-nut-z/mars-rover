@@ -11,6 +11,7 @@ import {
   newsUrl,
   getTodayDate,
   getPreviousMonthDate,
+  convertCelToFah,
   cameraAbbrs,
 } from "./helper";
 import info from "./info";
@@ -50,11 +51,6 @@ export default function App() {
 
   const toggleUnit = () => {
     setCel(!cel);
-  };
-
-  const convertCelToFah = (cel) => {
-    const fah = (cel * 9) / 5 + 32;
-    return fah.toFixed(2);
   };
 
   const openModal = () => {
@@ -182,7 +178,7 @@ export default function App() {
               °C
             </label>
             <input type="radio" id="cel" name="unit" checked={cel && "checked"} readOnly />
-            <button className="unit-toggle" onClick={toggleUnit}></button>
+            <button data-testid="unit-toggle" className="unit-toggle" onClick={toggleUnit}></button>
             <label htmlFor="fah" className="label h5">
               °F
             </label>
@@ -219,10 +215,12 @@ export default function App() {
           </div>
           <div className="divider" />
           <div className="col">
-            <div className="h5">
+            <div data-testid="temperature" className="h5">
               High: {cel ? max_temp + "°C" : convertCelToFah(max_temp) + "°F"}
             </div>
-            <div className="h5">Low: {cel ? min_temp + "°C" : convertCelToFah(min_temp) + "°F"}</div>
+            <div data-testid="temperature" className="h5">
+              Low: {cel ? min_temp + "°C" : convertCelToFah(min_temp) + "°F"}
+            </div>
             <div>
               <div>Wind Speed: {wind_speed ? wind_speed : "N/A"}</div>
               <div>Wind Direction: {wind_direction ? `${wind_direction} kph` : "N/A"}</div>
@@ -245,10 +243,7 @@ export default function App() {
 
   const renderImages = () => {
     return (
-      <div
-        data-testid="image-section"
-        className="image-section d-flex align-items-center flex-column"
-      >
+      <div className="image-section d-flex align-items-center flex-column">
         <div className="section-title image-title text-white">
           IMAGES CAPTURED BY CURIOSITY ROVER
         </div>
@@ -257,6 +252,7 @@ export default function App() {
             return (
               <Carousel.Item key={index} interval={2000}>
                 <img
+                  data-testid="image"
                   className="d-block w-100"
                   src={image.img_src}
                   alt={`Mars captured with ${cameras[index]}`}
@@ -268,7 +264,9 @@ export default function App() {
             );
           })}
         </Carousel>
-        <div className="h5 mt-2">({images[0].earth_date})</div>
+        <div data-testid="image-date" className="h5 mt-2">
+          ({images[0].earth_date})
+        </div>
       </div>
     );
   };

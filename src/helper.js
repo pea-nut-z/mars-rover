@@ -26,15 +26,28 @@ export const getPreviousMonthDate = (year, month) => {
   return [preYear, preMonth, preDay];
 };
 
+export const convertCelToFah = (cel) => {
+  const fah = (cel * 9) / 5 + 32;
+  return fah.toFixed(2);
+};
+
 export const cameraAbbrs = ["RHAZ", "MAST", "CHEMCAM", "MAHLI", "MARDI", "NAVCAM"];
 
 export const validateOtherImgUrl = (url) => {
   const validUrls = [];
+  const validRHAZUrl = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?camera=RHAZ&earth_date=${testYear}-${testMonth}-${testDay}&page=1&api_key=${process.env.REACT_APP_NASA_API_KEY}`;
+
   cameraAbbrs.forEach((abbr) => {
+    if (abbr === "RHAZ") return;
     const url = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?camera=${abbr}&earth_date=${testYear}-${testMonth}-${testDay}&page=1&api_key=${process.env.REACT_APP_NASA_API_KEY}`;
     validUrls.push(url);
   });
-  return validUrls.includes(url);
+  const result = validUrls.includes(url)
+    ? "valid"
+    : validRHAZUrl === url
+    ? "valid & RHAZ"
+    : undefined;
+  return result;
 };
 
 // API
