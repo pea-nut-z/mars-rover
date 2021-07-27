@@ -7,14 +7,19 @@ import React from "react";
 import { act } from "react-dom/test-utils";
 import axios from "axios";
 import App from "../App";
-import { fakeWeatherData, fakeJunImgData, fakeImgDataJuly, fakeNewsData } from "./fake.data";
+import {
+  fakeWeatherData1,
+  fakeWeatherData2,
+  fakeJunImgData,
+  fakeImgDataJuly,
+  fakeNewsData,
+} from "./fake.data";
 import {
   getTodayDate,
   getPreviousMonthDate,
   convertCelToFah,
   weatherUrl,
   getFtImgUrl,
-  validateRHAZImgUrl,
   validateOtherImgUrl,
   newsUrl,
 } from "../helper";
@@ -32,7 +37,7 @@ describe("Today's front camera image is AVAILABLE.", () => {
 
       switch (url) {
         case weatherUrl:
-          return Promise.resolve({ data: fakeWeatherData });
+          return Promise.resolve({ data: fakeWeatherData1 });
         case ftImgUrlToday:
         case "otherImgUrl":
           return Promise.resolve({ data: fakeJunImgData });
@@ -85,7 +90,7 @@ describe("Today is the first day of the month, front and RHAZ images are UNAVAIL
 
       switch (url) {
         case weatherUrl:
-          return Promise.resolve({ data: fakeWeatherData });
+          return Promise.resolve({ data: fakeWeatherData2 });
         case ftImgUrlToday:
         case "RHAZImgUrl":
           return Promise.resolve({ data: { photos: [] } });
@@ -108,6 +113,12 @@ describe("Today is the first day of the month, front and RHAZ images are UNAVAIL
     axiosGetSpy.mockRestore();
     jest.unmock("../helper");
     cleanup();
+  });
+
+  it("displays N/A when wind direction and speed data are not provided", () => {
+    const wind = screen.getAllByTestId("wind");
+    expect(wind[0].textContent).toBe("Wind Speed: N/A");
+    expect(wind[1].textContent).toBe("Wind Direction: N/A");
   });
 
   it("back tracks to last month.", () => {
@@ -138,7 +149,7 @@ describe("Today is the second day of the month and front camera image is UNAVAIL
 
       switch (url) {
         case weatherUrl:
-          return Promise.resolve({ data: fakeWeatherData });
+          return Promise.resolve({ data: fakeWeatherData1 });
         case ftImgUrlToday:
           return Promise.resolve({ data: { photos: [] } });
         case ftImgUrlYesterday:
@@ -179,7 +190,7 @@ describe("buttons", () => {
 
       switch (url) {
         case weatherUrl:
-          return Promise.resolve({ data: fakeWeatherData });
+          return Promise.resolve({ data: fakeWeatherData1 });
         case ftImgUrlToday:
         case "otherImgUrl":
           return Promise.resolve({ data: fakeJunImgData });
@@ -197,7 +208,6 @@ describe("buttons", () => {
 
   afterEach(() => {
     axiosGetSpy.mockRestore();
-    jest.unmock("../helper");
     cleanup();
   });
 
@@ -246,5 +256,43 @@ describe("Help functions", () => {
   it("converts celsius to fahrenheit.", () => {
     const fah = convertCelToFah(1);
     expect(fah).toEqual("33.80");
+  });
+});
+
+describe("Errors", () => {
+  let axiosGetSpy;
+  console.error = jest.fn();
+
+  beforeEach(async () => {
+    const dateArray = getTodayDate();
+    const ftImgUrlToday = getFtImgUrl(dateArray);
+
+    axiosGetSpy = jest.spyOn(axios, "get").mockImplementation((url) => {
+      url = validateOtherImgUrl(url) ? "otherImgUrl" : url;
+      switch (url) {
+        case weatherUrl:
+          return Promise.resolve({ data: {} });
+        case ftImgUrlToday:
+        case "otherImgUrl":
+          return Promise.resolve({ data: {} });
+        case newsUrl:
+          return Promise.resolve({ data: "error" });
+        default:
+          return Promise.reject(new Error("Test error - url not found."));
+      }
+    });
+
+    await act(async () => {
+      await render(<App />);
+    });
+  });
+
+  afterEach(() => {
+    axiosGetSpy.mockRestore();
+    cleanup();
+  });
+
+  it("handles errors in fetching.", () => {
+    expect(console.error).toHaveBeenCalledTimes(4);
   });
 });

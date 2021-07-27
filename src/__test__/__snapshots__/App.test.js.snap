@@ -106,13 +106,17 @@ exports[`Today's front camera image is AVAILABLE. displays today's images, lates
           -34°C
         </div>
         <div>
-          <div>
+          <div
+            data-testid="wind"
+          >
             Wind Speed: 
-            N/A
+            40km/h
           </div>
-          <div>
+          <div
+            data-testid="wind"
+          >
             Wind Direction: 
-            N/A
+            West kph
           </div>
         </div>
       </div>
@@ -533,13 +537,17 @@ exports[`buttons returns to main page after clicking close modal. 1`] = `
           -34°C
         </div>
         <div>
-          <div>
+          <div
+            data-testid="wind"
+          >
             Wind Speed: 
-            N/A
+            40km/h
           </div>
-          <div>
+          <div
+            data-testid="wind"
+          >
             Wind Direction: 
-            N/A
+            West kph
           </div>
         </div>
       </div>

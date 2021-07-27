@@ -222,8 +222,10 @@ export default function App() {
               Low: {cel ? min_temp + "°C" : convertCelToFah(min_temp) + "°F"}
             </div>
             <div>
-              <div>Wind Speed: {wind_speed ? wind_speed : "N/A"}</div>
-              <div>Wind Direction: {wind_direction ? `${wind_direction} kph` : "N/A"}</div>
+              <div data-testid="wind">Wind Speed: {wind_speed ? wind_speed : "N/A"}</div>
+              <div data-testid="wind">
+                Wind Direction: {wind_direction ? `${wind_direction} kph` : "N/A"}
+              </div>
             </div>
           </div>
 
