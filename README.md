@@ -9,4 +9,4 @@ Testing for this project involves spying on the implementation, and mocking retu
 
 ### To get started
 
-The Nature News API has its CORS enabled only for localhost - hence the news section is missing in the link above. Please clone this repository and view locally for the full project.
+The Nature News API has its CORS enabled only for localhost - hence the news section is missing in the link above. To view the full project, clone the repository and view locally.
