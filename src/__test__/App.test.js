@@ -116,9 +116,8 @@ describe("Today is the first day of the month, front and RHAZ images are UNAVAIL
   });
 
   it("displays N/A when wind direction and speed data are not provided", () => {
-    const wind = screen.getAllByTestId("wind");
-    expect(wind[0].textContent).toBe("Wind Speed: N/A");
-    expect(wind[1].textContent).toBe("Wind Direction: N/A");
+    const wind = screen.getByTestId("wind");
+    expect(wind.textContent).toBe("Wind Speed: N/AWind Direction: N/A");
   });
 
   it("back tracks to last month.", () => {
@@ -200,7 +199,6 @@ describe("buttons", () => {
           return Promise.reject(new Error("Test error - url not found."));
       }
     });
-
     await act(async () => {
       await render(<App />);
     });
@@ -214,7 +212,7 @@ describe("buttons", () => {
   it("toggles from celcius to farenheit.", () => {
     const toggleBtn = screen.getByTestId("unit-toggle");
     fireEvent.click(toggleBtn);
-    const tempNodes = screen.getAllByTestId("temperature");
+    const tempNodes = screen.getByTestId("temperature");
     expect(tempNodes).toMatchSnapshot();
   });
 
@@ -222,7 +220,7 @@ describe("buttons", () => {
     const toggleBtn = screen.getByTestId("unit-toggle");
     fireEvent.click(toggleBtn);
     fireEvent.click(toggleBtn);
-    const tempNodes = screen.getAllByTestId("temperature");
+    const tempNodes = screen.getByTestId("temperature");
     expect(tempNodes).toMatchSnapshot();
   });
 

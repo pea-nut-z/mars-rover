@@ -12,11 +12,11 @@ exports[`Today's front camera image is AVAILABLE. displays today's images, lates
     <div
       class="d-flex justify-content-between"
     >
-      <div
+      <h1
         class="section-title"
       >
         LATEST WEATHER AT ELYSIUM PLANTITIA
-      </div>
+      </h1>
       <div
         class="unit"
       >
@@ -91,34 +91,30 @@ exports[`Today's front camera image is AVAILABLE. displays today's images, lates
       <div
         class="col"
       >
-        <div
+        <p
           data-testid="temperature"
-          class="h5"
         >
-          High: 
-          -12°C
-        </div>
-        <div
-          data-testid="temperature"
-          class="h5"
-        >
-          Low: 
-          -34°C
-        </div>
-        <div>
-          <div
+          <span
+            class="h5"
+          >
+            High: 
+            -12°C
+            <br />
+            Low: 
+            -34°C
+          </span>
+          <br />
+          <br />
+          <span
             data-testid="wind"
           >
             Wind Speed: 
             40km/h
-          </div>
-          <div
-            data-testid="wind"
-          >
+            <br />
             Wind Direction: 
             West kph
-          </div>
-        </div>
+          </span>
+        </p>
       </div>
       <div
         class="col text-right"
@@ -151,11 +147,11 @@ exports[`Today's front camera image is AVAILABLE. displays today's images, lates
   <div
     class="image-section d-flex align-items-center flex-column"
   >
-    <div
+    <h1
       class="section-title image-title text-white"
     >
       IMAGES CAPTURED BY CURIOSITY ROVER
-    </div>
+    </h1>
     <div
       class="carousel slide"
     >
@@ -372,11 +368,11 @@ exports[`Today's front camera image is AVAILABLE. displays today's images, lates
         />
       </a>
       <div>
-        <div
+        <h6
           class="font-weight-bold"
         >
           News title
-        </div>
+        </h6>
         <div
           class="font-italic"
         >
@@ -443,11 +439,11 @@ exports[`buttons returns to main page after clicking close modal. 1`] = `
     <div
       class="d-flex justify-content-between"
     >
-      <div
+      <h1
         class="section-title"
       >
         LATEST WEATHER AT ELYSIUM PLANTITIA
-      </div>
+      </h1>
       <div
         class="unit"
       >
@@ -522,34 +518,30 @@ exports[`buttons returns to main page after clicking close modal. 1`] = `
       <div
         class="col"
       >
-        <div
+        <p
           data-testid="temperature"
-          class="h5"
         >
-          High: 
-          -12°C
-        </div>
-        <div
-          data-testid="temperature"
-          class="h5"
-        >
-          Low: 
-          -34°C
-        </div>
-        <div>
-          <div
+          <span
+            class="h5"
+          >
+            High: 
+            -12°C
+            <br />
+            Low: 
+            -34°C
+          </span>
+          <br />
+          <br />
+          <span
             data-testid="wind"
           >
             Wind Speed: 
             40km/h
-          </div>
-          <div
-            data-testid="wind"
-          >
+            <br />
             Wind Direction: 
             West kph
-          </div>
-        </div>
+          </span>
+        </p>
       </div>
       <div
         class="col text-right"
@@ -582,11 +574,11 @@ exports[`buttons returns to main page after clicking close modal. 1`] = `
   <div
     class="image-section d-flex align-items-center flex-column"
   >
-    <div
+    <h1
       class="section-title image-title text-white"
     >
       IMAGES CAPTURED BY CURIOSITY ROVER
-    </div>
+    </h1>
     <div
       class="carousel slide"
     >
@@ -803,11 +795,11 @@ exports[`buttons returns to main page after clicking close modal. 1`] = `
         />
       </a>
       <div>
-        <div
+        <h6
           class="font-weight-bold"
         >
           News title
-        </div>
+        </h6>
         <div
           class="font-italic"
         >
@@ -823,39 +815,55 @@ exports[`buttons returns to main page after clicking close modal. 1`] = `
 `;
 
 exports[`buttons toggles from celcius to farenheit. 1`] = `
-Array [
-  <div
-    data-testid="temperature"
-    class="h5"
+<p
+  data-testid="temperature"
 >
+  <span
+    class="h5"
+  >
     High: 
     10.40°F
-</div>,
-  <div
-    data-testid="temperature"
-    class="h5"
->
+    <br />
     Low: 
     -29.20°F
-</div>,
-]
+  </span>
+  <br />
+  <br />
+  <span
+    data-testid="wind"
+  >
+    Wind Speed: 
+    40km/h
+    <br />
+    Wind Direction: 
+    West kph
+  </span>
+</p>
 `;
 
 exports[`buttons toggles from farenheit to celcius. 1`] = `
-Array [
-  <div
-    data-testid="temperature"
-    class="h5"
+<p
+  data-testid="temperature"
 >
+  <span
+    class="h5"
+  >
     High: 
     -12°C
-</div>,
-  <div
-    data-testid="temperature"
-    class="h5"
->
+    <br />
     Low: 
     -34°C
-</div>,
-]
+  </span>
+  <br />
+  <br />
+  <span
+    data-testid="wind"
+  >
+    Wind Speed: 
+    40km/h
+    <br />
+    Wind Direction: 
+    West kph
+  </span>
+</p>
 `;

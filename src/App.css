@@ -21,6 +21,10 @@ body {
   --black-background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
 }
 
+p {
+  margin: 0;
+}
+
 .weather-section {
   background: var(--white-background);
   width: 45%;
@@ -62,6 +66,11 @@ body {
   background-color: var(--clr-accent);
 }
 
+.openModalBtn {
+  border: none;
+  background-color: transparent;
+}
+
 .closeModalBtn {
   background-color: var(--clr-accent);
   margin: 10px;
@@ -69,7 +78,24 @@ body {
   margin-left: 45%;
 }
 
-.closeModalBtn:focus {
+.likesBtn,
+.moreImagesBtn {
+  background-color: white;
+  margin: 10px;
+  border-radius: 10px;
+  float: right;
+}
+
+.heartBtn {
+  border: none;
+  background-color: transparent;
+  color: var(--clr-accent);
+  z-index: 1;
+  position: relative;
+  animation: fave-heart 1s steps(28);
+}
+
+button:focus {
   outline: none;
   text-decoration: none;
 }
