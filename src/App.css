@@ -44,7 +44,7 @@ p {
   position: absolute;
   background: var(--black-background);
   width: 49%;
-  height: 91%;
+  height: 94%;
   padding: var(--pad-normal);
   margin: var(--margin-normal);
   top: 0;
@@ -166,8 +166,8 @@ button:focus {
 }
 
 .slide {
-  width: 400px;
-  height: 400px;
+  width: 340px;
+  height: 340px;
   border: solid 2px white;
   border-radius: 5px;
 }
