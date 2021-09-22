@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-// import "./App.css";
 import Carousel from "react-bootstrap/Carousel";
 import { IoInformationCircleSharp, IoHeartOutline, IoHeart } from "react-icons/io5";
 import Modal from "react-modal";
@@ -32,7 +31,7 @@ const modalStyles = {
 };
 
 export default function App() {
-  const likesData = JSON.parse(window.localStorage.getItem("likes"));
+  const likedImagesStored = JSON.parse(window.localStorage.getItem("likes"));
   const history = useHistory();
 
   const [loading, setLoading] = useState(true);
@@ -42,7 +41,7 @@ export default function App() {
   const [news, setNews] = useState();
   const [cel, setCel] = useState(true);
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [likedImages, setLikedImages] = useState(likesData || []);
+  const [likedImages, setLikedImages] = useState(likedImagesStored || {});
   const [imagesFetched, setImagesFetched] = useState(false);
 
   useEffect(() => {
@@ -61,12 +60,24 @@ export default function App() {
     setCel(!cel);
   };
 
-  const toggleLike = (imageId) => {
-    if (likedImages.includes(imageId)) {
-      const removedLikeArray = likedImages.filter((image) => image !== imageId);
-      setLikedImages([...removedLikeArray]);
+  const toggleLike = (imageId, imgUrl, cameraName, earthDate) => {
+    if (likedImages.hasOwnProperty(imageId)) {
+      const filtered = Object.keys(likedImages)
+        .filter((id) => id != imageId)
+        .reduce((obj, key) => {
+          obj[key] = likedImages[key];
+          return obj;
+        }, {});
+      setLikedImages({ ...filtered });
     } else {
-      setLikedImages([...likedImages, imageId]);
+      setLikedImages({
+        ...likedImages,
+        [imageId]: {
+          imgUrl,
+          cameraName,
+          earthDate,
+        },
+      });
     }
   };
 
@@ -281,24 +292,28 @@ export default function App() {
         </h1>
         <Carousel>
           {images.map((image, index) => {
+            const imageId = image.id;
+            const imgUrl = image.img_src;
+            const cameraName = cameras[index];
+            const earthDate = image.earth_date;
             return (
               <Carousel.Item key={index} interval={2000}>
                 <figure>
                   <img
                     data-testid="image"
-                    className="overlap overlap-2 mw-100 mh-100"
-                    src={image.img_src}
-                    alt={`Mars captured with ${cameras[index]}`}
+                    className="mw-100 mh-100"
+                    src={imgUrl}
+                    alt={`Mars captured with ${cameraName}`}
                   />
                   <Carousel.Caption>
                     <button
                       className="heartBtn h2"
                       aria-label="Toggle like"
-                      onClick={() => toggleLike(image.id)}
+                      onClick={() => toggleLike(imageId, imgUrl, cameraName, earthDate)}
                     >
-                      {likedImages.includes(image.id) ? <IoHeart /> : <IoHeartOutline />}
+                      {likedImages.hasOwnProperty(imageId) ? <IoHeart /> : <IoHeartOutline />}
                     </button>
-                    <figcaption className="bg-dark mb-3">{cameras[index]}</figcaption>
+                    <figcaption className="bg-dark mb-3">{cameraName}</figcaption>
                   </Carousel.Caption>
                 </figure>
               </Carousel.Item>
