@@ -8,7 +8,7 @@ export default function Likes() {
         {Object.keys(likedImages).map((imageId) => {
           const { imgUrl, cameraName, earthDate } = likedImages[imageId];
           return (
-            <figure>
+            <figure className="">
               <img className="slide" src={imgUrl} alt={`Mars captured with ${cameraName}`} />
               <figcaption>
                 <p>{cameraName}</p>
