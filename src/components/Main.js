@@ -60,7 +60,7 @@ export default function App() {
     setCel(!cel);
   };
 
-  const toggleLike = (imageId, imgUrl, cameraName, earthDate) => {
+  const toggleLike = (imageId, roverName, imgUrl, cameraName, earthDate) => {
     if (likedImages.hasOwnProperty(imageId)) {
       const filtered = Object.keys(likedImages)
         .filter((id) => id != imageId)
@@ -73,6 +73,7 @@ export default function App() {
       setLikedImages({
         ...likedImages,
         [imageId]: {
+          roverName,
           imgUrl,
           cameraName,
           earthDate,
@@ -279,6 +280,8 @@ export default function App() {
   };
 
   const renderImages = () => {
+    // console.log(images[0].rover.name);
+
     return (
       <section className="image-section d-flex align-items-center flex-column">
         <div className="w-100">
@@ -293,6 +296,7 @@ export default function App() {
         <Carousel>
           {images.map((image, index) => {
             const imageId = image.id;
+            const roverName = image.rover.name;
             const imgUrl = image.img_src;
             const cameraName = cameras[index];
             const earthDate = image.earth_date;
@@ -309,7 +313,7 @@ export default function App() {
                     <button
                       className="heartBtn h2"
                       aria-label="Toggle like"
-                      onClick={() => toggleLike(imageId, imgUrl, cameraName, earthDate)}
+                      onClick={() => toggleLike(imageId, roverName, imgUrl, cameraName, earthDate)}
                     >
                       {likedImages.hasOwnProperty(imageId) ? <IoHeart /> : <IoHeartOutline />}
                     </button>

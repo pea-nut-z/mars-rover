@@ -6,11 +6,12 @@ export default function Likes() {
     return (
       <section className="likedImages-section">
         {Object.keys(likedImages).map((imageId) => {
-          const { imgUrl, cameraName, earthDate } = likedImages[imageId];
+          const { roverName, imgUrl, cameraName, earthDate } = likedImages[imageId];
           return (
-            <figure className="">
+            <figure className="likeImageBackground float-left">
               <img className="slide" src={imgUrl} alt={`Mars captured with ${cameraName}`} />
               <figcaption>
+                <p>{roverName} Rover</p>
                 <p>{cameraName}</p>
                 <p>{earthDate}</p>
               </figcaption>

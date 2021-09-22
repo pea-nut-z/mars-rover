@@ -52,6 +52,13 @@ p {
   overflow: auto;
 }
 
+.likedImages-section {
+  width: 100%;
+  float: left;
+  /* overflow: hidden; */
+  /* display: inline; */
+}
+
 .section-title {
   color: var(--clr-accent);
   font-weight: 500;
@@ -219,6 +226,18 @@ button:focus {
 ::-webkit-scrollbar-thumb {
   background: var(--clr-accent);
   border-radius: 10px;
+}
+
+.likeImageBackground {
+  background: var(--black-background);
+  padding: var(--pad-normal);
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  text-align: center;
+  align-items: center;
+  margin: 1%;
 }
 
 @media (max-width: 576px) {
