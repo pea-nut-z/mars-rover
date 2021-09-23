@@ -232,9 +232,9 @@ button:focus {
   background: var(--black-background);
   padding: var(--pad-normal);
   width: 360px;
+  height: 500px;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   text-align: center;
   align-items: center;
   margin: 1%;
@@ -317,6 +317,11 @@ button:focus {
     height: 150px;
     margin-bottom: var(--margin-normal);
     margin-top: var(--pad-normal);
+  }
+
+  /* LIKES */
+  .likeImageBackground {
+    height: 440px;
   }
 }
 

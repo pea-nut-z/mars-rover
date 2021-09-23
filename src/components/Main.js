@@ -31,9 +31,7 @@ const modalStyles = {
 };
 
 export default function App() {
-  const likedImagesStored = JSON.parse(window.localStorage.getItem("likes"));
   const history = useHistory();
-
   const [loading, setLoading] = useState(true);
   const [images, setImages] = useState([]);
   const [cameras, setCameras] = useState();
@@ -41,11 +39,15 @@ export default function App() {
   const [news, setNews] = useState();
   const [cel, setCel] = useState(true);
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [likedImages, setLikedImages] = useState(likedImagesStored || {});
+  const [likedImages, setLikedImages] = useState();
   const [imagesFetched, setImagesFetched] = useState(false);
 
   useEffect(() => {
-    if (process.env.REACT_APP_TEST !== "TRUE") Modal.setAppElement("#root");
+    if (process.env.REACT_APP_TEST !== "TRUE") {
+      Modal.setAppElement("#root");
+      const likedImagesStored = JSON.parse(window.localStorage.getItem("likes"));
+      setLikedImages(likedImagesStored || {});
+    }
     const todayDate = getTodayDate();
     getPhotos(todayDate);
     getWeather();
@@ -53,7 +55,9 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    window.localStorage.setItem("likes", JSON.stringify(likedImages));
+    if (process.env.REACT_APP_TEST !== "TRUE") {
+      window.localStorage.setItem("likes", JSON.stringify(likedImages));
+    }
   }, [likedImages]);
 
   const toggleUnit = () => {
