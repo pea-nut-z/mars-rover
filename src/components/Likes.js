@@ -27,7 +27,7 @@ export default function Likes() {
         {Object.keys(likedImages).map((imageId, index) => {
           const { roverName, imgUrl, cameraName, earthDate } = likedImages[imageId];
           return (
-            <figure key={index} className="likeImageBackground float-left">
+            <figure key={index} className="likedImageBackground float-left">
               <img className="slide" src={imgUrl} alt={`Mars captured with ${cameraName}`} />
               <figcaption className="mt-3">
                 <p>{roverName} Rover</p>
@@ -45,12 +45,14 @@ export default function Likes() {
   };
 
   const renderMessage = () => {
-    return (
-      <div>
-        <h1>You haven't liked any images yet!</h1>
-      </div>
-    );
+    return <h3 className="text-center m-5">You haven't liked any images!</h3>;
   };
 
-  return <div>{noImages ? renderMessage() : renderLikedImages()}</div>;
+  return (
+    <div className="d-flex flex-column">
+      <button className="blackBtn position-fixed mt-4">Go Back</button>
+      <div className="mt-4" />
+      <div>{noImages ? renderMessage() : renderLikedImages()}</div>
+    </div>
+  );
 }

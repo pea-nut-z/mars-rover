@@ -31,6 +31,11 @@ const modalStyles = {
 };
 
 export default function App() {
+  const styleHeart = {
+    stroke: "white",
+    strokeWidth: "10",
+  };
+
   const history = useHistory();
   const [loading, setLoading] = useState(true);
   const [images, setImages] = useState([]);
@@ -244,7 +249,7 @@ export default function App() {
               ariaHideApp={process.env.REACT_APP_TEST === "TRUE" ? false : undefined}
             >
               <div data-testid="modal">
-                <button data-testid="closeModalBtn" className="closeModalBtn" onClick={closeModal}>
+                <button data-testid="closeModalBtn" className="redBtn" onClick={closeModal}>
                   Close
                 </button>
                 {info.map((item, index) => {
@@ -284,15 +289,13 @@ export default function App() {
   };
 
   const renderImages = () => {
-    // console.log(images[0].rover.name);
-
     return (
       <section className="image-section d-flex align-items-center flex-column">
         <div className="w-100">
-          <button className="likesBtn" onClick={() => history.push("/likes")}>
+          <button className="blackBtn float-right" onClick={() => history.push("/likes")}>
             Likes
           </button>
-          <button className="moreImagesBtn">More Images</button>
+          <button className="blackBtn float-right">More Images</button>
         </div>
         <h1 className="section-title image-title text-white">
           LATEST IMAGES CAPTURED BY CURIOSITY ROVER
@@ -319,7 +322,11 @@ export default function App() {
                       aria-label="Toggle like"
                       onClick={() => toggleLike(imageId, roverName, imgUrl, cameraName, earthDate)}
                     >
-                      {likedImages.hasOwnProperty(imageId) ? <IoHeart /> : <IoHeartOutline />}
+                      {likedImages.hasOwnProperty(imageId) ? (
+                        <IoHeart style={styleHeart} />
+                      ) : (
+                        <IoHeartOutline style={styleHeart} />
+                      )}
                     </button>
                     <figcaption className="bg-dark mb-3">{cameraName}</figcaption>
                   </Carousel.Caption>

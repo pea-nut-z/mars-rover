@@ -6,7 +6,7 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  overflow: auto;
   color: white;
   font-size: 15px;
   font-family: "Montserrat", sans-serif;
@@ -34,10 +34,9 @@ p {
 
 .image-section {
   background: var(--black-background);
-  width: 35%;
+  width: 45%;
   padding: var(--pad-normal);
   margin: var(--margin-normal);
-  margin-left: 12%;
 }
 
 .news-section {
@@ -55,8 +54,6 @@ p {
 .likedImages-section {
   width: 100%;
   float: left;
-  /* overflow: hidden; */
-  /* display: inline; */
 }
 
 .section-title {
@@ -85,14 +82,13 @@ p {
   margin-left: 45%;
 }
 
-.likesBtn,
-.moreImagesBtn {
+.blackBtn {
   background-color: black;
+  width: 150px;
   border: solid 2px white;
   color: white;
-  margin: 10px;
+  margin: 1.5%;
   border-radius: 10px;
-  float: right;
 }
 
 .heartBtn {
@@ -104,6 +100,10 @@ p {
   animation: fave-heart 1s steps(28);
 }
 
+.heart {
+  stroke: white;
+  stroke-width: 2;
+}
 button:focus {
   outline: none;
   text-decoration: none;
@@ -228,7 +228,7 @@ button:focus {
   border-radius: 10px;
 }
 
-.likeImageBackground {
+.likedImageBackground {
   background: var(--black-background);
   padding: var(--pad-normal);
   width: 360px;
@@ -320,7 +320,7 @@ button:focus {
   }
 
   /* LIKES */
-  .likeImageBackground {
+  .likedImageBackground {
     height: 440px;
   }
 }
