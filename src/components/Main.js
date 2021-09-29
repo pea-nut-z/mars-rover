@@ -292,10 +292,10 @@ export default function App() {
     return (
       <section className="image-section d-flex align-items-center flex-column">
         <div className="w-100">
-          <button className="blackBtn float-right" onClick={() => history.push("/likes")}>
+          <button className="blackBtn float-right mb-5" onClick={() => history.push("/likes")}>
             Likes
           </button>
-          <button className="blackBtn float-right">More Images</button>
+          <button className="blackBtn float-right mb-5">More Images</button>
         </div>
         <h1 className="section-title image-title text-white">
           LATEST IMAGES CAPTURED BY CURIOSITY ROVER

@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { IoHeart } from "react-icons/io5";
+import { useHistory } from "react-router-dom";
 
 export default function Likes() {
+  const history = useHistory();
   const likedImagesStored = JSON.parse(window.localStorage.getItem("likes"));
+
   const [likedImages, setLikedImages] = useState(likedImagesStored);
   const [noImages, setNoImages] = useState(true);
 
@@ -50,7 +53,9 @@ export default function Likes() {
 
   return (
     <div className="d-flex flex-column">
-      <button className="blackBtn position-fixed mt-4">Go Back</button>
+      <button className="blackBtn position-fixed mt-4" onClick={() => history.push("/")}>
+        Go Back
+      </button>
       <div className="mt-4" />
       <div>{noImages ? renderMessage() : renderLikedImages()}</div>
     </div>
