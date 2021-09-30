@@ -10,7 +10,8 @@ export default function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={Main} />
-          <Route exact path="/likes" component={Likes} />
+          <Route path="/likes" component={Likes} />
+          {/* <Route  path="/likes" component={Likes} /> */}
         </Switch>
       </Router>
     </div>
