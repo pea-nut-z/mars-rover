@@ -12,7 +12,7 @@ import {
   getTodayDate,
   getPreviousMonthDate,
   convertCelToFah,
-  cameraAbbrs,
+  curiosityCamerasAbb,
 } from "../helper";
 import info from "../info";
 
@@ -32,7 +32,7 @@ const modalStyles = {
 
 export default function App() {
   const styleHeart = {
-    stroke: "white",
+    stroke: "black",
     strokeWidth: "10",
   };
 
@@ -54,7 +54,7 @@ export default function App() {
       setLikedImages(likedImagesStored || {});
     }
     const todayDate = getTodayDate();
-    getPhotos(todayDate);
+    getImages(todayDate);
     getWeather();
     getNews();
   }, []);
@@ -99,7 +99,7 @@ export default function App() {
     setIsOpen(false);
   };
 
-  const getPhotos = (dateArray) => {
+  const getImages = (dateArray) => {
     let [year, month, day] = dateArray;
     let selectedImages = [];
     let selectedCameras = [];
@@ -111,14 +111,14 @@ export default function App() {
         if (imagesFetched.length === 0) {
           if (day === 1) {
             const previousMonthDate = getPreviousMonthDate(year, month);
-            getPhotos(previousMonthDate);
+            getImages(previousMonthDate);
           } else {
-            getPhotos([year, month, day - 1]);
+            getImages([year, month, day - 1]);
           }
         } else {
           selectedImages.push(imagesFetched[0]);
           selectedCameras.push("Front Hazard Avoidance Camera");
-          cameraAbbrs.forEach((cameraAbbr) => {
+          curiosityCamerasAbb.forEach((cameraAbbr) => {
             const otherImg = getOtherImgUrl(cameraAbbr, dateArray);
             return axios
               .get(otherImg)
@@ -295,7 +295,9 @@ export default function App() {
           <button className="blackBtn float-right mb-5" onClick={() => history.push("/likes")}>
             Likes
           </button>
-          <button className="blackBtn float-right mb-5">More Images</button>
+          <button className="blackBtn float-right mb-5" onClick={() => history.push("/MoreImages")}>
+            More Images
+          </button>
         </div>
         <h1 className="section-title image-title text-white">
           LATEST IMAGES CAPTURED BY CURIOSITY ROVER

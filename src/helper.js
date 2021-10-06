@@ -31,13 +31,11 @@ export const convertCelToFah = (cel) => {
   return fah.toFixed(2);
 };
 
-export const cameraAbbrs = ["RHAZ", "MAST", "CHEMCAM", "MAHLI", "MARDI", "NAVCAM"];
-
 export const validateOtherImgUrl = (url) => {
   const validUrls = [];
   const validRHAZUrl = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?camera=RHAZ&earth_date=${testYear}-${testMonth}-${testDay}&page=1&api_key=${process.env.REACT_APP_NASA_API_KEY}`;
 
-  cameraAbbrs.forEach((abbr) => {
+  curiosityCamerasAbb.forEach((abbr) => {
     if (abbr === "RHAZ") return;
     const url = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?camera=${abbr}&earth_date=${testYear}-${testMonth}-${testDay}&page=1&api_key=${process.env.REACT_APP_NASA_API_KEY}`;
     validUrls.push(url);
@@ -48,6 +46,38 @@ export const validateOtherImgUrl = (url) => {
     ? "valid & RHAZ"
     : undefined;
   return result;
+};
+
+export const curiosityCamerasAbb = ["RHAZ", "MAST", "CHEMCAM", "MAHLI", "MARDI", "NAVCAM"];
+
+export const allCamerasAbb = [
+  "FHAZ",
+  "RHAZ",
+  "MAST",
+  "CHEMCAM",
+  "MAHLI",
+  "MARDI",
+  "NAVCAM",
+  "PANCAM",
+  "MINITES",
+];
+
+export const allCameras = {
+  1: "Front Hazard Avoidance Camera",
+  2: "Rear Hazard Avoidance Camera",
+  3: "Mast Camera",
+  4: "Chemistry and Camera Complex",
+  5: "Mars Hand Lens Imager",
+  6: "Mars Descent Imager",
+  7: "Navigation Camera",
+  8: "Panoramic Camera",
+  9: "Miniature Thermal Emission Spectrometer (Mini-TES)",
+};
+
+export const camerasAvailable = {
+  curiosity: [1, 2, 3, 4, 5, 6, 7],
+  opportunity: [1, 2, 7, 8, 9],
+  spirit: [1, 2, 7, 8, 9],
 };
 
 // API
@@ -63,4 +93,12 @@ export const getOtherImgUrl = (cameraAbbr, dateArray) => {
   const url = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?camera=${cameraAbbr}&earth_date=${year}-${month}-${day}&page=1&api_key=${process.env.REACT_APP_NASA_API_KEY}`;
   return url;
 };
-export const newsUrl = `https://newsapi.org/v2/everything?qInTitle=%22mars%22&domains=nature.com&sortBy=publishedAt&apiKey=2b3dfedeebaa4614884f4827585c6c76`;
+
+export const getFilteredImgUrl = (rover, camera, date) => {
+  const url = `https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?camera=${camera}&earth_date=${date}&api_key=${process.env.REACT_APP_NASA_API_KEY}`;
+  console.log({ url });
+
+  return url;
+};
+
+export const newsUrl = `https://newsapi.org/v2/everything?qInTitle=%22mars%22&domains=nature.com&sortBy=publishedAt&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`;
