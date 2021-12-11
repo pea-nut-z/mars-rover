@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
 import axios from "axios";
 import Carousel from "react-bootstrap/Carousel";
-import { IoInformationCircleSharp, IoHeartOutline, IoHeart } from "react-icons/io5";
+import * as ioIcons from "react-icons/io5";
 import Modal from "react-modal";
 import {
   weatherUrl,
+  getImgUrl,
   getFtImgUrl,
-  getOtherImgUrl,
+  // getOtherImgUrl,
   newsUrl,
   getTodayDate,
   getPreviousMonthDate,
   convertCelToFah,
-  curiosityCamerasAbb,
-} from "../helper";
-import info from "../info";
+  allCamerasAbb,
+} from "./helper";
+import infoData from "./infoData";
 
 const modalStyles = {
   content: {
@@ -30,13 +30,8 @@ const modalStyles = {
   },
 };
 
-export default function App() {
-  const styleHeart = {
-    stroke: "black",
-    strokeWidth: "10",
-  };
-
-  const history = useHistory();
+export default function Home() {
+  const likesData = JSON.parse(window.localStorage.getItem("likes"));
   const [loading, setLoading] = useState(true);
   const [images, setImages] = useState([]);
   const [cameras, setCameras] = useState();
@@ -44,50 +39,35 @@ export default function App() {
   const [news, setNews] = useState();
   const [cel, setCel] = useState(true);
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [likedImages, setLikedImages] = useState();
+  const [likedImages, setLikedImages] = useState(likesData || []);
   const [imagesFetched, setImagesFetched] = useState(false);
 
   useEffect(() => {
-    if (process.env.REACT_APP_TEST !== "TRUE") {
-      Modal.setAppElement("#root");
-      const likedImagesStored = JSON.parse(window.localStorage.getItem("likes"));
-      setLikedImages(likedImagesStored || {});
-    }
+    if (process.env.REACT_APP_TEST !== "TRUE") Modal.setAppElement("#root");
     const todayDate = getTodayDate();
-    getImages(todayDate);
+    getPhotos(todayDate);
     getWeather();
     getNews();
   }, []);
 
   useEffect(() => {
-    if (process.env.REACT_APP_TEST !== "TRUE") {
-      window.localStorage.setItem("likes", JSON.stringify(likedImages));
-    }
+    window.localStorage.setItem("likes", JSON.stringify(likedImages));
   }, [likedImages]);
 
   const toggleUnit = () => {
     setCel(!cel);
   };
 
-  const toggleLike = (imageId, roverName, imgUrl, cameraName, earthDate) => {
-    if (likedImages.hasOwnProperty(imageId)) {
-      const filtered = Object.keys(likedImages)
-        .filter((id) => id != imageId)
-        .reduce((obj, key) => {
-          obj[key] = likedImages[key];
-          return obj;
-        }, {});
-      setLikedImages({ ...filtered });
+  const toggleLike = (image) => {
+    const index = likedImages.findIndex((likedImage) => {
+      return likedImage.id === image.id;
+    });
+
+    if (index !== -1) {
+      const newLikedImages = likedImages.slice(0, index).concat(likedImages.slice(index + 1));
+      setLikedImages([...newLikedImages]);
     } else {
-      setLikedImages({
-        ...likedImages,
-        [imageId]: {
-          roverName,
-          imgUrl,
-          cameraName,
-          earthDate,
-        },
-      });
+      setLikedImages([...likedImages, image]);
     }
   };
 
@@ -99,7 +79,7 @@ export default function App() {
     setIsOpen(false);
   };
 
-  const getImages = (dateArray) => {
+  const getPhotos = (dateArray) => {
     let [year, month, day] = dateArray;
     let selectedImages = [];
     let selectedCameras = [];
@@ -111,15 +91,15 @@ export default function App() {
         if (imagesFetched.length === 0) {
           if (day === 1) {
             const previousMonthDate = getPreviousMonthDate(year, month);
-            getImages(previousMonthDate);
+            getPhotos(previousMonthDate);
           } else {
-            getImages([year, month, day - 1]);
+            getPhotos([year, month, day - 1]);
           }
         } else {
-          selectedImages.push(imagesFetched[0]);
-          selectedCameras.push("Front Hazard Avoidance Camera");
-          curiosityCamerasAbb.forEach((cameraAbbr) => {
-            const otherImg = getOtherImgUrl(cameraAbbr, dateArray);
+          // selectedImages.push(imagesFetched[0]);
+          // selectedCameras.push("Front Hazard Avoidance Camera");
+          allCamerasAbb.forEach((cameraAbbr) => {
+            const otherImg = getImgUrl(cameraAbbr, dateArray);
             return axios
               .get(otherImg)
               .then((res) => {
@@ -240,7 +220,7 @@ export default function App() {
               aria-label="Open for more information"
               onClick={openModal}
             >
-              <IoInformationCircleSharp />
+              <ioIcons.IoInformationCircleSharp />
             </button>
             <Modal
               isOpen={modalIsOpen}
@@ -249,10 +229,10 @@ export default function App() {
               ariaHideApp={process.env.REACT_APP_TEST === "TRUE" ? false : undefined}
             >
               <div data-testid="modal">
-                <button data-testid="closeModalBtn" className="redBtn" onClick={closeModal}>
+                <button data-testid="closeModalBtn" className="closeModalBtn" onClick={closeModal}>
                   Close
                 </button>
-                {info.map((item, index) => {
+                {infoData.map((item, index) => {
                   const details = item.split(":");
                   return (
                     <p key={index} className="mt-3">
@@ -291,46 +271,33 @@ export default function App() {
   const renderImages = () => {
     return (
       <section className="image-section d-flex align-items-center flex-column">
-        <div className="w-100">
-          <button className="blackBtn float-right mb-5" onClick={() => history.push("/likes")}>
-            Likes
-          </button>
-          <button className="blackBtn float-right mb-5" onClick={() => history.push("/MoreImages")}>
-            More Images
-          </button>
-        </div>
         <h1 className="section-title image-title text-white">
           LATEST IMAGES CAPTURED BY CURIOSITY ROVER
         </h1>
         <Carousel>
           {images.map((image, index) => {
-            const imageId = image.id;
-            const roverName = image.rover.name;
-            const imgUrl = image.img_src;
-            const cameraName = cameras[index];
-            const earthDate = image.earth_date;
             return (
               <Carousel.Item key={index} interval={2000}>
                 <figure>
                   <img
                     data-testid="image"
-                    className="mw-100 mh-100"
-                    src={imgUrl}
-                    alt={`Mars captured with ${cameraName}`}
+                    className="w-100 h-100"
+                    src={image.img_src}
+                    alt={`Mars captured with ${cameras[index]}`}
                   />
                   <Carousel.Caption>
                     <button
-                      className="heartBtn h2"
+                      className="heartBtn"
                       aria-label="Toggle like"
-                      onClick={() => toggleLike(imageId, roverName, imgUrl, cameraName, earthDate)}
+                      onClick={() => toggleLike(image)}
                     >
-                      {likedImages.hasOwnProperty(imageId) ? (
-                        <IoHeart style={styleHeart} />
+                      {likedImages.some((likedImage) => likedImage.id === image.id) ? (
+                        <ioIcons.IoHeart />
                       ) : (
-                        <IoHeartOutline style={styleHeart} />
+                        <ioIcons.IoHeartOutline />
                       )}
                     </button>
-                    <figcaption className="bg-dark mb-3">{cameraName}</figcaption>
+                    <figcaption className="bg-dark mb-3">{cameras[index]}</figcaption>
                   </Carousel.Caption>
                 </figure>
               </Carousel.Item>

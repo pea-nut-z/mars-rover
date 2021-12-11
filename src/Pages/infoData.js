@@ -24,6 +24,6 @@ const uv =
 const wind =
   "Wind: NASA Viking landers and NASA Pathfinder rover showed that the average wind speed on their location was pretty weak: 1 to 4 meters / second(4 to 15 kilometers / hour - 2.5 to 9 miles / hour).However, during a dust storm, winds can reach 30 meters / second(110 kilometers / hour - 68 miles / hour) or more.";
 
-const info = [intro, opacity, season, sol, sunrise, temp, earthDate, uv, wind];
+const infoData = [intro, opacity, season, sol, sunrise, temp, earthDate, uv, wind];
 
-export default info;
+export default infoData;
