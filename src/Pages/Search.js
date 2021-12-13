@@ -9,21 +9,20 @@ import {
   getTodayDate,
   getFilteredImgUrl,
   filterLikes,
-  styleHeart,
-} from "./helper";
+} from "../helper";
 
 export default function Search() {
   const [year, month, day] = getTodayDate();
   const [selectedRover, setSelectedRover] = useState("curiosity");
-  const [selectedCamera, setSelectedCamera] = useState(allCamerasAbb[1]);
+  const [selectedCamera, setSelectedCamera] = useState(allCamerasAbb[0]);
   const [selectedDate, setSelectedDate] = useState(`${year}-${month}-${day}`);
-  const [camerasToSelect, setcamerasToSelect] = useState();
+  const [camerasAvailable, setCamerasAvailable] = useState();
   const [images, setImages] = useState([]);
   const [likedImages, setLikedImages] = useState();
   const [imagesFetched, setImagesFetched] = useState(false);
 
   useEffect(() => {
-    setcamerasToSelect(selectedRover);
+    setCamerasAvailable(selectedRover);
   }, [selectedRover]);
 
   useEffect(() => {
@@ -76,14 +75,12 @@ export default function Search() {
                 <button
                   className="heartBtn h2"
                   aria-label="Toggle like"
-                  onClick={() =>
-                    toggleLike(likedImages, imageId, roverName, imgUrl, cameraName, earthDate)
-                  }
+                  onClick={() => toggleLike(image)}
                 >
                   {likedImages.hasOwnProperty(imageId) ? (
-                    <IoHeart style={styleHeart} />
+                    <IoHeart className="heartBtn" />
                   ) : (
-                    <IoHeartOutline style={styleHeart} />
+                    <IoHeartOutline className="heartBtn" />
                   )}
                 </button>
               </figcaption>
@@ -95,7 +92,7 @@ export default function Search() {
   };
 
   return (
-    <div>
+    <div className="vw-100 vh-100">
       <div className="filters">
         <select
           className="filter"

@@ -82,29 +82,42 @@ export const validateOtherImgUrl = (url) => {
   return result;
 };
 
-export const filterLikes = (likedImages, imageId, roverName, imgUrl, cameraName, earthDate) => {
-  let filtered;
-  if (likedImages.hasOwnProperty(imageId)) {
-    filtered = Object.keys(likedImages)
-      .filter((id) => id != imageId)
-      .reduce((obj, key) => {
-        obj[key] = likedImages[key];
-        return obj;
-      }, {});
-  } else {
-    filtered = {
-      ...likedImages,
-      [imageId]: {
-        roverName,
-        imgUrl,
-        cameraName,
-        earthDate,
-      },
-    };
-  }
-  console.log({ filtered });
+// export const filterLikes = (likedImages, imageId, roverName, imgUrl, cameraName, earthDate) => {
+//   let filtered;
+//   if (likedImages.hasOwnProperty(imageId)) {
+//     filtered = Object.keys(likedImages)
+//       .filter((id) => id != imageId)
+//       .reduce((obj, key) => {
+//         obj[key] = likedImages[key];
+//         return obj;
+//       }, {});
+//   } else {
+//     filtered = {
+//       ...likedImages,
+//       [imageId]: {
+//         roverName,
+//         imgUrl,
+//         cameraName,
+//         earthDate,
+//       },
+//     };
+//   }
+//   console.log({ filtered });
 
-  return filtered;
+//   return filtered;
+// };
+
+export const filterLikes = (likedImages, image) => {
+  let result;
+  const index = likedImages.findIndex((likedImage) => {
+    return likedImage.id === image.id;
+  });
+  if (index !== -1) {
+    result = likedImages.slice(0, index).concat(likedImages.slice(index + 1));
+  } else {
+    result = [...likedImages, image];
+  }
+  return result;
 };
 
 // API
@@ -132,9 +145,3 @@ export const getFilteredImgUrl = (rover, camera, date) => {
 };
 
 export const newsUrl = `https://newsapi.org/v2/everything?qInTitle=%22mars%22&domains=nature.com&sortBy=publishedAt&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`;
-
-//STYLE
-export const styleHeart = {
-  stroke: "black",
-  strokeWidth: "10",
-};

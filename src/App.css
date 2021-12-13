@@ -90,7 +90,6 @@ p {
   color: white;
   border-radius: 10px;
   margin-bottom: 40px;
-  /* margin-left: center; */
 }
 
 .heartBtn {
@@ -224,7 +223,7 @@ button:focus {
   border-radius: 10px;
 }
 
-.likedImageBackground {
+.imageCardBackground {
   background: var(--black-background);
   padding: var(--pad-normal);
   width: 360px;
@@ -342,7 +341,7 @@ nav {
   }
 
   /* LIKES */
-  .likedImageBackground {
+  .imageCardBackground {
     height: 440px;
   }
 }

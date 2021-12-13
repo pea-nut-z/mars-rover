@@ -13,8 +13,10 @@ import {
   getPreviousMonthDate,
   convertCelToFah,
   allCamerasAbb,
-} from "./helper";
+  filterLikes,
+} from "../helper";
 import infoData from "./infoData";
+import ImageCard from "../components/ImageCard";
 
 const modalStyles = {
   content: {
@@ -31,7 +33,6 @@ const modalStyles = {
 };
 
 export default function Home() {
-  const likesData = JSON.parse(window.localStorage.getItem("likes"));
   const [loading, setLoading] = useState(true);
   const [images, setImages] = useState([]);
   const [cameras, setCameras] = useState();
@@ -39,7 +40,6 @@ export default function Home() {
   const [news, setNews] = useState();
   const [cel, setCel] = useState(true);
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [likedImages, setLikedImages] = useState(likesData || []);
   const [imagesFetched, setImagesFetched] = useState(false);
 
   useEffect(() => {
@@ -50,25 +50,8 @@ export default function Home() {
     getNews();
   }, []);
 
-  useEffect(() => {
-    window.localStorage.setItem("likes", JSON.stringify(likedImages));
-  }, [likedImages]);
-
   const toggleUnit = () => {
     setCel(!cel);
-  };
-
-  const toggleLike = (image) => {
-    const index = likedImages.findIndex((likedImage) => {
-      return likedImage.id === image.id;
-    });
-
-    if (index !== -1) {
-      const newLikedImages = likedImages.slice(0, index).concat(likedImages.slice(index + 1));
-      setLikedImages([...newLikedImages]);
-    } else {
-      setLikedImages([...likedImages, image]);
-    }
   };
 
   const openModal = () => {
@@ -291,7 +274,7 @@ export default function Home() {
                       aria-label="Toggle like"
                       onClick={() => toggleLike(image)}
                     >
-                      {likedImages.some((likedImage) => likedImage.id === image.id) ? (
+                      {likes.some((like) => like.id === image.id) ? (
                         <ioIcons.IoHeart />
                       ) : (
                         <ioIcons.IoHeartOutline />
@@ -339,10 +322,10 @@ export default function Home() {
     );
   };
   return (
-    <main data-testid="container">
+    <main data-testid="container" className="vw-100 vh-100">
       <p className={loading ? "h3 text-center m-5" : undefined}>{loading && "Loading..."}</p>
       {weather && renderWeather()}
-      {imagesFetched && !modalIsOpen && renderImages()}
+      {imagesFetched && !modalIsOpen && <ImageCard images={images} />}
       {news && renderNews()}
     </main>
   );

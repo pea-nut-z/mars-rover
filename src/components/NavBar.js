@@ -1,24 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useImperativeHandle, forwardRef } from "react";
 import { NavData } from "./NavData";
 import * as ioIcons from "react-icons/io5";
 import "./Nav.css";
 import { IconContext } from "react-icons";
 import { Link } from "react-router-dom";
 
-export default function NavBar() {
-  const [sidebar, setSidebar] = useState(false);
+export const NavBar = forwardRef(({}, ref) => {
+  const [navBar, setNavBar] = useState(false);
+  const toggleNavBar = () => setNavBar(!navBar);
 
-  const showSidebar = () => setSidebar(!sidebar);
+  useImperativeHandle(ref, () => ({
+    navBar,
+    toggleNavBar,
+  }));
 
   return (
     <IconContext.Provider value={{ color: "#fff" }}>
       <div className="navbar">
         <Link to="#" className="menu-bars">
-          <ioIcons.IoMenu onClick={showSidebar} />
+          <ioIcons.IoMenu onClick={toggleNavBar} />
         </Link>
       </div>
-      <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
-        <ul className="nav-menu-items" onClick={showSidebar}>
+      <nav className={navBar ? "nav-menu active" : "nav-menu"}>
+        <ul className="nav-menu-items" onClick={toggleNavBar}>
           <li className="navbar-toggle">
             <Link to="#" className="menu-bars">
               <ioIcons.IoCloseCircle />
@@ -38,4 +42,4 @@ export default function NavBar() {
       </nav>
     </IconContext.Provider>
   );
-}
+});
