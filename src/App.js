@@ -5,19 +5,26 @@ import Home from "./Pages/Home";
 import Likes from "./Pages/Likes";
 import Search from "./Pages/Search";
 import "./App.css";
-import * as func from "./helper";
 
 export default function App() {
   const ref = useRef();
 
-  const closeNavBar = () => {
-    ref.current.navBar && ref.current.toggleNavBar();
-  };
+  useEffect(() => {
+    const closeNavBar = () => {
+      ref.current.navBar && ref.current.toggleNavBar();
+    };
+    document.body.addEventListener("click", closeNavBar);
+
+    return () => {
+      document.body.removeEventListener("click", closeNavBar);
+    };
+  }, []);
 
   return (
-    <div onClick={closeNavBar}>
+    <div>
       <Router>
         <NavBar ref={ref} />
+        <div className="filler" />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/likes" component={Likes} />

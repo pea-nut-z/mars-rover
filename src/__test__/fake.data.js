@@ -36,7 +36,7 @@ export const fakeJunImgData = {
   ],
 };
 
-export const fakeImgDataJuly = {
+export const fakeJulImgData = {
   photos: [
     {
       camera: { full_name: "Camera name" },

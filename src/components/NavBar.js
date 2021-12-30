@@ -22,7 +22,7 @@ export const NavBar = forwardRef(({}, ref) => {
         </Link>
       </div>
       <nav className={navBar ? "nav-menu active" : "nav-menu"}>
-        <ul className="nav-menu-items" onClick={toggleNavBar}>
+        <ul className="nav-menu-items">
           <li className="navbar-toggle">
             <Link to="#" className="menu-bars">
               <ioIcons.IoCloseCircle />

@@ -1,20 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Carousel from "react-bootstrap/Carousel";
 import * as ioIcons from "react-icons/io5";
 import Modal from "react-modal";
-import {
-  weatherUrl,
-  getImgUrl,
-  getFtImgUrl,
-  // getOtherImgUrl,
-  newsUrl,
-  getTodayDate,
-  getPreviousMonthDate,
-  convertCelToFah,
-  allCamerasAbb,
-  filterLikes,
-} from "../helper";
+import * as func from "../helper";
 import infoData from "./infoData";
 import ImageCard from "../components/ImageCard";
 
@@ -26,7 +14,6 @@ const modalStyles = {
     bottom: "auto",
     marginRight: "-50%",
     color: "black",
-    zIndex: 2,
     transform: "translate(-50%, -50%)",
     maxHeight: "100vh",
   },
@@ -40,15 +27,22 @@ export default function Home() {
   const [news, setNews] = useState();
   const [cel, setCel] = useState(true);
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [imagesFetched, setImagesFetched] = useState(false);
+  // const [imagesFetched, setImagesFetched] = useState(false);
 
   useEffect(() => {
     if (process.env.REACT_APP_TEST !== "TRUE") Modal.setAppElement("#root");
-    const todayDate = getTodayDate();
+    const todayDate = func.getTodayDate();
     getPhotos(todayDate);
     getWeather();
     getNews();
   }, []);
+
+  // useEffect(() => {
+  //   if (images.length !== 0) {
+  //     setImagesFetched(true);
+  //     setLoading(false);
+  //   }
+  // }, [images]);
 
   const toggleUnit = () => {
     setCel(!cel);
@@ -66,23 +60,21 @@ export default function Home() {
     let [year, month, day] = dateArray;
     let selectedImages = [];
     let selectedCameras = [];
-    const frontCameraImg = getFtImgUrl(dateArray);
+    const frontCameraImg = func.getFtImgUrl(dateArray);
     return axios
       .get(frontCameraImg)
       .then((res) => {
         const imagesFetched = res.data.photos;
         if (imagesFetched.length === 0) {
           if (day === 1) {
-            const previousMonthDate = getPreviousMonthDate(year, month);
+            const previousMonthDate = func.getPreviousMonthDate(year, month);
             getPhotos(previousMonthDate);
           } else {
             getPhotos([year, month, day - 1]);
           }
         } else {
-          // selectedImages.push(imagesFetched[0]);
-          // selectedCameras.push("Front Hazard Avoidance Camera");
-          allCamerasAbb.forEach((cameraAbbr) => {
-            const otherImg = getImgUrl(cameraAbbr, dateArray);
+          func.getAllCamerasAbb.forEach((cameraAbbr) => {
+            const otherImg = func.getImgUrl(cameraAbbr, dateArray);
             return axios
               .get(otherImg)
               .then((res) => {
@@ -97,12 +89,11 @@ export default function Home() {
               .finally(() => {
                 setImages([...images, ...selectedImages]);
                 setCameras(selectedCameras);
-                setImagesFetched(true);
-                setLoading(false);
               });
           });
         }
       })
+
       .catch((error) => {
         console.error(error);
       });
@@ -110,7 +101,7 @@ export default function Home() {
 
   const getWeather = () => {
     return axios
-      .get(weatherUrl)
+      .get(func.getWeatherUrl)
       .then((res) => {
         setWeather(res.data);
         setLoading(false);
@@ -122,7 +113,7 @@ export default function Home() {
 
   const getNews = () => {
     return axios
-      .get(newsUrl)
+      .get(func.getNewsUrl)
       .then((res) => {
         const { articles } = res.data;
         const selectedArticles = articles.reduce((arr, article) => {
@@ -170,28 +161,26 @@ export default function Home() {
     }
 
     return (
-      <section data-testid="weather-section" className="weather-section">
-        <div className="d-flex justify-content-between">
-          <h1 className="section-title">LATEST WEATHER AT ELYSIUM PLANTITIA</h1>
-          <div className="unit">
-            <label htmlFor="cel" className="label h5">
-              °C
-            </label>
-            <input type="radio" id="cel" name="unit" checked={cel && "checked"} readOnly />
-            <button
-              data-testid="unit-toggle"
-              className="unit-toggle"
-              aria-label="Toggle unit"
-              onClick={toggleUnit}
-            ></button>
-            <label htmlFor="fah" className="label h5">
-              °F
-            </label>
-            <input type="radio" id="fah" name="unit" checked={!cel && "checked"} readOnly />
-          </div>
+      <section data-testid="weather-section" className="section weather-section">
+        <h1 className="header">LATEST WEATHER AT ELYSIUM PLANTITIA</h1>
+        <div className="unit">
+          <label htmlFor="cel" className="label h5">
+            °C
+          </label>
+          <input type="radio" id="cel" name="unit" checked={cel && "checked"} readOnly />
+          <button
+            data-testid="unit-toggle"
+            className="unit-toggle"
+            aria-label="Toggle unit"
+            onClick={toggleUnit}
+          ></button>
+          <label htmlFor="fah" className="label h5">
+            °F
+          </label>
+          <input type="radio" id="fah" name="unit" checked={!cel && "checked"} readOnly />
         </div>
 
-        <div className="weather-container d-flex">
+        <div className="weather-container">
           <div className="text-right">
             <p className="sol display-4">Sol {sol}</p>
             <p className="h2 text-muted">
@@ -212,6 +201,7 @@ export default function Home() {
               ariaHideApp={process.env.REACT_APP_TEST === "TRUE" ? false : undefined}
             >
               <div data-testid="modal">
+                <div className="filler" />
                 <button data-testid="closeModalBtn" className="closeModalBtn" onClick={closeModal}>
                   Close
                 </button>
@@ -229,10 +219,10 @@ export default function Home() {
           <div className="divider" />
           <div className="col">
             <p data-testid="temperature" className="h5 mt-3">
-              High: {cel ? max_temp + "°C" : convertCelToFah(max_temp) + "°F"}
+              High: {cel ? max_temp + "°C" : func.convertCelToFah(max_temp) + "°F"}
             </p>
             <p data-testid="temperature" className="h5">
-              Low: {cel ? min_temp + "°C" : convertCelToFah(min_temp) + "°F"}
+              Low: {cel ? min_temp + "°C" : func.convertCelToFah(min_temp) + "°F"}
             </p>
             <p data-testid="wind">Wind Speed: {wind_speed ? wind_speed : "N/A"}</p>
             <p data-testid="wind">
@@ -251,42 +241,45 @@ export default function Home() {
     );
   };
 
-  const renderImages = () => {
+  const renderNews = () => {
+    const today = new Date();
+    const currentMonth = today.toLocaleString("default", { month: "long" }).toUpperCase();
     return (
-      <section className="image-section d-flex align-items-center flex-column">
-        <h1 className="section-title image-title text-white">
-          LATEST IMAGES CAPTURED BY CURIOSITY ROVER
+      <section className="section news-section">
+        <h1 className="header">{currentMonth} NEWS</h1>
+        {news.map((article, index) => {
+          let date = article.publishedAt.split("T")[0];
+          const { title, description, url, urlToImage } = article;
+          return (
+            <a key={index} className="news-link" href={url}>
+              <article className="news-container">
+                <img className="news-image" src={urlToImage} alt={`Article ${index}`} />
+                <div className="news-desc">
+                  <h6 className="font-weight-bold">{title}</h6>
+                  <time className="font-italic" dateTime={date}>
+                    {date}
+                  </time>
+                  <p>{description}</p>
+                </div>
+              </article>
+            </a>
+          );
+        })}
+      </section>
+    );
+  };
+
+  const renderImageSlide = () => {
+    // console.log({ imagesFetched });
+
+    // console.log({ images });
+    return (
+      <section className="section image-section">
+        <h1 className="header">
+          <p>LATEST IMAGES CAPTURED BY</p>
+          <p>CURIOSITY ROVER</p>
         </h1>
-        <Carousel>
-          {images.map((image, index) => {
-            return (
-              <Carousel.Item key={index} interval={2000}>
-                <figure>
-                  <img
-                    data-testid="image"
-                    className="w-100 h-100"
-                    src={image.img_src}
-                    alt={`Mars captured with ${cameras[index]}`}
-                  />
-                  <Carousel.Caption>
-                    <button
-                      className="heartBtn"
-                      aria-label="Toggle like"
-                      onClick={() => toggleLike(image)}
-                    >
-                      {likes.some((like) => like.id === image.id) ? (
-                        <ioIcons.IoHeart />
-                      ) : (
-                        <ioIcons.IoHeartOutline />
-                      )}
-                    </button>
-                    <figcaption className="bg-dark mb-3">{cameras[index]}</figcaption>
-                  </Carousel.Caption>
-                </figure>
-              </Carousel.Item>
-            );
-          })}
-        </Carousel>
+        <ImageCard images={images} renderSlideOnly="true" />
         <time data-testid="image-date" className="h5 mt-3" dateTime={images[0].earth_date}>
           ({images[0].earth_date})
         </time>
@@ -294,39 +287,14 @@ export default function Home() {
     );
   };
 
-  const renderNews = () => {
-    const today = new Date();
-    const currentMonth = today.toLocaleString("default", { month: "long" }).toUpperCase();
-    return (
-      <section className="news-section">
-        <h1 className="section-title image-title text-white">{currentMonth} NEWS</h1>
-        {news.map((article, index) => {
-          let date = article.publishedAt.split("T")[0];
-          const { title, description, url, urlToImage } = article;
-          return (
-            <article key={index} className="news-container d-flex flex-row">
-              <a href={url}>
-                <img className="news-images" src={urlToImage} alt={`Article ${index}`} />
-              </a>
-              <div>
-                <h6 className="font-weight-bold">{title}</h6>
-                <time className="font-italic" dateTime={date}>
-                  {date}
-                </time>
-                <p>{description}</p>
-              </div>
-            </article>
-          );
-        })}
-      </section>
-    );
-  };
   return (
-    <main data-testid="container" className="vw-100 vh-100">
+    <main data-testid="container" className="home-container">
       <p className={loading ? "h3 text-center m-5" : undefined}>{loading && "Loading..."}</p>
-      {weather && renderWeather()}
-      {imagesFetched && !modalIsOpen && <ImageCard images={images} />}
-      {news && renderNews()}
+      <div className="home-left">
+        {weather && renderWeather()}
+        {images.length !== 0 && !modalIsOpen && renderImageSlide()}
+      </div>
+      <div className="home-right">{news && renderNews()}</div>
     </main>
   );
 }

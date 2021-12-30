@@ -1,45 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
-import { IoInformationCircleSharp, IoHeartOutline, IoHeart } from "react-icons/io5";
-
-import {
-  allCameras,
-  camerasAvailable,
-  allCamerasAbb,
-  getTodayDate,
-  getFilteredImgUrl,
-  filterLikes,
-} from "../helper";
+import * as func from "../helper";
+import ImageCard from "../components/ImageCard";
 
 export default function Search() {
-  const [year, month, day] = getTodayDate();
-  const [selectedRover, setSelectedRover] = useState("curiosity");
-  const [selectedCamera, setSelectedCamera] = useState(allCamerasAbb[0]);
+  const [year, month, day] = func.getTodayDate();
+  const [selectedRover, setSelectedRover] = useState();
+  const [selectedCamera, setSelectedCamera] = useState();
   const [selectedDate, setSelectedDate] = useState(`${year}-${month}-${day}`);
-  const [camerasAvailable, setCamerasAvailable] = useState();
   const [images, setImages] = useState([]);
-  const [likedImages, setLikedImages] = useState();
   const [imagesFetched, setImagesFetched] = useState(false);
-
-  useEffect(() => {
-    setCamerasAvailable(selectedRover);
-  }, [selectedRover]);
-
-  useEffect(() => {
-    if (process.env.REACT_APP_TEST !== "TRUE") {
-      const likesData = JSON.parse(window.localStorage.getItem("likes"));
-      setLikedImages(likesData || {});
-    }
-  }, []);
-
-  // useEffect(() => {
-  //   if (process.env.REACT_APP_TEST !== "TRUE") {
-  //     window.localStorage.setItem("likes", JSON.stringify(likedImages));
-  //   }
-  // }, [likedImages]);
+  const [showMsg, setShowMsg] = useState(false);
 
   const getFilteredImgs = () => {
-    const filteredImgs = getFilteredImgUrl(selectedRover, selectedCamera, selectedDate);
+    const selectedCameraAbb = func.getAllCamerasAbb[selectedCamera];
+    const filteredImgs = func.getFilteredImgUrl(selectedRover, selectedCameraAbb, selectedDate);
     return axios
       .get(filteredImgs)
       .then((res) => {
@@ -51,56 +26,26 @@ export default function Search() {
       });
   };
 
-  const toggleLike = (likedImages, imageId, roverName, imgUrl, cameraName, earthDate) => {
-    const newLikes = filterLikes(likedImages, imageId, roverName, imgUrl, cameraName, earthDate);
-    setLikedImages(newLikes);
-  };
-
-  const renderFilteredImages = () => {
-    return (
-      <section>
-        {images.map((image, index) => {
-          const imageId = image.id;
-          const roverName = image.rover.name;
-          const imgUrl = image.img_src;
-          const cameraName = image.camera.full_name;
-          const earthDate = image.earth_date;
-          return (
-            <figure key={index} className="likedImageBackground float-left">
-              <img className="slide" src={imgUrl} alt={`Mars captured with ${cameraName}`} />
-              <figcaption className="mt-3">
-                <p>{roverName} Rover</p>
-                <p>{cameraName}</p>
-                <p>{earthDate}</p>
-                <button
-                  className="heartBtn h2"
-                  aria-label="Toggle like"
-                  onClick={() => toggleLike(image)}
-                >
-                  {likedImages.hasOwnProperty(imageId) ? (
-                    <IoHeart className="heartBtn" />
-                  ) : (
-                    <IoHeartOutline className="heartBtn" />
-                  )}
-                </button>
-              </figcaption>
-            </figure>
-          );
-        })}
-      </section>
-    );
+  const checkFields = () => {
+    setShowMsg(false);
+    if (selectedRover && selectedCamera) {
+      getFilteredImgs();
+    } else {
+      setShowMsg(true);
+    }
   };
 
   return (
-    <div className="vw-100 vh-100">
-      <div className="filters">
+    <div className="search-container">
+      <form className="filters">
         <select
           className="filter"
-          defaultValue="curiosity"
+          aria-label="Select rover"
           onChange={(e) => {
             setSelectedRover(e.target.value);
           }}
         >
+          <option hidden>Select Rover</option>
           <option value="curiosity">Curiosity</option>
           <option value="opportunity">Opportunity</option>
           <option value="spirit">Spirit</option>
@@ -108,22 +53,28 @@ export default function Search() {
 
         <select
           className="filter"
+          aria-label="Select camera"
+          defaultValue="Select camera"
           onChange={(e) => {
             setSelectedCamera(e.target.value);
           }}
+          disabled={!selectedRover && true}
         >
-          {selectedRover &&
-            camerasAvailable[selectedRover].map((index) => {
-              const camera = allCameras[index];
-              return (
-                <option key={index} value={allCamerasAbb[index]}>
-                  {camera}
-                </option>
-              );
-            })}
+          <option hidden>Select Camera</option>
+          {func.getAllCameras.map((camera, index) => {
+            const available = func.getCamerasAvailable[selectedRover] || [];
+            const disable = !available.includes(index + 1) && true;
+            return (
+              <option key={index} value={index} disabled={disable}>
+                {camera}
+              </option>
+            );
+          })}
         </select>
+
         <input
           className="filter"
+          aria-label="Select date"
           type="date"
           id="start"
           name="start"
@@ -132,11 +83,22 @@ export default function Search() {
             setSelectedDate(e.target.value);
           }}
         />
-        <button aria-label="search images" onClick={getFilteredImgs}>
+        <button
+          type="button"
+          className="searchBtn btn btn-dark"
+          aria-label="search images"
+          onClick={checkFields}
+        >
           Search
         </button>
+      </form>
+      <div
+        className={`btn btn-dark border border-light popupBox ${showMsg ? "active" : ""}`}
+        aria-label="Empty field alert"
+      >
+        {!selectedRover ? "Select a rover!" : "Select a camera!"}
       </div>
-      {imagesFetched && renderFilteredImages()}
+      <div className="image-gallery">{imagesFetched && <ImageCard images={images} />}</div>
     </div>
   );
 }

@@ -13,7 +13,7 @@ exports[`Today's front camera image is AVAILABLE. displays today's images, lates
       class="d-flex justify-content-between"
     >
       <h1
-        class="section-title"
+        class="header"
       >
         LATEST WEATHER AT ELYSIUM PLANTITIA
       </h1>
@@ -148,7 +148,7 @@ exports[`Today's front camera image is AVAILABLE. displays today's images, lates
     class="image-section d-flex align-items-center flex-column"
   >
     <h1
-      class="section-title image-title text-white"
+      class="header image-title text-white"
     >
       IMAGES CAPTURED BY CURIOSITY ROVER
     </h1>
@@ -440,7 +440,7 @@ exports[`buttons returns to main page after clicking close modal. 1`] = `
       class="d-flex justify-content-between"
     >
       <h1
-        class="section-title"
+        class="header"
       >
         LATEST WEATHER AT ELYSIUM PLANTITIA
       </h1>
@@ -575,7 +575,7 @@ exports[`buttons returns to main page after clicking close modal. 1`] = `
     class="image-section d-flex align-items-center flex-column"
   >
     <h1
-      class="section-title image-title text-white"
+      class="header image-title text-white"
     >
       IMAGES CAPTURED BY CURIOSITY ROVER
     </h1>

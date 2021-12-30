@@ -11,17 +11,17 @@ import {
   fakeWeatherData1,
   fakeWeatherData2,
   fakeJunImgData,
-  fakeImgDataJuly,
+  fakeJulImgData,
   fakeNewsData,
 } from "./fake.data";
 import {
   getTodayDate,
   getPreviousMonthDate,
   convertCelToFah,
-  weatherUrl,
+  getWeatherUrl,
   getFtImgUrl,
   validateOtherImgUrl,
-  newsUrl,
+  getNewsUrl,
 } from "../helper";
 
 jest.mock("axios");
@@ -36,12 +36,12 @@ describe("Today's front camera image is AVAILABLE.", () => {
       url = validateOtherImgUrl(url) ? "otherImgUrl" : url;
 
       switch (url) {
-        case weatherUrl:
+        case getWeatherUrl:
           return Promise.resolve({ data: fakeWeatherData1 });
         case ftImgUrlToday:
         case "otherImgUrl":
           return Promise.resolve({ data: fakeJunImgData });
-        case newsUrl:
+        case getNewsUrl:
           return Promise.resolve({ data: fakeNewsData });
         default:
           return Promise.reject(new Error("Test error - url not found."));
@@ -89,7 +89,7 @@ describe("Today is the first day of the month, front and RHAZ images are UNAVAIL
           : url;
 
       switch (url) {
-        case weatherUrl:
+        case getWeatherUrl:
           return Promise.resolve({ data: fakeWeatherData2 });
         case ftImgUrlToday:
         case "RHAZImgUrl":
@@ -97,7 +97,7 @@ describe("Today is the first day of the month, front and RHAZ images are UNAVAIL
         case ftImgUrlYesterday:
         case "otherImgUrl":
           return Promise.resolve({ data: fakeJunImgData });
-        case newsUrl:
+        case getNewsUrl:
           return Promise.resolve({ data: fakeNewsData });
         default:
           return Promise.reject(new Error("Test error - url not found."));
@@ -147,14 +147,14 @@ describe("Today is the second day of the month and front camera image is UNAVAIL
       url = validateOtherImgUrl(url) ? "otherImgUrl" : url;
 
       switch (url) {
-        case weatherUrl:
+        case getWeatherUrl:
           return Promise.resolve({ data: fakeWeatherData1 });
         case ftImgUrlToday:
           return Promise.resolve({ data: { photos: [] } });
         case ftImgUrlYesterday:
         case "otherImgUrl":
-          return Promise.resolve({ data: fakeImgDataJuly });
-        case newsUrl:
+          return Promise.resolve({ data: fakeJulImgData });
+        case getNewsUrl:
           return Promise.resolve({ data: fakeNewsData });
         default:
           return Promise.reject(new Error("Test error - url not found."));
@@ -188,12 +188,12 @@ describe("buttons", () => {
       url = validateOtherImgUrl(url) ? "otherImgUrl" : url;
 
       switch (url) {
-        case weatherUrl:
+        case getWeatherUrl:
           return Promise.resolve({ data: fakeWeatherData1 });
         case ftImgUrlToday:
         case "otherImgUrl":
           return Promise.resolve({ data: fakeJunImgData });
-        case newsUrl:
+        case getNewsUrl:
           return Promise.resolve({ data: fakeNewsData });
         default:
           return Promise.reject(new Error("Test error - url not found."));
@@ -268,12 +268,12 @@ describe("Errors", () => {
     axiosGetSpy = jest.spyOn(axios, "get").mockImplementation((url) => {
       url = validateOtherImgUrl(url) ? "otherImgUrl" : url;
       switch (url) {
-        case weatherUrl:
+        case getWeatherUrl:
           return Promise.resolve({ data: {} });
         case ftImgUrlToday:
         case "otherImgUrl":
           return Promise.resolve({ data: {} });
-        case newsUrl:
+        case getNewsUrl:
           return Promise.resolve({ data: "error" });
         default:
           return Promise.reject(new Error("Test error - url not found."));
