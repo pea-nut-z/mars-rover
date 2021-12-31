@@ -73,7 +73,7 @@ export default function Home() {
             getPhotos([year, month, day - 1]);
           }
         } else {
-          func.getAllCamerasAbb.forEach((cameraAbbr) => {
+          func.getCuriosityCamerasAbb.forEach((cameraAbbr) => {
             const otherImg = func.getImgUrl(cameraAbbr, dateArray);
             return axios
               .get(otherImg)
@@ -270,9 +270,6 @@ export default function Home() {
   };
 
   const renderImageSlide = () => {
-    // console.log({ imagesFetched });
-
-    // console.log({ images });
     return (
       <section className="section image-section">
         <h1 className="header">
@@ -288,7 +285,7 @@ export default function Home() {
   };
 
   return (
-    <main data-testid="container" className="home-container">
+    <main data-testid="home-container" className="home-container">
       <p className={loading ? "h3 text-center m-5" : undefined}>{loading && "Loading..."}</p>
       <div className="home-left">
         {weather && renderWeather()}

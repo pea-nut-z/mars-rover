@@ -1,16 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Today's front camera image is AVAILABLE. displays today's images, latest weather and news data. 1`] = `
-<div
-  data-testid="container"
+<main
+  data-testid="home-container"
+  class="home-container"
 >
-  <div />
+  <p />
   <div
-    data-testid="weather-section"
-    class="weather-section"
+    class="home-left"
   >
-    <div
-      class="d-flex justify-content-between"
+    <section
+      data-testid="weather-section"
+      class="section weather-section"
     >
       <h1
         class="header"
@@ -36,6 +37,7 @@ exports[`Today's front camera image is AVAILABLE. displays today's images, lates
         <button
           data-testid="unit-toggle"
           class="unit-toggle"
+          aria-label="Toggle unit"
         />
         <label
           for="fah"
@@ -50,394 +52,712 @@ exports[`Today's front camera image is AVAILABLE. displays today's images, lates
           readonly=""
         />
       </div>
-    </div>
-    <div
-      class="weather-container d-flex"
-    >
       <div
-        class="text-right"
+        class="weather-container"
       >
         <div
-          class="sol display-4"
+          class="text-right"
         >
-          Sol 
-          1234
+          <p
+            class="sol display-4"
+          >
+            Sol 
+            1234
+          </p>
+          <p
+            class="h2 text-muted"
+          >
+            Jun
+            30
+          </p>
+          <button
+            data-testid="info"
+            class="openModalBtn h2 text-primary"
+            aria-label="Open for more information"
+          >
+            <svg
+              stroke="currentColor"
+              fill="currentColor"
+              stroke-width="0"
+              viewBox="0 0 512 512"
+              height="1em"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M256 56C145.72 56 56 145.72 56 256s89.72 200 200 200 200-89.72 200-200S366.28 56 256 56zm0 82a26 26 0 11-26 26 26 26 0 0126-26zm64 226H200v-32h44v-88h-32v-32h64v120h44z"
+              />
+            </svg>
+          </button>
         </div>
         <div
-          class="h2 text-muted"
+          class="divider"
+        />
+        <div
+          class="col"
         >
-          Jun
-          30
-        </div>
-        <svg
-          stroke="currentColor"
-          fill="currentColor"
-          stroke-width="0"
-          viewBox="0 0 512 512"
-          data-testid="info"
-          class="h4 text-primary"
-          height="1em"
-          width="1em"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M256 56C145.72 56 56 145.72 56 256s89.72 200 200 200 200-89.72 200-200S366.28 56 256 56zm0 82a26 26 0 11-26 26 26 26 0 0126-26zm64 226H200v-32h44v-88h-32v-32h64v120h44z"
-          />
-        </svg>
-      </div>
-      <div
-        class="divider"
-      />
-      <div
-        class="col"
-      >
-        <p
-          data-testid="temperature"
-        >
-          <span
-            class="h5"
+          <p
+            data-testid="temperature"
+            class="h5 mt-3"
           >
             High: 
             -12°C
-            <br />
+          </p>
+          <p
+            data-testid="temperature"
+            class="h5"
+          >
             Low: 
             -34°C
-          </span>
-          <br />
-          <br />
-          <span
+          </p>
+          <p
             data-testid="wind"
           >
             Wind Speed: 
             40km/h
-            <br />
+          </p>
+          <p
+            data-testid="wind"
+          >
             Wind Direction: 
             West kph
-          </span>
-        </p>
-      </div>
-      <div
-        class="col text-right"
-      >
-        <div
-          class="h5"
-        >
-          Sunny
+          </p>
         </div>
-        <div>
-          <div>
+        <div
+          class="col text-right"
+        >
+          <p
+            class="h5 mt-3"
+          >
+            Sunny
+          </p>
+          <p>
             Autumn
-          </div>
-          <div>
+          </p>
+          <p>
             UV Index: 
             Moderate
-          </div>
-          <div>
+          </p>
+          <p>
             Sunrise: 
             01:23
-          </div>
-          <div>
+          </p>
+          <p>
             Sunset: 
             12:34
-          </div>
+          </p>
         </div>
       </div>
-    </div>
-  </div>
-  <div
-    class="image-section d-flex align-items-center flex-column"
-  >
-    <h1
-      class="header image-title text-white"
+    </section>
+    <section
+      class="section image-section"
     >
-      IMAGES CAPTURED BY CURIOSITY ROVER
-    </h1>
-    <div
-      class="carousel slide"
-    >
-      <ol
-        class="carousel-indicators"
+      <h1
+        class="header"
       >
-        <li
-          class="active"
-        />
-        <li />
-        <li />
-        <li />
-        <li />
-        <li />
-        <li />
-      </ol>
-      <div
-        class="carousel-inner"
-      >
+        <p>
+          LATEST IMAGES CAPTURED BY
+        </p>
+        <p>
+          CURIOSITY ROVER
+        </p>
+      </h1>
+      <div>
         <div
-          interval="2000"
-          class="active carousel-item"
+          style="z-index: 2;"
+          class="carousel slide"
         >
-          <img
-            data-testid="image"
-            class="d-block w-100"
-            src="https://fakeImg.JPG"
-            alt="Mars captured with Front Hazard Avoidance Camera"
-          />
+          <ol
+            class="carousel-indicators"
+          >
+            <li
+              class="active"
+            />
+            <li />
+            <li />
+            <li />
+            <li />
+            <li />
+            <li />
+          </ol>
           <div
-            class="carousel-caption"
+            class="carousel-inner"
           >
             <div
-              class="bg-dark"
+              interval="2000"
+              class="active carousel-item"
             >
-              Front Hazard Avoidance Camera
+              <figure>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://fakeImg.JPG"
+                >
+                  <img
+                    data-testid="image"
+                    class="w-100 h-100"
+                    src="https://fakeImg.JPG"
+                    alt="Mars captured by Curiosity rover's Camera Name"
+                  />
+                </a>
+                <div
+                  class="carousel-caption"
+                >
+                  <button
+                    class="heartBtn"
+                    aria-label="Toggle like"
+                  >
+                    <svg
+                      stroke="currentColor"
+                      fill="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 512 512"
+                      height="1em"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="32"
+                        d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z"
+                      />
+                    </svg>
+                  </button>
+                  <figcaption
+                    class="slide-caption"
+                  >
+                    Camera Name
+                  </figcaption>
+                </div>
+              </figure>
             </div>
-          </div>
-        </div>
-        <div
-          interval="2000"
-          class="carousel-item"
-        >
-          <img
-            data-testid="image"
-            class="d-block w-100"
-            src="https://fakeImg.JPG"
-            alt="Mars captured with Camera name"
-          />
-          <div
-            class="carousel-caption"
-          >
             <div
-              class="bg-dark"
+              interval="2000"
+              class="carousel-item"
             >
-              Camera name
+              <figure>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://fakeImg.JPG"
+                >
+                  <img
+                    data-testid="image"
+                    class="w-100 h-100"
+                    src="https://fakeImg.JPG"
+                    alt="Mars captured by Curiosity rover's Camera Name"
+                  />
+                </a>
+                <div
+                  class="carousel-caption"
+                >
+                  <button
+                    class="heartBtn"
+                    aria-label="Toggle like"
+                  >
+                    <svg
+                      stroke="currentColor"
+                      fill="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 512 512"
+                      height="1em"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="32"
+                        d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z"
+                      />
+                    </svg>
+                  </button>
+                  <figcaption
+                    class="slide-caption"
+                  >
+                    Camera Name
+                  </figcaption>
+                </div>
+              </figure>
             </div>
-          </div>
-        </div>
-        <div
-          interval="2000"
-          class="carousel-item"
-        >
-          <img
-            data-testid="image"
-            class="d-block w-100"
-            src="https://fakeImg.JPG"
-            alt="Mars captured with Camera name"
-          />
-          <div
-            class="carousel-caption"
-          >
             <div
-              class="bg-dark"
+              interval="2000"
+              class="carousel-item"
             >
-              Camera name
+              <figure>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://fakeImg.JPG"
+                >
+                  <img
+                    data-testid="image"
+                    class="w-100 h-100"
+                    src="https://fakeImg.JPG"
+                    alt="Mars captured by Curiosity rover's Camera Name"
+                  />
+                </a>
+                <div
+                  class="carousel-caption"
+                >
+                  <button
+                    class="heartBtn"
+                    aria-label="Toggle like"
+                  >
+                    <svg
+                      stroke="currentColor"
+                      fill="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 512 512"
+                      height="1em"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="32"
+                        d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z"
+                      />
+                    </svg>
+                  </button>
+                  <figcaption
+                    class="slide-caption"
+                  >
+                    Camera Name
+                  </figcaption>
+                </div>
+              </figure>
             </div>
-          </div>
-        </div>
-        <div
-          interval="2000"
-          class="carousel-item"
-        >
-          <img
-            data-testid="image"
-            class="d-block w-100"
-            src="https://fakeImg.JPG"
-            alt="Mars captured with Camera name"
-          />
-          <div
-            class="carousel-caption"
-          >
             <div
-              class="bg-dark"
+              interval="2000"
+              class="carousel-item"
             >
-              Camera name
+              <figure>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://fakeImg.JPG"
+                >
+                  <img
+                    data-testid="image"
+                    class="w-100 h-100"
+                    src="https://fakeImg.JPG"
+                    alt="Mars captured by Curiosity rover's Camera Name"
+                  />
+                </a>
+                <div
+                  class="carousel-caption"
+                >
+                  <button
+                    class="heartBtn"
+                    aria-label="Toggle like"
+                  >
+                    <svg
+                      stroke="currentColor"
+                      fill="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 512 512"
+                      height="1em"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="32"
+                        d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z"
+                      />
+                    </svg>
+                  </button>
+                  <figcaption
+                    class="slide-caption"
+                  >
+                    Camera Name
+                  </figcaption>
+                </div>
+              </figure>
             </div>
-          </div>
-        </div>
-        <div
-          interval="2000"
-          class="carousel-item"
-        >
-          <img
-            data-testid="image"
-            class="d-block w-100"
-            src="https://fakeImg.JPG"
-            alt="Mars captured with Camera name"
-          />
-          <div
-            class="carousel-caption"
-          >
             <div
-              class="bg-dark"
+              interval="2000"
+              class="carousel-item"
             >
-              Camera name
+              <figure>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://fakeImg.JPG"
+                >
+                  <img
+                    data-testid="image"
+                    class="w-100 h-100"
+                    src="https://fakeImg.JPG"
+                    alt="Mars captured by Curiosity rover's Camera Name"
+                  />
+                </a>
+                <div
+                  class="carousel-caption"
+                >
+                  <button
+                    class="heartBtn"
+                    aria-label="Toggle like"
+                  >
+                    <svg
+                      stroke="currentColor"
+                      fill="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 512 512"
+                      height="1em"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="32"
+                        d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z"
+                      />
+                    </svg>
+                  </button>
+                  <figcaption
+                    class="slide-caption"
+                  >
+                    Camera Name
+                  </figcaption>
+                </div>
+              </figure>
             </div>
-          </div>
-        </div>
-        <div
-          interval="2000"
-          class="carousel-item"
-        >
-          <img
-            data-testid="image"
-            class="d-block w-100"
-            src="https://fakeImg.JPG"
-            alt="Mars captured with Camera name"
-          />
-          <div
-            class="carousel-caption"
-          >
             <div
-              class="bg-dark"
+              interval="2000"
+              class="carousel-item"
             >
-              Camera name
+              <figure>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://fakeImg.JPG"
+                >
+                  <img
+                    data-testid="image"
+                    class="w-100 h-100"
+                    src="https://fakeImg.JPG"
+                    alt="Mars captured by Curiosity rover's Camera Name"
+                  />
+                </a>
+                <div
+                  class="carousel-caption"
+                >
+                  <button
+                    class="heartBtn"
+                    aria-label="Toggle like"
+                  >
+                    <svg
+                      stroke="currentColor"
+                      fill="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 512 512"
+                      height="1em"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="32"
+                        d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z"
+                      />
+                    </svg>
+                  </button>
+                  <figcaption
+                    class="slide-caption"
+                  >
+                    Camera Name
+                  </figcaption>
+                </div>
+              </figure>
             </div>
-          </div>
-        </div>
-        <div
-          interval="2000"
-          class="carousel-item"
-        >
-          <img
-            data-testid="image"
-            class="d-block w-100"
-            src="https://fakeImg.JPG"
-            alt="Mars captured with Camera name"
-          />
-          <div
-            class="carousel-caption"
-          >
             <div
-              class="bg-dark"
+              interval="2000"
+              class="carousel-item"
             >
-              Camera name
+              <figure>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://fakeImg.JPG"
+                >
+                  <img
+                    data-testid="image"
+                    class="w-100 h-100"
+                    src="https://fakeImg.JPG"
+                    alt="Mars captured by Curiosity rover's Camera Name"
+                  />
+                </a>
+                <div
+                  class="carousel-caption"
+                >
+                  <button
+                    class="heartBtn"
+                    aria-label="Toggle like"
+                  >
+                    <svg
+                      stroke="currentColor"
+                      fill="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 512 512"
+                      height="1em"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="32"
+                        d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z"
+                      />
+                    </svg>
+                  </button>
+                  <figcaption
+                    class="slide-caption"
+                  >
+                    Camera Name
+                  </figcaption>
+                </div>
+              </figure>
             </div>
           </div>
+          <a
+            class="carousel-control-prev"
+            role="button"
+            href="#"
+          >
+            <span
+              aria-hidden="true"
+              class="carousel-control-prev-icon"
+            />
+            <span
+              class="sr-only"
+            >
+              Previous
+            </span>
+          </a>
+          <a
+            class="carousel-control-next"
+            role="button"
+            href="#"
+          >
+            <span
+              aria-hidden="true"
+              class="carousel-control-next-icon"
+            />
+            <span
+              class="sr-only"
+            >
+              Next
+            </span>
+          </a>
         </div>
+        <button
+          class="btn btn-dark border border-light popupBox "
+          aria-label="Undo deleted image"
+        >
+          Click to Undo
+        </button>
       </div>
-      <a
-        class="carousel-control-prev"
-        role="button"
-        href="#"
+      <time
+        data-testid="image-date"
+        class="h5 mt-3"
+        datetime="2033-06-30"
       >
-        <span
-          aria-hidden="true"
-          class="carousel-control-prev-icon"
-        />
-        <span
-          class="sr-only"
-        >
-          Previous
-        </span>
-      </a>
-      <a
-        class="carousel-control-next"
-        role="button"
-        href="#"
-      >
-        <span
-          aria-hidden="true"
-          class="carousel-control-next-icon"
-        />
-        <span
-          class="sr-only"
-        >
-          Next
-        </span>
-      </a>
-    </div>
-    <div
-      data-testid="image-date"
-      class="h5 mt-2"
-    >
-      (
-      2033-06-30
-      )
-    </div>
+        (
+        2033-06-30
+        )
+      </time>
+    </section>
   </div>
   <div
-    class="news-section"
+    class="home-right"
   >
-    <div
-      class="news-container d-flex flex-row"
+    <section
+      class="section news-section"
     >
+      <h1
+        class="header"
+      >
+        DECEMBER
+        NEWS
+      </h1>
       <a
+        class="news-link"
         href="https://www.newsurl.com"
       >
-        <img
-          class="news-images"
-          src="https://fakeImg.JPG"
-          alt="Article 0"
-        />
+        <article
+          class="news-container"
+        >
+          <img
+            class="news-image"
+            src="https://fakeImg.JPG"
+            alt="Article 0"
+          />
+          <div
+            class="news-desc"
+          >
+            <h6
+              class="font-weight-bold"
+            >
+              News title
+            </h6>
+            <time
+              class="font-italic"
+              datetime="2033-06-30"
+            >
+              2033-06-30
+            </time>
+            <p>
+              News description.
+            </p>
+          </div>
+        </article>
       </a>
-      <div>
-        <h6
-          class="font-weight-bold"
-        >
-          News title
-        </h6>
-        <div
-          class="font-italic"
-        >
-          2033-06-30
-        </div>
-        <div>
-          News description.
-        </div>
-      </div>
-    </div>
+    </section>
   </div>
-</div>
+</main>
 `;
 
 exports[`buttons displays a modal explaining each piece of weather infomation. 1`] = `
 <div
   data-testid="modal"
 >
+  <div
+    class="filler"
+  />
   <button
     data-testid="closeModalBtn"
     class="closeModalBtn"
   >
     Close
   </button>
-  <p>
-    NASA’s InSight Mars lander takes continuous weather measurements (temperature, wind, pressure) on the surface of Mars at Elysium Planitia, a flat, smooth plain near Mars’ equator. Please note that there are sometimes problems with the sensors on Mars that result in missing data!
+  <p
+    class="mt-3"
+  >
+    <span
+      class="font-weight-bold"
+    >
+      NASA’s InSight Mars lander takes continuous weather measurements (temperature, wind, pressure) on the surface of Mars at Elysium Planitia, a flat, smooth plain near Mars’ equator. Please note that there are sometimes problems with the sensors on Mars that result in missing data!
+    </span>
+    : 
   </p>
-  <p>
-    Atmosphere Opacity: Weather on Mars is more extreme than Earth's. Mars is cooler and with bigger differences between day and night temperatures. Moreover, dust storms lash its surface. However, Mars' and Earth's climates have important similarities, such as the polar ice caps or seasonal changes.As on Earth, on Mars we can have sunny, cloudy or windy days, for example.
+  <p
+    class="mt-3"
+  >
+    <span
+      class="font-weight-bold"
+    >
+      Atmosphere Opacity
+    </span>
+    : 
+    Weather on Mars is more extreme than Earth's. Mars is cooler and with bigger differences between day and night temperatures. Moreover, dust storms lash its surface. However, Mars' and Earth's climates have important similarities, such as the polar ice caps or seasonal changes.As on Earth, on Mars we can have sunny, cloudy or windy days, for example.
   </p>
-  <p>
-    Season: A Martian year is divided in 12 months, as Earth's. However, Martian months are from 46 to 67 sols (Martian days) long. The longest one is the month 3 (67 sols), and the shortest one is the month 9 (46 sols) Martian months mark seasonal changes. In the southern hemisphere (Curiosity rover location) the autumn starts in month 1; the winter in month 4; the spring in month 7; and the summer in month 10.
+  <p
+    class="mt-3"
+  >
+    <span
+      class="font-weight-bold"
+    >
+      Season
+    </span>
+    : 
+    A Martian year is divided in 12 months, as Earth's. However, Martian months are from 46 to 67 sols (Martian days) long. The longest one is the month 3 (67 sols), and the shortest one is the month 9 (46 sols) Martian months mark seasonal changes. In the southern hemisphere (Curiosity rover location) the autumn starts in month 1; the winter in month 4; the spring in month 7; and the summer in month 10.
   </p>
-  <p>
-    Sol: The term sol is used to refer to the duration of a day on Mars.A sol is about 24 hours and 40 minutes.For Curiosity, sol 0 corresponds with its landing day on Mars.
+  <p
+    class="mt-3"
+  >
+    <span
+      class="font-weight-bold"
+    >
+      Sol
+    </span>
+    : 
+    The term sol is used to refer to the duration of a day on Mars.A sol is about 24 hours and 40 minutes.For Curiosity, sol 0 corresponds with its landing day on Mars.
   </p>
-  <p>
-    Sunrise: The duration of daylight varies along the Martian year, as on Earth.
+  <p
+    class="mt-3"
+  >
+    <span
+      class="font-weight-bold"
+    >
+      Sunrise
+    </span>
+    : 
+    The duration of daylight varies along the Martian year, as on Earth.
   </p>
-  <p>
-    Temperature: Mars is farther from the Sun than Earth, it makes that Mars is colder than our planet.Moreover, Martian's atmosphere, which is extremely tenuous, does not retain the heat; hence the difference between day and night's temperatures is more pronounced than in our planet.
+  <p
+    class="mt-3"
+  >
+    <span
+      class="font-weight-bold"
+    >
+      Temperature
+    </span>
+    : 
+    Mars is farther from the Sun than Earth, it makes that Mars is colder than our planet.Moreover, Martian's atmosphere, which is extremely tenuous, does not retain the heat; hence the difference between day and night's temperatures is more pronounced than in our planet.
   </p>
-  <p>
-    Terrestrial Date: One day on Earth is about 24 hours, while a sol(Martian day) is about 24 hours and 40 minutes.So one single sol starts during one Earth day and finishes during the next Earth day.This is the Earth day on current sol at midday.
+  <p
+    class="mt-3"
+  >
+    <span
+      class="font-weight-bold"
+    >
+      Terrestrial Date
+    </span>
+    : 
+    One day on Earth is about 24 hours, while a sol(Martian day) is about 24 hours and 40 minutes.So one single sol starts during one Earth day and finishes during the next Earth day.This is the Earth day on current sol at midday.
   </p>
-  <p>
-    UV Index: Local ultraviolet(UV) irradiance index is an indicator of the intensity of the ultraviolet tradiation from the Sun at Curiosity location.UV radiation is a damaging agent for life.On Earth, ozone layer prevents damaging ultraviolet light from reaching the surface, to the benefit of both plants and animals.However, on Mars, due to the absence of ozone in the tatmosphere, ultraviolet radiation reaches the Martian surface.
+  <p
+    class="mt-3"
+  >
+    <span
+      class="font-weight-bold"
+    >
+      UV Index
+    </span>
+    : 
+    Local ultraviolet(UV) irradiance index is an indicator of the intensity of the ultraviolet tradiation from the Sun at Curiosity location.UV radiation is a damaging agent for life.On Earth, ozone layer prevents damaging ultraviolet light from reaching the surface, to the benefit of both plants and animals.However, on Mars, due to the absence of ozone in the tatmosphere, ultraviolet radiation reaches the Martian surface.
   </p>
-  <p>
-    Wind: NASA Viking landers and NASA Pathfinder rover showed that the average wind speed on their location was pretty weak: 1 to 4 meters / second(4 to 15 kilometers / hour - 2.5 to 9 miles / hour).However, during a dust storm, winds can reach 30 meters / second(110 kilometers / hour - 68 miles / hour) or more.
+  <p
+    class="mt-3"
+  >
+    <span
+      class="font-weight-bold"
+    >
+      Wind
+    </span>
+    : 
+    NASA Viking landers and NASA Pathfinder rover showed that the average wind speed on their location was pretty weak
   </p>
 </div>
 `;
 
 exports[`buttons returns to main page after clicking close modal. 1`] = `
-<div
-  data-testid="container"
+<main
+  data-testid="home-container"
+  class="home-container"
 >
-  <div />
+  <p />
   <div
-    data-testid="weather-section"
-    class="weather-section"
+    class="home-left"
   >
-    <div
-      class="d-flex justify-content-between"
+    <section
+      data-testid="weather-section"
+      class="section weather-section"
     >
       <h1
         class="header"
@@ -463,6 +783,7 @@ exports[`buttons returns to main page after clicking close modal. 1`] = `
         <button
           data-testid="unit-toggle"
           class="unit-toggle"
+          aria-label="Toggle unit"
         />
         <label
           for="fah"
@@ -477,393 +798,620 @@ exports[`buttons returns to main page after clicking close modal. 1`] = `
           readonly=""
         />
       </div>
-    </div>
-    <div
-      class="weather-container d-flex"
-    >
       <div
-        class="text-right"
+        class="weather-container"
       >
         <div
-          class="sol display-4"
+          class="text-right"
         >
-          Sol 
-          1234
+          <p
+            class="sol display-4"
+          >
+            Sol 
+            1234
+          </p>
+          <p
+            class="h2 text-muted"
+          >
+            Jun
+            30
+          </p>
+          <button
+            data-testid="info"
+            class="openModalBtn h2 text-primary"
+            aria-label="Open for more information"
+          >
+            <svg
+              stroke="currentColor"
+              fill="currentColor"
+              stroke-width="0"
+              viewBox="0 0 512 512"
+              height="1em"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M256 56C145.72 56 56 145.72 56 256s89.72 200 200 200 200-89.72 200-200S366.28 56 256 56zm0 82a26 26 0 11-26 26 26 26 0 0126-26zm64 226H200v-32h44v-88h-32v-32h64v120h44z"
+              />
+            </svg>
+          </button>
         </div>
         <div
-          class="h2 text-muted"
+          class="divider"
+        />
+        <div
+          class="col"
         >
-          Jun
-          30
-        </div>
-        <svg
-          stroke="currentColor"
-          fill="currentColor"
-          stroke-width="0"
-          viewBox="0 0 512 512"
-          data-testid="info"
-          class="h4 text-primary"
-          height="1em"
-          width="1em"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M256 56C145.72 56 56 145.72 56 256s89.72 200 200 200 200-89.72 200-200S366.28 56 256 56zm0 82a26 26 0 11-26 26 26 26 0 0126-26zm64 226H200v-32h44v-88h-32v-32h64v120h44z"
-          />
-        </svg>
-      </div>
-      <div
-        class="divider"
-      />
-      <div
-        class="col"
-      >
-        <p
-          data-testid="temperature"
-        >
-          <span
-            class="h5"
+          <p
+            data-testid="temperature"
+            class="h5 mt-3"
           >
             High: 
             -12°C
-            <br />
+          </p>
+          <p
+            data-testid="temperature"
+            class="h5"
+          >
             Low: 
             -34°C
-          </span>
-          <br />
-          <br />
-          <span
+          </p>
+          <p
             data-testid="wind"
           >
             Wind Speed: 
             40km/h
-            <br />
+          </p>
+          <p
+            data-testid="wind"
+          >
             Wind Direction: 
             West kph
-          </span>
-        </p>
-      </div>
-      <div
-        class="col text-right"
-      >
-        <div
-          class="h5"
-        >
-          Sunny
+          </p>
         </div>
-        <div>
-          <div>
+        <div
+          class="col text-right"
+        >
+          <p
+            class="h5 mt-3"
+          >
+            Sunny
+          </p>
+          <p>
             Autumn
-          </div>
-          <div>
+          </p>
+          <p>
             UV Index: 
             Moderate
-          </div>
-          <div>
+          </p>
+          <p>
             Sunrise: 
             01:23
-          </div>
-          <div>
+          </p>
+          <p>
             Sunset: 
             12:34
-          </div>
+          </p>
         </div>
       </div>
-    </div>
-  </div>
-  <div
-    class="image-section d-flex align-items-center flex-column"
-  >
-    <h1
-      class="header image-title text-white"
+    </section>
+    <section
+      class="section image-section"
     >
-      IMAGES CAPTURED BY CURIOSITY ROVER
-    </h1>
-    <div
-      class="carousel slide"
-    >
-      <ol
-        class="carousel-indicators"
+      <h1
+        class="header"
       >
-        <li
-          class="active"
-        />
-        <li />
-        <li />
-        <li />
-        <li />
-        <li />
-        <li />
-      </ol>
-      <div
-        class="carousel-inner"
-      >
+        <p>
+          LATEST IMAGES CAPTURED BY
+        </p>
+        <p>
+          CURIOSITY ROVER
+        </p>
+      </h1>
+      <div>
         <div
-          interval="2000"
-          class="active carousel-item"
+          style="z-index: 2;"
+          class="carousel slide"
         >
-          <img
-            data-testid="image"
-            class="d-block w-100"
-            src="https://fakeImg.JPG"
-            alt="Mars captured with Front Hazard Avoidance Camera"
-          />
+          <ol
+            class="carousel-indicators"
+          >
+            <li
+              class="active"
+            />
+            <li />
+            <li />
+            <li />
+            <li />
+            <li />
+            <li />
+          </ol>
           <div
-            class="carousel-caption"
+            class="carousel-inner"
           >
             <div
-              class="bg-dark"
+              interval="2000"
+              class="active carousel-item"
             >
-              Front Hazard Avoidance Camera
+              <figure>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://fakeImg.JPG"
+                >
+                  <img
+                    data-testid="image"
+                    class="w-100 h-100"
+                    src="https://fakeImg.JPG"
+                    alt="Mars captured by Curiosity rover's Camera Name"
+                  />
+                </a>
+                <div
+                  class="carousel-caption"
+                >
+                  <button
+                    class="heartBtn"
+                    aria-label="Toggle like"
+                  >
+                    <svg
+                      stroke="currentColor"
+                      fill="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 512 512"
+                      height="1em"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="32"
+                        d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z"
+                      />
+                    </svg>
+                  </button>
+                  <figcaption
+                    class="slide-caption"
+                  >
+                    Camera Name
+                  </figcaption>
+                </div>
+              </figure>
             </div>
-          </div>
-        </div>
-        <div
-          interval="2000"
-          class="carousel-item"
-        >
-          <img
-            data-testid="image"
-            class="d-block w-100"
-            src="https://fakeImg.JPG"
-            alt="Mars captured with Camera name"
-          />
-          <div
-            class="carousel-caption"
-          >
             <div
-              class="bg-dark"
+              interval="2000"
+              class="carousel-item"
             >
-              Camera name
+              <figure>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://fakeImg.JPG"
+                >
+                  <img
+                    data-testid="image"
+                    class="w-100 h-100"
+                    src="https://fakeImg.JPG"
+                    alt="Mars captured by Curiosity rover's Camera Name"
+                  />
+                </a>
+                <div
+                  class="carousel-caption"
+                >
+                  <button
+                    class="heartBtn"
+                    aria-label="Toggle like"
+                  >
+                    <svg
+                      stroke="currentColor"
+                      fill="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 512 512"
+                      height="1em"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="32"
+                        d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z"
+                      />
+                    </svg>
+                  </button>
+                  <figcaption
+                    class="slide-caption"
+                  >
+                    Camera Name
+                  </figcaption>
+                </div>
+              </figure>
             </div>
-          </div>
-        </div>
-        <div
-          interval="2000"
-          class="carousel-item"
-        >
-          <img
-            data-testid="image"
-            class="d-block w-100"
-            src="https://fakeImg.JPG"
-            alt="Mars captured with Camera name"
-          />
-          <div
-            class="carousel-caption"
-          >
             <div
-              class="bg-dark"
+              interval="2000"
+              class="carousel-item"
             >
-              Camera name
+              <figure>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://fakeImg.JPG"
+                >
+                  <img
+                    data-testid="image"
+                    class="w-100 h-100"
+                    src="https://fakeImg.JPG"
+                    alt="Mars captured by Curiosity rover's Camera Name"
+                  />
+                </a>
+                <div
+                  class="carousel-caption"
+                >
+                  <button
+                    class="heartBtn"
+                    aria-label="Toggle like"
+                  >
+                    <svg
+                      stroke="currentColor"
+                      fill="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 512 512"
+                      height="1em"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="32"
+                        d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z"
+                      />
+                    </svg>
+                  </button>
+                  <figcaption
+                    class="slide-caption"
+                  >
+                    Camera Name
+                  </figcaption>
+                </div>
+              </figure>
             </div>
-          </div>
-        </div>
-        <div
-          interval="2000"
-          class="carousel-item"
-        >
-          <img
-            data-testid="image"
-            class="d-block w-100"
-            src="https://fakeImg.JPG"
-            alt="Mars captured with Camera name"
-          />
-          <div
-            class="carousel-caption"
-          >
             <div
-              class="bg-dark"
+              interval="2000"
+              class="carousel-item"
             >
-              Camera name
+              <figure>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://fakeImg.JPG"
+                >
+                  <img
+                    data-testid="image"
+                    class="w-100 h-100"
+                    src="https://fakeImg.JPG"
+                    alt="Mars captured by Curiosity rover's Camera Name"
+                  />
+                </a>
+                <div
+                  class="carousel-caption"
+                >
+                  <button
+                    class="heartBtn"
+                    aria-label="Toggle like"
+                  >
+                    <svg
+                      stroke="currentColor"
+                      fill="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 512 512"
+                      height="1em"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="32"
+                        d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z"
+                      />
+                    </svg>
+                  </button>
+                  <figcaption
+                    class="slide-caption"
+                  >
+                    Camera Name
+                  </figcaption>
+                </div>
+              </figure>
             </div>
-          </div>
-        </div>
-        <div
-          interval="2000"
-          class="carousel-item"
-        >
-          <img
-            data-testid="image"
-            class="d-block w-100"
-            src="https://fakeImg.JPG"
-            alt="Mars captured with Camera name"
-          />
-          <div
-            class="carousel-caption"
-          >
             <div
-              class="bg-dark"
+              interval="2000"
+              class="carousel-item"
             >
-              Camera name
+              <figure>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://fakeImg.JPG"
+                >
+                  <img
+                    data-testid="image"
+                    class="w-100 h-100"
+                    src="https://fakeImg.JPG"
+                    alt="Mars captured by Curiosity rover's Camera Name"
+                  />
+                </a>
+                <div
+                  class="carousel-caption"
+                >
+                  <button
+                    class="heartBtn"
+                    aria-label="Toggle like"
+                  >
+                    <svg
+                      stroke="currentColor"
+                      fill="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 512 512"
+                      height="1em"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="32"
+                        d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z"
+                      />
+                    </svg>
+                  </button>
+                  <figcaption
+                    class="slide-caption"
+                  >
+                    Camera Name
+                  </figcaption>
+                </div>
+              </figure>
             </div>
-          </div>
-        </div>
-        <div
-          interval="2000"
-          class="carousel-item"
-        >
-          <img
-            data-testid="image"
-            class="d-block w-100"
-            src="https://fakeImg.JPG"
-            alt="Mars captured with Camera name"
-          />
-          <div
-            class="carousel-caption"
-          >
             <div
-              class="bg-dark"
+              interval="2000"
+              class="carousel-item"
             >
-              Camera name
+              <figure>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://fakeImg.JPG"
+                >
+                  <img
+                    data-testid="image"
+                    class="w-100 h-100"
+                    src="https://fakeImg.JPG"
+                    alt="Mars captured by Curiosity rover's Camera Name"
+                  />
+                </a>
+                <div
+                  class="carousel-caption"
+                >
+                  <button
+                    class="heartBtn"
+                    aria-label="Toggle like"
+                  >
+                    <svg
+                      stroke="currentColor"
+                      fill="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 512 512"
+                      height="1em"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="32"
+                        d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z"
+                      />
+                    </svg>
+                  </button>
+                  <figcaption
+                    class="slide-caption"
+                  >
+                    Camera Name
+                  </figcaption>
+                </div>
+              </figure>
             </div>
-          </div>
-        </div>
-        <div
-          interval="2000"
-          class="carousel-item"
-        >
-          <img
-            data-testid="image"
-            class="d-block w-100"
-            src="https://fakeImg.JPG"
-            alt="Mars captured with Camera name"
-          />
-          <div
-            class="carousel-caption"
-          >
             <div
-              class="bg-dark"
+              interval="2000"
+              class="carousel-item"
             >
-              Camera name
+              <figure>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://fakeImg.JPG"
+                >
+                  <img
+                    data-testid="image"
+                    class="w-100 h-100"
+                    src="https://fakeImg.JPG"
+                    alt="Mars captured by Curiosity rover's Camera Name"
+                  />
+                </a>
+                <div
+                  class="carousel-caption"
+                >
+                  <button
+                    class="heartBtn"
+                    aria-label="Toggle like"
+                  >
+                    <svg
+                      stroke="currentColor"
+                      fill="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 512 512"
+                      height="1em"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="32"
+                        d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z"
+                      />
+                    </svg>
+                  </button>
+                  <figcaption
+                    class="slide-caption"
+                  >
+                    Camera Name
+                  </figcaption>
+                </div>
+              </figure>
             </div>
           </div>
+          <a
+            class="carousel-control-prev"
+            role="button"
+            href="#"
+          >
+            <span
+              aria-hidden="true"
+              class="carousel-control-prev-icon"
+            />
+            <span
+              class="sr-only"
+            >
+              Previous
+            </span>
+          </a>
+          <a
+            class="carousel-control-next"
+            role="button"
+            href="#"
+          >
+            <span
+              aria-hidden="true"
+              class="carousel-control-next-icon"
+            />
+            <span
+              class="sr-only"
+            >
+              Next
+            </span>
+          </a>
         </div>
+        <button
+          class="btn btn-dark border border-light popupBox "
+          aria-label="Undo deleted image"
+        >
+          Click to Undo
+        </button>
       </div>
-      <a
-        class="carousel-control-prev"
-        role="button"
-        href="#"
+      <time
+        data-testid="image-date"
+        class="h5 mt-3"
+        datetime="2033-06-30"
       >
-        <span
-          aria-hidden="true"
-          class="carousel-control-prev-icon"
-        />
-        <span
-          class="sr-only"
-        >
-          Previous
-        </span>
-      </a>
-      <a
-        class="carousel-control-next"
-        role="button"
-        href="#"
-      >
-        <span
-          aria-hidden="true"
-          class="carousel-control-next-icon"
-        />
-        <span
-          class="sr-only"
-        >
-          Next
-        </span>
-      </a>
-    </div>
-    <div
-      data-testid="image-date"
-      class="h5 mt-2"
-    >
-      (
-      2033-06-30
-      )
-    </div>
+        (
+        2033-06-30
+        )
+      </time>
+    </section>
   </div>
   <div
-    class="news-section"
+    class="home-right"
   >
-    <div
-      class="news-container d-flex flex-row"
+    <section
+      class="section news-section"
     >
+      <h1
+        class="header"
+      >
+        DECEMBER
+        NEWS
+      </h1>
       <a
+        class="news-link"
         href="https://www.newsurl.com"
       >
-        <img
-          class="news-images"
-          src="https://fakeImg.JPG"
-          alt="Article 0"
-        />
+        <article
+          class="news-container"
+        >
+          <img
+            class="news-image"
+            src="https://fakeImg.JPG"
+            alt="Article 0"
+          />
+          <div
+            class="news-desc"
+          >
+            <h6
+              class="font-weight-bold"
+            >
+              News title
+            </h6>
+            <time
+              class="font-italic"
+              datetime="2033-06-30"
+            >
+              2033-06-30
+            </time>
+            <p>
+              News description.
+            </p>
+          </div>
+        </article>
       </a>
-      <div>
-        <h6
-          class="font-weight-bold"
-        >
-          News title
-        </h6>
-        <div
-          class="font-italic"
-        >
-          2033-06-30
-        </div>
-        <div>
-          News description.
-        </div>
-      </div>
-    </div>
+    </section>
   </div>
-</div>
+</main>
 `;
 
 exports[`buttons toggles from celcius to farenheit. 1`] = `
-<p
-  data-testid="temperature"
+Array [
+  <p
+    data-testid="temperature"
+    class="h5 mt-3"
 >
-  <span
-    class="h5"
-  >
     High: 
     10.40°F
-    <br />
+</p>,
+  <p
+    data-testid="temperature"
+    class="h5"
+>
     Low: 
     -29.20°F
-  </span>
-  <br />
-  <br />
-  <span
-    data-testid="wind"
-  >
-    Wind Speed: 
-    40km/h
-    <br />
-    Wind Direction: 
-    West kph
-  </span>
-</p>
+</p>,
+]
 `;
 
 exports[`buttons toggles from farenheit to celcius. 1`] = `
-<p
-  data-testid="temperature"
+Array [
+  <p
+    data-testid="temperature"
+    class="h5 mt-3"
 >
-  <span
-    class="h5"
-  >
     High: 
     -12°C
-    <br />
+</p>,
+  <p
+    data-testid="temperature"
+    class="h5"
+>
     Low: 
     -34°C
-  </span>
-  <br />
-  <br />
-  <span
-    data-testid="wind"
-  >
-    Wind Speed: 
-    40km/h
-    <br />
-    Wind Direction: 
-    West kph
-  </span>
-</p>
+</p>,
+]
 `;

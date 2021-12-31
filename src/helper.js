@@ -32,7 +32,15 @@ export const getCamerasAvailable = {
   spirit: [1, 2, 7, 8, 9],
 };
 
-export const getCuriosityCamerasAbb = ["RHAZ", "MAST", "CHEMCAM", "MAHLI", "MARDI", "NAVCAM"];
+export const getCuriosityCamerasAbb = [
+  "FHAZ",
+  "RHAZ",
+  "MAST",
+  "CHEMCAM",
+  "MAHLI",
+  "MARDI",
+  "NAVCAM",
+];
 
 // FUNCTIONS
 export const getTodayDate = () => {

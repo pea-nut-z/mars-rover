@@ -7,42 +7,29 @@ import React from "react";
 import { act } from "react-dom/test-utils";
 import axios from "axios";
 import App from "../App";
-import {
-  fakeWeatherData1,
-  fakeWeatherData2,
-  fakeJunImgData,
-  fakeJulImgData,
-  fakeNewsData,
-} from "./fake.data";
-import {
-  getTodayDate,
-  getPreviousMonthDate,
-  convertCelToFah,
-  getWeatherUrl,
-  getFtImgUrl,
-  validateOtherImgUrl,
-  getNewsUrl,
-} from "../helper";
+import * as fake from "./fake.data";
+import * as func from "../helper";
+import localStorage from "./localStorage";
 
+window.localStorage = localStorage;
 jest.mock("axios");
 
 describe("Today's front camera image is AVAILABLE.", () => {
   let axiosGetSpy;
   beforeEach(async () => {
-    const dateArray = getTodayDate();
-    const ftImgUrlToday = getFtImgUrl(dateArray);
+    const dateArray = func.getTodayDate();
+    const ftImgUrlToday = func.getFtImgUrl(dateArray);
 
     axiosGetSpy = jest.spyOn(axios, "get").mockImplementation((url) => {
-      url = validateOtherImgUrl(url) ? "otherImgUrl" : url;
-
+      url = func.validateOtherImgUrl(url) ? "imgUrl" : url;
       switch (url) {
-        case getWeatherUrl:
-          return Promise.resolve({ data: fakeWeatherData1 });
+        case func.getWeatherUrl:
+          return Promise.resolve({ data: fake.weatherData1 });
         case ftImgUrlToday:
-        case "otherImgUrl":
-          return Promise.resolve({ data: fakeJunImgData });
-        case getNewsUrl:
-          return Promise.resolve({ data: fakeNewsData });
+        case "imgUrl":
+          return Promise.resolve({ data: fake.junImgData });
+        case func.getNewsUrl:
+          return Promise.resolve({ data: fake.newsData });
         default:
           return Promise.reject(new Error("Test error - url not found."));
       }
@@ -64,7 +51,7 @@ describe("Today's front camera image is AVAILABLE.", () => {
   });
 
   it("displays today's images, latest weather and news data.", async () => {
-    const container = screen.getByTestId("container");
+    const container = screen.getByTestId("home-container");
     expect(container).toMatchSnapshot();
   });
 });
@@ -77,28 +64,33 @@ describe("Today is the first day of the month, front and RHAZ images are UNAVAIL
 
     const helper = require("../helper");
     helper.getTodayDate = jest.fn(() => today);
-    const ftImgUrlToday = getFtImgUrl(today);
-    const ftImgUrlYesterday = getFtImgUrl(yesterday);
+    const ftImgUrlToday = func.getFtImgUrl(today);
+    const ftImgUrlYesterday = func.getFtImgUrl(yesterday);
 
     axiosGetSpy = jest.spyOn(axios, "get").mockImplementation((url) => {
-      url =
-        validateOtherImgUrl(url) === "valid"
-          ? "otherImgUrl"
-          : validateOtherImgUrl(url) === "valid & RHAZ"
-          ? "RHAZImgUrl"
-          : url;
+      // if (url !== ftImgUrlToday) {
+      //   const result = func.validateOtherImgUrl(url);
+
+      //   url =
+      //     result === "valid"
+      //       ? "otherImgUrl"
+      //       : validateOtherImgUrl(url) === "valid & RHAZ"
+      //       ? "RHAZImgUrl"
+      //       : url;
+      // }
+      url = func.validateOtherImgUrl(url) ? "imgUrl" : url;
 
       switch (url) {
-        case getWeatherUrl:
-          return Promise.resolve({ data: fakeWeatherData2 });
+        case func.getWeatherUrl:
+          return Promise.resolve({ data: fake.weatherData2 });
         case ftImgUrlToday:
-        case "RHAZImgUrl":
+          // case "RHAZImgUrl":
           return Promise.resolve({ data: { photos: [] } });
         case ftImgUrlYesterday:
-        case "otherImgUrl":
-          return Promise.resolve({ data: fakeJunImgData });
-        case getNewsUrl:
-          return Promise.resolve({ data: fakeNewsData });
+        case "imgUrl":
+          return Promise.resolve({ data: fake.junImgData });
+        case func.getNewsUrl:
+          return Promise.resolve({ data: fake.newsData });
         default:
           return Promise.reject(new Error("Test error - url not found."));
       }
@@ -137,25 +129,25 @@ describe("Today is the second day of the month and front camera image is UNAVAIL
     const today = [2033, 7, 2];
     const yesterday = [2033, 7, 1];
 
-    const helper = require("../helper");
-    helper.getTodayDate = jest.fn(() => today);
-    const ftImgUrlToday = getFtImgUrl(today);
+    const func = require("../helper");
+    func.getTodayDate = jest.fn(() => today);
+    const ftImgUrlToday = func.getFtImgUrl(today);
 
-    const ftImgUrlYesterday = getFtImgUrl(yesterday);
+    const ftImgUrlYesterday = func.getFtImgUrl(yesterday);
 
     axiosGetSpy = jest.spyOn(axios, "get").mockImplementation((url) => {
-      url = validateOtherImgUrl(url) ? "otherImgUrl" : url;
+      url = func.validateOtherImgUrl(url) ? "otherImgUrl" : url;
 
       switch (url) {
-        case getWeatherUrl:
-          return Promise.resolve({ data: fakeWeatherData1 });
+        case func.getWeatherUrl:
+          return Promise.resolve({ data: fake.weatherData1 });
         case ftImgUrlToday:
           return Promise.resolve({ data: { photos: [] } });
         case ftImgUrlYesterday:
         case "otherImgUrl":
-          return Promise.resolve({ data: fakeJulImgData });
-        case getNewsUrl:
-          return Promise.resolve({ data: fakeNewsData });
+          return Promise.resolve({ data: fake.julImgData });
+        case func.getNewsUrl:
+          return Promise.resolve({ data: fake.newsData });
         default:
           return Promise.reject(new Error("Test error - url not found."));
       }
@@ -181,20 +173,20 @@ describe("Today is the second day of the month and front camera image is UNAVAIL
 describe("buttons", () => {
   let axiosGetSpy;
   beforeEach(async () => {
-    const dateArray = getTodayDate();
-    const ftImgUrlToday = getFtImgUrl(dateArray);
+    const dateArray = func.getTodayDate();
+    // const ftImgUrlToday = func.getFtImgUrl(dateArray);
 
     axiosGetSpy = jest.spyOn(axios, "get").mockImplementation((url) => {
-      url = validateOtherImgUrl(url) ? "otherImgUrl" : url;
+      url = func.validateOtherImgUrl(url) ? "imgUrl" : url;
 
       switch (url) {
-        case getWeatherUrl:
-          return Promise.resolve({ data: fakeWeatherData1 });
-        case ftImgUrlToday:
-        case "otherImgUrl":
-          return Promise.resolve({ data: fakeJunImgData });
-        case getNewsUrl:
-          return Promise.resolve({ data: fakeNewsData });
+        case func.getWeatherUrl:
+          return Promise.resolve({ data: fake.weatherData1 });
+        // case ftImgUrlToday:
+        case "imgUrl":
+          return Promise.resolve({ data: fake.junImgData });
+        case func.getNewsUrl:
+          return Promise.resolve({ data: fake.newsData });
         default:
           return Promise.reject(new Error("Test error - url not found."));
       }
@@ -212,7 +204,7 @@ describe("buttons", () => {
   it("toggles from celcius to farenheit.", () => {
     const toggleBtn = screen.getByTestId("unit-toggle");
     fireEvent.click(toggleBtn);
-    const tempNodes = screen.getByTestId("temperature");
+    const tempNodes = screen.getAllByTestId("temperature");
     expect(tempNodes).toMatchSnapshot();
   });
 
@@ -220,7 +212,7 @@ describe("buttons", () => {
     const toggleBtn = screen.getByTestId("unit-toggle");
     fireEvent.click(toggleBtn);
     fireEvent.click(toggleBtn);
-    const tempNodes = screen.getByTestId("temperature");
+    const tempNodes = screen.getAllByTestId("temperature");
     expect(tempNodes).toMatchSnapshot();
   });
 
@@ -236,23 +228,23 @@ describe("buttons", () => {
     fireEvent.click(info);
     const closeBtn = screen.getByTestId("closeModalBtn");
     fireEvent.click(closeBtn);
-    const container = screen.getByTestId("container");
+    const container = screen.getByTestId("home-container");
     expect(container).toMatchSnapshot();
   });
 });
 
 describe("Help functions", () => {
   it("returns the previous date", () => {
-    const date1 = getPreviousMonthDate(2021, 1);
-    const date2 = getPreviousMonthDate(2021, 5);
-    const date3 = getPreviousMonthDate(2021, 3);
+    const date1 = func.getPreviousMonthDate(2021, 1);
+    const date2 = func.getPreviousMonthDate(2021, 5);
+    const date3 = func.getPreviousMonthDate(2021, 3);
     expect(date1).toEqual([2020, 12, 31]);
     expect(date2).toEqual([2021, 4, 30]);
     expect(date3).toEqual([2021, 2, 28]);
   });
 
   it("converts celsius to fahrenheit.", () => {
-    const fah = convertCelToFah(1);
+    const fah = func.convertCelToFah(1);
     expect(fah).toEqual("33.80");
   });
 });
@@ -262,18 +254,18 @@ describe("Errors", () => {
   console.error = jest.fn();
 
   beforeEach(async () => {
-    const dateArray = getTodayDate();
-    const ftImgUrlToday = getFtImgUrl(dateArray);
+    const dateArray = func.getTodayDate();
+    const ftImgUrlToday = func.getFtImgUrl(dateArray);
 
     axiosGetSpy = jest.spyOn(axios, "get").mockImplementation((url) => {
-      url = validateOtherImgUrl(url) ? "otherImgUrl" : url;
+      url = func.validateOtherImgUrl(url) ? "otherImgUrl" : url;
       switch (url) {
-        case getWeatherUrl:
+        case func.getWeatherUrl:
           return Promise.resolve({ data: {} });
         case ftImgUrlToday:
         case "otherImgUrl":
           return Promise.resolve({ data: {} });
-        case getNewsUrl:
+        case func.getNewsUrl:
           return Promise.resolve({ data: "error" });
         default:
           return Promise.reject(new Error("Test error - url not found."));
