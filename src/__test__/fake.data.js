@@ -26,14 +26,17 @@ export const weatherData2 = {
   wind_speed: null,
 };
 
+const image =
+  "https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/03390/opgs/edr/fcam/FLB_698438687EDR_F0932080FHAZ00302M_.JPG";
+
 export const junImgData = {
   photos: [
     {
       id: 1234,
       rover: { name: "Curiosity" },
-      camera: { full_name: "Camera Name" },
+      camera: { full_name: "Front Hazard Avoidance Camera" },
       earth_date: "2033-06-30",
-      img_src: "https://fakeImg.JPG",
+      img_src: image,
     },
   ],
 };
@@ -41,24 +44,24 @@ export const junImgData = {
 export const julImgData = {
   photos: [
     {
-      id: 1234,
-      rover: { name: "Curiosity" },
-      camera: { full_name: "Camera Name" },
+      id: 4567,
+      rover: { name: "Opportunity" },
+      camera: { full_name: "Rear Hazard Avoidance Camera" },
       earth_date: "2033-07-01",
-      img_src: "https://fakeImg2.JPG",
+      img_src: image,
     },
   ],
 };
 
-export const likesData = [
-  {
-    id: 1234,
-    rover: { name: "Curiosity" },
-    camera: { full_name: "Camera Name" },
-    earth_date: "2033-07-01",
-    img_src: "https://fakeImg2.JPG",
-  },
-];
+// export const likesData = [
+//   {
+//     id: 1234,
+//     rover: { name: "Curiosity" },
+//     camera: { full_name: "Camera Name" },
+//     earth_date: "2033-07-01",
+//     img_src: image,
+//   },
+// ];
 
 export const newsData = {
   articles: [
@@ -67,14 +70,14 @@ export const newsData = {
       publishedAt: "2033-06-30T00:00:00Z",
       title: "News title",
       url: "https://www.newsurl.com",
-      urlToImage: "https://fakeImg.JPG",
+      urlToImage: image,
     },
     {
       description: "News description.",
       publishedAt: "2033-06-30T00:00:00Z",
       title: "News title",
       url: "https://www.newsurl.com",
-      urlToImage: "https://fakeImg.JPG",
+      urlToImage: image,
     },
   ],
 };

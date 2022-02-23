@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import * as ioIcons from "react-icons/io5";
 import Modal from "react-modal";
-import * as func from "../helper";
-import infoData from "./infoData";
+import * as helper from "../helper";
+import infoData from "../infoData";
 import ImageCard from "../components/ImageCard";
 
 const modalStyles = {
@@ -27,22 +27,14 @@ export default function Home() {
   const [news, setNews] = useState();
   const [cel, setCel] = useState(true);
   const [modalIsOpen, setIsOpen] = useState(false);
-  // const [imagesFetched, setImagesFetched] = useState(false);
 
   useEffect(() => {
     if (process.env.REACT_APP_TEST !== "TRUE") Modal.setAppElement("#root");
-    const todayDate = func.getTodayDate();
+    const todayDate = helper.getTodayDate();
     getPhotos(todayDate);
     getWeather();
     getNews();
   }, []);
-
-  // useEffect(() => {
-  //   if (images.length !== 0) {
-  //     setImagesFetched(true);
-  //     setLoading(false);
-  //   }
-  // }, [images]);
 
   const toggleUnit = () => {
     setCel(!cel);
@@ -60,23 +52,23 @@ export default function Home() {
     let [year, month, day] = dateArray;
     let selectedImages = [];
     let selectedCameras = [];
-    const frontCameraImg = func.getFtImgUrl(dateArray);
+    const frontCameraImg = helper.getFtImgUrl(dateArray);
     return axios
       .get(frontCameraImg)
       .then((res) => {
         const imagesFetched = res.data.photos;
         if (imagesFetched.length === 0) {
           if (day === 1) {
-            const previousMonthDate = func.getPreviousMonthDate(year, month);
+            const previousMonthDate = helper.getPreviousMonthDate(year, month);
             getPhotos(previousMonthDate);
           } else {
             getPhotos([year, month, day - 1]);
           }
         } else {
-          func.getCuriosityCamerasAbb.forEach((cameraAbbr) => {
-            const otherImg = func.getImgUrl(cameraAbbr, dateArray);
+          helper.curiosityCamerasAbb.forEach((cameraAbbr) => {
+            const img = helper.getImgUrl(cameraAbbr, dateArray);
             return axios
-              .get(otherImg)
+              .get(img)
               .then((res) => {
                 const imagesFetched = res.data.photos;
                 if (imagesFetched.length === 0) {
@@ -101,7 +93,7 @@ export default function Home() {
 
   const getWeather = () => {
     return axios
-      .get(func.getWeatherUrl)
+      .get(helper.getWeatherUrl)
       .then((res) => {
         setWeather(res.data);
         setLoading(false);
@@ -113,7 +105,7 @@ export default function Home() {
 
   const getNews = () => {
     return axios
-      .get(func.getNewsUrl)
+      .get(helper.getNewsUrl)
       .then((res) => {
         const { articles } = res.data;
         const selectedArticles = articles.reduce((arr, article) => {
@@ -219,13 +211,13 @@ export default function Home() {
           <div className="divider" />
           <div className="col">
             <p data-testid="temperature" className="h5 mt-3">
-              High: {cel ? max_temp + "°C" : func.convertCelToFah(max_temp) + "°F"}
+              High: {cel ? max_temp + "°C" : helper.convertCelToFah(max_temp) + "°F"}
             </p>
             <p data-testid="temperature" className="h5">
-              Low: {cel ? min_temp + "°C" : func.convertCelToFah(min_temp) + "°F"}
+              Low: {cel ? min_temp + "°C" : helper.convertCelToFah(min_temp) + "°F"}
             </p>
-            <p data-testid="wind">Wind Speed: {wind_speed ? wind_speed : "N/A"}</p>
-            <p data-testid="wind">
+            <p data-testid="windSpeed">Wind Speed: {wind_speed ? wind_speed : "N/A"}</p>
+            <p data-testid="windDirection">
               Wind Direction: {wind_direction ? `${wind_direction} kph` : "N/A"}
             </p>
           </div>

@@ -1,638 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Today's front camera image is AVAILABLE. displays today's images, latest weather and news data. 1`] = `
-<main
-  data-testid="home-container"
-  class="home-container"
->
-  <p />
-  <div
-    class="home-left"
-  >
-    <section
-      data-testid="weather-section"
-      class="section weather-section"
-    >
-      <h1
-        class="header"
-      >
-        LATEST WEATHER AT ELYSIUM PLANTITIA
-      </h1>
-      <div
-        class="unit"
-      >
-        <label
-          for="cel"
-          class="label h5"
-        >
-          °C
-        </label>
-        <input
-          type="radio"
-          id="cel"
-          name="unit"
-          readonly=""
-          checked=""
-        />
-        <button
-          data-testid="unit-toggle"
-          class="unit-toggle"
-          aria-label="Toggle unit"
-        />
-        <label
-          for="fah"
-          class="label h5"
-        >
-          °F
-        </label>
-        <input
-          type="radio"
-          id="fah"
-          name="unit"
-          readonly=""
-        />
-      </div>
-      <div
-        class="weather-container"
-      >
-        <div
-          class="text-right"
-        >
-          <p
-            class="sol display-4"
-          >
-            Sol 
-            1234
-          </p>
-          <p
-            class="h2 text-muted"
-          >
-            Jun
-            30
-          </p>
-          <button
-            data-testid="info"
-            class="openModalBtn h2 text-primary"
-            aria-label="Open for more information"
-          >
-            <svg
-              stroke="currentColor"
-              fill="currentColor"
-              stroke-width="0"
-              viewBox="0 0 512 512"
-              height="1em"
-              width="1em"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M256 56C145.72 56 56 145.72 56 256s89.72 200 200 200 200-89.72 200-200S366.28 56 256 56zm0 82a26 26 0 11-26 26 26 26 0 0126-26zm64 226H200v-32h44v-88h-32v-32h64v120h44z"
-              />
-            </svg>
-          </button>
-        </div>
-        <div
-          class="divider"
-        />
-        <div
-          class="col"
-        >
-          <p
-            data-testid="temperature"
-            class="h5 mt-3"
-          >
-            High: 
-            -12°C
-          </p>
-          <p
-            data-testid="temperature"
-            class="h5"
-          >
-            Low: 
-            -34°C
-          </p>
-          <p
-            data-testid="wind"
-          >
-            Wind Speed: 
-            40km/h
-          </p>
-          <p
-            data-testid="wind"
-          >
-            Wind Direction: 
-            West kph
-          </p>
-        </div>
-        <div
-          class="col text-right"
-        >
-          <p
-            class="h5 mt-3"
-          >
-            Sunny
-          </p>
-          <p>
-            Autumn
-          </p>
-          <p>
-            UV Index: 
-            Moderate
-          </p>
-          <p>
-            Sunrise: 
-            01:23
-          </p>
-          <p>
-            Sunset: 
-            12:34
-          </p>
-        </div>
-      </div>
-    </section>
-    <section
-      class="section image-section"
-    >
-      <h1
-        class="header"
-      >
-        <p>
-          LATEST IMAGES CAPTURED BY
-        </p>
-        <p>
-          CURIOSITY ROVER
-        </p>
-      </h1>
-      <div>
-        <div
-          style="z-index: 2;"
-          class="carousel slide"
-        >
-          <ol
-            class="carousel-indicators"
-          >
-            <li
-              class="active"
-            />
-            <li />
-            <li />
-            <li />
-            <li />
-            <li />
-            <li />
-          </ol>
-          <div
-            class="carousel-inner"
-          >
-            <div
-              interval="2000"
-              class="active carousel-item"
-            >
-              <figure>
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="https://fakeImg.JPG"
-                >
-                  <img
-                    data-testid="image"
-                    class="w-100 h-100"
-                    src="https://fakeImg.JPG"
-                    alt="Mars captured by Curiosity rover's Camera Name"
-                  />
-                </a>
-                <div
-                  class="carousel-caption"
-                >
-                  <button
-                    class="heartBtn"
-                    aria-label="Toggle like"
-                  >
-                    <svg
-                      stroke="currentColor"
-                      fill="currentColor"
-                      stroke-width="0"
-                      viewBox="0 0 512 512"
-                      height="1em"
-                      width="1em"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fill="none"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="32"
-                        d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z"
-                      />
-                    </svg>
-                  </button>
-                  <figcaption
-                    class="slide-caption"
-                  >
-                    Camera Name
-                  </figcaption>
-                </div>
-              </figure>
-            </div>
-            <div
-              interval="2000"
-              class="carousel-item"
-            >
-              <figure>
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="https://fakeImg.JPG"
-                >
-                  <img
-                    data-testid="image"
-                    class="w-100 h-100"
-                    src="https://fakeImg.JPG"
-                    alt="Mars captured by Curiosity rover's Camera Name"
-                  />
-                </a>
-                <div
-                  class="carousel-caption"
-                >
-                  <button
-                    class="heartBtn"
-                    aria-label="Toggle like"
-                  >
-                    <svg
-                      stroke="currentColor"
-                      fill="currentColor"
-                      stroke-width="0"
-                      viewBox="0 0 512 512"
-                      height="1em"
-                      width="1em"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fill="none"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="32"
-                        d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z"
-                      />
-                    </svg>
-                  </button>
-                  <figcaption
-                    class="slide-caption"
-                  >
-                    Camera Name
-                  </figcaption>
-                </div>
-              </figure>
-            </div>
-            <div
-              interval="2000"
-              class="carousel-item"
-            >
-              <figure>
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="https://fakeImg.JPG"
-                >
-                  <img
-                    data-testid="image"
-                    class="w-100 h-100"
-                    src="https://fakeImg.JPG"
-                    alt="Mars captured by Curiosity rover's Camera Name"
-                  />
-                </a>
-                <div
-                  class="carousel-caption"
-                >
-                  <button
-                    class="heartBtn"
-                    aria-label="Toggle like"
-                  >
-                    <svg
-                      stroke="currentColor"
-                      fill="currentColor"
-                      stroke-width="0"
-                      viewBox="0 0 512 512"
-                      height="1em"
-                      width="1em"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fill="none"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="32"
-                        d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z"
-                      />
-                    </svg>
-                  </button>
-                  <figcaption
-                    class="slide-caption"
-                  >
-                    Camera Name
-                  </figcaption>
-                </div>
-              </figure>
-            </div>
-            <div
-              interval="2000"
-              class="carousel-item"
-            >
-              <figure>
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="https://fakeImg.JPG"
-                >
-                  <img
-                    data-testid="image"
-                    class="w-100 h-100"
-                    src="https://fakeImg.JPG"
-                    alt="Mars captured by Curiosity rover's Camera Name"
-                  />
-                </a>
-                <div
-                  class="carousel-caption"
-                >
-                  <button
-                    class="heartBtn"
-                    aria-label="Toggle like"
-                  >
-                    <svg
-                      stroke="currentColor"
-                      fill="currentColor"
-                      stroke-width="0"
-                      viewBox="0 0 512 512"
-                      height="1em"
-                      width="1em"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fill="none"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="32"
-                        d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z"
-                      />
-                    </svg>
-                  </button>
-                  <figcaption
-                    class="slide-caption"
-                  >
-                    Camera Name
-                  </figcaption>
-                </div>
-              </figure>
-            </div>
-            <div
-              interval="2000"
-              class="carousel-item"
-            >
-              <figure>
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="https://fakeImg.JPG"
-                >
-                  <img
-                    data-testid="image"
-                    class="w-100 h-100"
-                    src="https://fakeImg.JPG"
-                    alt="Mars captured by Curiosity rover's Camera Name"
-                  />
-                </a>
-                <div
-                  class="carousel-caption"
-                >
-                  <button
-                    class="heartBtn"
-                    aria-label="Toggle like"
-                  >
-                    <svg
-                      stroke="currentColor"
-                      fill="currentColor"
-                      stroke-width="0"
-                      viewBox="0 0 512 512"
-                      height="1em"
-                      width="1em"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fill="none"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="32"
-                        d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z"
-                      />
-                    </svg>
-                  </button>
-                  <figcaption
-                    class="slide-caption"
-                  >
-                    Camera Name
-                  </figcaption>
-                </div>
-              </figure>
-            </div>
-            <div
-              interval="2000"
-              class="carousel-item"
-            >
-              <figure>
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="https://fakeImg.JPG"
-                >
-                  <img
-                    data-testid="image"
-                    class="w-100 h-100"
-                    src="https://fakeImg.JPG"
-                    alt="Mars captured by Curiosity rover's Camera Name"
-                  />
-                </a>
-                <div
-                  class="carousel-caption"
-                >
-                  <button
-                    class="heartBtn"
-                    aria-label="Toggle like"
-                  >
-                    <svg
-                      stroke="currentColor"
-                      fill="currentColor"
-                      stroke-width="0"
-                      viewBox="0 0 512 512"
-                      height="1em"
-                      width="1em"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fill="none"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="32"
-                        d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z"
-                      />
-                    </svg>
-                  </button>
-                  <figcaption
-                    class="slide-caption"
-                  >
-                    Camera Name
-                  </figcaption>
-                </div>
-              </figure>
-            </div>
-            <div
-              interval="2000"
-              class="carousel-item"
-            >
-              <figure>
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="https://fakeImg.JPG"
-                >
-                  <img
-                    data-testid="image"
-                    class="w-100 h-100"
-                    src="https://fakeImg.JPG"
-                    alt="Mars captured by Curiosity rover's Camera Name"
-                  />
-                </a>
-                <div
-                  class="carousel-caption"
-                >
-                  <button
-                    class="heartBtn"
-                    aria-label="Toggle like"
-                  >
-                    <svg
-                      stroke="currentColor"
-                      fill="currentColor"
-                      stroke-width="0"
-                      viewBox="0 0 512 512"
-                      height="1em"
-                      width="1em"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fill="none"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="32"
-                        d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z"
-                      />
-                    </svg>
-                  </button>
-                  <figcaption
-                    class="slide-caption"
-                  >
-                    Camera Name
-                  </figcaption>
-                </div>
-              </figure>
-            </div>
-          </div>
-          <a
-            class="carousel-control-prev"
-            role="button"
-            href="#"
-          >
-            <span
-              aria-hidden="true"
-              class="carousel-control-prev-icon"
-            />
-            <span
-              class="sr-only"
-            >
-              Previous
-            </span>
-          </a>
-          <a
-            class="carousel-control-next"
-            role="button"
-            href="#"
-          >
-            <span
-              aria-hidden="true"
-              class="carousel-control-next-icon"
-            />
-            <span
-              class="sr-only"
-            >
-              Next
-            </span>
-          </a>
-        </div>
-        <button
-          class="btn btn-dark border border-light popupBox "
-          aria-label="Undo deleted image"
-        >
-          Click to Undo
-        </button>
-      </div>
-      <time
-        data-testid="image-date"
-        class="h5 mt-3"
-        datetime="2033-06-30"
-      >
-        (
-        2033-06-30
-        )
-      </time>
-    </section>
-  </div>
-  <div
-    class="home-right"
-  >
-    <section
-      class="section news-section"
-    >
-      <h1
-        class="header"
-      >
-        DECEMBER
-        NEWS
-      </h1>
-      <a
-        class="news-link"
-        href="https://www.newsurl.com"
-      >
-        <article
-          class="news-container"
-        >
-          <img
-            class="news-image"
-            src="https://fakeImg.JPG"
-            alt="Article 0"
-          />
-          <div
-            class="news-desc"
-          >
-            <h6
-              class="font-weight-bold"
-            >
-              News title
-            </h6>
-            <time
-              class="font-italic"
-              datetime="2033-06-30"
-            >
-              2033-06-30
-            </time>
-            <p>
-              News description.
-            </p>
-          </div>
-        </article>
-      </a>
-    </section>
-  </div>
-</main>
-`;
-
-exports[`buttons displays a modal explaining each piece of weather infomation. 1`] = `
+exports[`Home.js - Buttons displays a modal explaining each piece of weather infomation. 1`] = `
 <div
   data-testid="modal"
 >
@@ -746,7 +114,7 @@ exports[`buttons displays a modal explaining each piece of weather infomation. 1
 </div>
 `;
 
-exports[`buttons returns to main page after clicking close modal. 1`] = `
+exports[`Home.js - Buttons returns to main page after clicking close modal. 1`] = `
 <main
   data-testid="home-container"
   class="home-container"
@@ -857,13 +225,250 @@ exports[`buttons returns to main page after clicking close modal. 1`] = `
             -34°C
           </p>
           <p
-            data-testid="wind"
+            data-testid="windSpeed"
           >
             Wind Speed: 
             40km/h
           </p>
           <p
-            data-testid="wind"
+            data-testid="windDirection"
+          >
+            Wind Direction: 
+            West kph
+          </p>
+        </div>
+        <div
+          class="col text-right"
+        >
+          <p
+            class="h5 mt-3"
+          >
+            Sunny
+          </p>
+          <p>
+            Autumn
+          </p>
+          <p>
+            UV Index: 
+            Moderate
+          </p>
+          <p>
+            Sunrise: 
+            01:23
+          </p>
+          <p>
+            Sunset: 
+            12:34
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div
+    class="home-right"
+  >
+    <section
+      class="section news-section"
+    >
+      <h1
+        class="header"
+      >
+        FEBRUARY
+        NEWS
+      </h1>
+      <a
+        class="news-link"
+        href="https://www.newsurl.com"
+      >
+        <article
+          class="news-container"
+        >
+          <img
+            class="news-image"
+            src="https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/03390/opgs/edr/fcam/FLB_698438687EDR_F0932080FHAZ00302M_.JPG"
+            alt="Article 0"
+          />
+          <div
+            class="news-desc"
+          >
+            <h6
+              class="font-weight-bold"
+            >
+              News title
+            </h6>
+            <time
+              class="font-italic"
+              datetime="2033-06-30"
+            >
+              2033-06-30
+            </time>
+            <p>
+              News description.
+            </p>
+          </div>
+        </article>
+      </a>
+    </section>
+  </div>
+</main>
+`;
+
+exports[`Home.js - Buttons toggles from celcius to farenheit. 1`] = `
+Array [
+  <p
+    data-testid="temperature"
+    class="h5 mt-3"
+>
+    High: 
+    10.40°F
+</p>,
+  <p
+    data-testid="temperature"
+    class="h5"
+>
+    Low: 
+    -29.20°F
+</p>,
+]
+`;
+
+exports[`Home.js - Buttons toggles from farenheit to celcius. 1`] = `
+Array [
+  <p
+    data-testid="temperature"
+    class="h5 mt-3"
+>
+    High: 
+    -12°C
+</p>,
+  <p
+    data-testid="temperature"
+    class="h5"
+>
+    Low: 
+    -34°C
+</p>,
+]
+`;
+
+exports[`Home.js - Today's front camera image is available. displays today's images, latest weather and news data. 1`] = `
+<main
+  data-testid="home-container"
+  class="home-container"
+>
+  <p />
+  <div
+    class="home-left"
+  >
+    <section
+      data-testid="weather-section"
+      class="section weather-section"
+    >
+      <h1
+        class="header"
+      >
+        LATEST WEATHER AT ELYSIUM PLANTITIA
+      </h1>
+      <div
+        class="unit"
+      >
+        <label
+          for="cel"
+          class="label h5"
+        >
+          °C
+        </label>
+        <input
+          type="radio"
+          id="cel"
+          name="unit"
+          readonly=""
+          checked=""
+        />
+        <button
+          data-testid="unit-toggle"
+          class="unit-toggle"
+          aria-label="Toggle unit"
+        />
+        <label
+          for="fah"
+          class="label h5"
+        >
+          °F
+        </label>
+        <input
+          type="radio"
+          id="fah"
+          name="unit"
+          readonly=""
+        />
+      </div>
+      <div
+        class="weather-container"
+      >
+        <div
+          class="text-right"
+        >
+          <p
+            class="sol display-4"
+          >
+            Sol 
+            1234
+          </p>
+          <p
+            class="h2 text-muted"
+          >
+            Jun
+            30
+          </p>
+          <button
+            data-testid="info"
+            class="openModalBtn h2 text-primary"
+            aria-label="Open for more information"
+          >
+            <svg
+              stroke="currentColor"
+              fill="currentColor"
+              stroke-width="0"
+              viewBox="0 0 512 512"
+              height="1em"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M256 56C145.72 56 56 145.72 56 256s89.72 200 200 200 200-89.72 200-200S366.28 56 256 56zm0 82a26 26 0 11-26 26 26 26 0 0126-26zm64 226H200v-32h44v-88h-32v-32h64v120h44z"
+              />
+            </svg>
+          </button>
+        </div>
+        <div
+          class="divider"
+        />
+        <div
+          class="col"
+        >
+          <p
+            data-testid="temperature"
+            class="h5 mt-3"
+          >
+            High: 
+            -12°C
+          </p>
+          <p
+            data-testid="temperature"
+            class="h5"
+          >
+            Low: 
+            -34°C
+          </p>
+          <p
+            data-testid="windSpeed"
+          >
+            Wind Speed: 
+            40km/h
+          </p>
+          <p
+            data-testid="windDirection"
           >
             Wind Direction: 
             West kph
@@ -937,13 +542,13 @@ exports[`buttons returns to main page after clicking close modal. 1`] = `
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
-                  href="https://fakeImg.JPG"
+                  href="https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/03390/opgs/edr/fcam/FLB_698438687EDR_F0932080FHAZ00302M_.JPG"
                 >
                   <img
                     data-testid="image"
                     class="w-100 h-100"
-                    src="https://fakeImg.JPG"
-                    alt="Mars captured by Curiosity rover's Camera Name"
+                    src="https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/03390/opgs/edr/fcam/FLB_698438687EDR_F0932080FHAZ00302M_.JPG"
+                    alt="Mars captured by Curiosity rover's Front Hazard Avoidance Camera"
                   />
                 </a>
                 <div
@@ -963,18 +568,14 @@ exports[`buttons returns to main page after clicking close modal. 1`] = `
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
-                        fill="none"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="32"
-                        d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z"
+                        d="M256 448a32 32 0 01-18-5.57c-78.59-53.35-112.62-89.93-131.39-112.8-40-48.75-59.15-98.8-58.61-153C48.63 114.52 98.46 64 159.08 64c44.08 0 74.61 24.83 92.39 45.51a6 6 0 009.06 0C278.31 88.81 308.84 64 352.92 64c60.62 0 110.45 50.52 111.08 112.64.54 54.21-18.63 104.26-58.61 153-18.77 22.87-52.8 59.45-131.39 112.8a32 32 0 01-18 5.56z"
                       />
                     </svg>
                   </button>
                   <figcaption
                     class="slide-caption"
                   >
-                    Camera Name
+                    Front Hazard Avoidance Camera
                   </figcaption>
                 </div>
               </figure>
@@ -987,13 +588,13 @@ exports[`buttons returns to main page after clicking close modal. 1`] = `
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
-                  href="https://fakeImg.JPG"
+                  href="https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/03390/opgs/edr/fcam/FLB_698438687EDR_F0932080FHAZ00302M_.JPG"
                 >
                   <img
                     data-testid="image"
                     class="w-100 h-100"
-                    src="https://fakeImg.JPG"
-                    alt="Mars captured by Curiosity rover's Camera Name"
+                    src="https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/03390/opgs/edr/fcam/FLB_698438687EDR_F0932080FHAZ00302M_.JPG"
+                    alt="Mars captured by Curiosity rover's Front Hazard Avoidance Camera"
                   />
                 </a>
                 <div
@@ -1013,18 +614,14 @@ exports[`buttons returns to main page after clicking close modal. 1`] = `
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
-                        fill="none"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="32"
-                        d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z"
+                        d="M256 448a32 32 0 01-18-5.57c-78.59-53.35-112.62-89.93-131.39-112.8-40-48.75-59.15-98.8-58.61-153C48.63 114.52 98.46 64 159.08 64c44.08 0 74.61 24.83 92.39 45.51a6 6 0 009.06 0C278.31 88.81 308.84 64 352.92 64c60.62 0 110.45 50.52 111.08 112.64.54 54.21-18.63 104.26-58.61 153-18.77 22.87-52.8 59.45-131.39 112.8a32 32 0 01-18 5.56z"
                       />
                     </svg>
                   </button>
                   <figcaption
                     class="slide-caption"
                   >
-                    Camera Name
+                    Front Hazard Avoidance Camera
                   </figcaption>
                 </div>
               </figure>
@@ -1037,13 +634,13 @@ exports[`buttons returns to main page after clicking close modal. 1`] = `
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
-                  href="https://fakeImg.JPG"
+                  href="https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/03390/opgs/edr/fcam/FLB_698438687EDR_F0932080FHAZ00302M_.JPG"
                 >
                   <img
                     data-testid="image"
                     class="w-100 h-100"
-                    src="https://fakeImg.JPG"
-                    alt="Mars captured by Curiosity rover's Camera Name"
+                    src="https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/03390/opgs/edr/fcam/FLB_698438687EDR_F0932080FHAZ00302M_.JPG"
+                    alt="Mars captured by Curiosity rover's Front Hazard Avoidance Camera"
                   />
                 </a>
                 <div
@@ -1063,18 +660,14 @@ exports[`buttons returns to main page after clicking close modal. 1`] = `
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
-                        fill="none"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="32"
-                        d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z"
+                        d="M256 448a32 32 0 01-18-5.57c-78.59-53.35-112.62-89.93-131.39-112.8-40-48.75-59.15-98.8-58.61-153C48.63 114.52 98.46 64 159.08 64c44.08 0 74.61 24.83 92.39 45.51a6 6 0 009.06 0C278.31 88.81 308.84 64 352.92 64c60.62 0 110.45 50.52 111.08 112.64.54 54.21-18.63 104.26-58.61 153-18.77 22.87-52.8 59.45-131.39 112.8a32 32 0 01-18 5.56z"
                       />
                     </svg>
                   </button>
                   <figcaption
                     class="slide-caption"
                   >
-                    Camera Name
+                    Front Hazard Avoidance Camera
                   </figcaption>
                 </div>
               </figure>
@@ -1087,13 +680,13 @@ exports[`buttons returns to main page after clicking close modal. 1`] = `
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
-                  href="https://fakeImg.JPG"
+                  href="https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/03390/opgs/edr/fcam/FLB_698438687EDR_F0932080FHAZ00302M_.JPG"
                 >
                   <img
                     data-testid="image"
                     class="w-100 h-100"
-                    src="https://fakeImg.JPG"
-                    alt="Mars captured by Curiosity rover's Camera Name"
+                    src="https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/03390/opgs/edr/fcam/FLB_698438687EDR_F0932080FHAZ00302M_.JPG"
+                    alt="Mars captured by Curiosity rover's Front Hazard Avoidance Camera"
                   />
                 </a>
                 <div
@@ -1113,18 +706,14 @@ exports[`buttons returns to main page after clicking close modal. 1`] = `
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
-                        fill="none"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="32"
-                        d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z"
+                        d="M256 448a32 32 0 01-18-5.57c-78.59-53.35-112.62-89.93-131.39-112.8-40-48.75-59.15-98.8-58.61-153C48.63 114.52 98.46 64 159.08 64c44.08 0 74.61 24.83 92.39 45.51a6 6 0 009.06 0C278.31 88.81 308.84 64 352.92 64c60.62 0 110.45 50.52 111.08 112.64.54 54.21-18.63 104.26-58.61 153-18.77 22.87-52.8 59.45-131.39 112.8a32 32 0 01-18 5.56z"
                       />
                     </svg>
                   </button>
                   <figcaption
                     class="slide-caption"
                   >
-                    Camera Name
+                    Front Hazard Avoidance Camera
                   </figcaption>
                 </div>
               </figure>
@@ -1137,13 +726,13 @@ exports[`buttons returns to main page after clicking close modal. 1`] = `
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
-                  href="https://fakeImg.JPG"
+                  href="https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/03390/opgs/edr/fcam/FLB_698438687EDR_F0932080FHAZ00302M_.JPG"
                 >
                   <img
                     data-testid="image"
                     class="w-100 h-100"
-                    src="https://fakeImg.JPG"
-                    alt="Mars captured by Curiosity rover's Camera Name"
+                    src="https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/03390/opgs/edr/fcam/FLB_698438687EDR_F0932080FHAZ00302M_.JPG"
+                    alt="Mars captured by Curiosity rover's Front Hazard Avoidance Camera"
                   />
                 </a>
                 <div
@@ -1163,18 +752,14 @@ exports[`buttons returns to main page after clicking close modal. 1`] = `
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
-                        fill="none"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="32"
-                        d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z"
+                        d="M256 448a32 32 0 01-18-5.57c-78.59-53.35-112.62-89.93-131.39-112.8-40-48.75-59.15-98.8-58.61-153C48.63 114.52 98.46 64 159.08 64c44.08 0 74.61 24.83 92.39 45.51a6 6 0 009.06 0C278.31 88.81 308.84 64 352.92 64c60.62 0 110.45 50.52 111.08 112.64.54 54.21-18.63 104.26-58.61 153-18.77 22.87-52.8 59.45-131.39 112.8a32 32 0 01-18 5.56z"
                       />
                     </svg>
                   </button>
                   <figcaption
                     class="slide-caption"
                   >
-                    Camera Name
+                    Front Hazard Avoidance Camera
                   </figcaption>
                 </div>
               </figure>
@@ -1187,13 +772,13 @@ exports[`buttons returns to main page after clicking close modal. 1`] = `
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
-                  href="https://fakeImg.JPG"
+                  href="https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/03390/opgs/edr/fcam/FLB_698438687EDR_F0932080FHAZ00302M_.JPG"
                 >
                   <img
                     data-testid="image"
                     class="w-100 h-100"
-                    src="https://fakeImg.JPG"
-                    alt="Mars captured by Curiosity rover's Camera Name"
+                    src="https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/03390/opgs/edr/fcam/FLB_698438687EDR_F0932080FHAZ00302M_.JPG"
+                    alt="Mars captured by Curiosity rover's Front Hazard Avoidance Camera"
                   />
                 </a>
                 <div
@@ -1213,18 +798,14 @@ exports[`buttons returns to main page after clicking close modal. 1`] = `
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
-                        fill="none"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="32"
-                        d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z"
+                        d="M256 448a32 32 0 01-18-5.57c-78.59-53.35-112.62-89.93-131.39-112.8-40-48.75-59.15-98.8-58.61-153C48.63 114.52 98.46 64 159.08 64c44.08 0 74.61 24.83 92.39 45.51a6 6 0 009.06 0C278.31 88.81 308.84 64 352.92 64c60.62 0 110.45 50.52 111.08 112.64.54 54.21-18.63 104.26-58.61 153-18.77 22.87-52.8 59.45-131.39 112.8a32 32 0 01-18 5.56z"
                       />
                     </svg>
                   </button>
                   <figcaption
                     class="slide-caption"
                   >
-                    Camera Name
+                    Front Hazard Avoidance Camera
                   </figcaption>
                 </div>
               </figure>
@@ -1237,13 +818,13 @@ exports[`buttons returns to main page after clicking close modal. 1`] = `
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
-                  href="https://fakeImg.JPG"
+                  href="https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/03390/opgs/edr/fcam/FLB_698438687EDR_F0932080FHAZ00302M_.JPG"
                 >
                   <img
                     data-testid="image"
                     class="w-100 h-100"
-                    src="https://fakeImg.JPG"
-                    alt="Mars captured by Curiosity rover's Camera Name"
+                    src="https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/03390/opgs/edr/fcam/FLB_698438687EDR_F0932080FHAZ00302M_.JPG"
+                    alt="Mars captured by Curiosity rover's Front Hazard Avoidance Camera"
                   />
                 </a>
                 <div
@@ -1263,18 +844,14 @@ exports[`buttons returns to main page after clicking close modal. 1`] = `
                       xmlns="http://www.w3.org/2000/svg"
                     >
                       <path
-                        fill="none"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="32"
-                        d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0018 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81z"
+                        d="M256 448a32 32 0 01-18-5.57c-78.59-53.35-112.62-89.93-131.39-112.8-40-48.75-59.15-98.8-58.61-153C48.63 114.52 98.46 64 159.08 64c44.08 0 74.61 24.83 92.39 45.51a6 6 0 009.06 0C278.31 88.81 308.84 64 352.92 64c60.62 0 110.45 50.52 111.08 112.64.54 54.21-18.63 104.26-58.61 153-18.77 22.87-52.8 59.45-131.39 112.8a32 32 0 01-18 5.56z"
                       />
                     </svg>
                   </button>
                   <figcaption
                     class="slide-caption"
                   >
-                    Camera Name
+                    Front Hazard Avoidance Camera
                   </figcaption>
                 </div>
               </figure>
@@ -1338,7 +915,7 @@ exports[`buttons returns to main page after clicking close modal. 1`] = `
       <h1
         class="header"
       >
-        DECEMBER
+        FEBRUARY
         NEWS
       </h1>
       <a
@@ -1350,7 +927,7 @@ exports[`buttons returns to main page after clicking close modal. 1`] = `
         >
           <img
             class="news-image"
-            src="https://fakeImg.JPG"
+            src="https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/03390/opgs/edr/fcam/FLB_698438687EDR_F0932080FHAZ00302M_.JPG"
             alt="Article 0"
           />
           <div
@@ -1378,40 +955,606 @@ exports[`buttons returns to main page after clicking close modal. 1`] = `
 </main>
 `;
 
-exports[`buttons toggles from celcius to farenheit. 1`] = `
-Array [
-  <p
-    data-testid="temperature"
-    class="h5 mt-3"
+exports[`Home.js - Today's front camera image is available. displays today's weather and news data. 1`] = `
+<main
+  data-testid="home-container"
+  class="home-container"
 >
-    High: 
-    10.40°F
-</p>,
-  <p
-    data-testid="temperature"
-    class="h5"
->
-    Low: 
-    -29.20°F
-</p>,
-]
-`;
-
-exports[`buttons toggles from farenheit to celcius. 1`] = `
-Array [
-  <p
-    data-testid="temperature"
-    class="h5 mt-3"
->
-    High: 
-    -12°C
-</p>,
-  <p
-    data-testid="temperature"
-    class="h5"
->
-    Low: 
-    -34°C
-</p>,
-]
+  <p />
+  <div
+    class="home-left"
+  >
+    <section
+      data-testid="weather-section"
+      class="section weather-section"
+    >
+      <h1
+        class="header"
+      >
+        LATEST WEATHER AT ELYSIUM PLANTITIA
+      </h1>
+      <div
+        class="unit"
+      >
+        <label
+          for="cel"
+          class="label h5"
+        >
+          °C
+        </label>
+        <input
+          type="radio"
+          id="cel"
+          name="unit"
+          readonly=""
+          checked=""
+        />
+        <button
+          data-testid="unit-toggle"
+          class="unit-toggle"
+          aria-label="Toggle unit"
+        />
+        <label
+          for="fah"
+          class="label h5"
+        >
+          °F
+        </label>
+        <input
+          type="radio"
+          id="fah"
+          name="unit"
+          readonly=""
+        />
+      </div>
+      <div
+        class="weather-container"
+      >
+        <div
+          class="text-right"
+        >
+          <p
+            class="sol display-4"
+          >
+            Sol 
+            1234
+          </p>
+          <p
+            class="h2 text-muted"
+          >
+            Jun
+            30
+          </p>
+          <button
+            data-testid="info"
+            class="openModalBtn h2 text-primary"
+            aria-label="Open for more information"
+          >
+            <svg
+              stroke="currentColor"
+              fill="currentColor"
+              stroke-width="0"
+              viewBox="0 0 512 512"
+              height="1em"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M256 56C145.72 56 56 145.72 56 256s89.72 200 200 200 200-89.72 200-200S366.28 56 256 56zm0 82a26 26 0 11-26 26 26 26 0 0126-26zm64 226H200v-32h44v-88h-32v-32h64v120h44z"
+              />
+            </svg>
+          </button>
+        </div>
+        <div
+          class="divider"
+        />
+        <div
+          class="col"
+        >
+          <p
+            data-testid="temperature"
+            class="h5 mt-3"
+          >
+            High: 
+            -12°C
+          </p>
+          <p
+            data-testid="temperature"
+            class="h5"
+          >
+            Low: 
+            -34°C
+          </p>
+          <p
+            data-testid="windSpeed"
+          >
+            Wind Speed: 
+            40km/h
+          </p>
+          <p
+            data-testid="windDirection"
+          >
+            Wind Direction: 
+            West kph
+          </p>
+        </div>
+        <div
+          class="col text-right"
+        >
+          <p
+            class="h5 mt-3"
+          >
+            Sunny
+          </p>
+          <p>
+            Autumn
+          </p>
+          <p>
+            UV Index: 
+            Moderate
+          </p>
+          <p>
+            Sunrise: 
+            01:23
+          </p>
+          <p>
+            Sunset: 
+            12:34
+          </p>
+        </div>
+      </div>
+    </section>
+    <section
+      class="section image-section"
+    >
+      <h1
+        class="header"
+      >
+        <p>
+          LATEST IMAGES CAPTURED BY
+        </p>
+        <p>
+          CURIOSITY ROVER
+        </p>
+      </h1>
+      <div>
+        <div
+          style="z-index: 2;"
+          class="carousel slide"
+        >
+          <ol
+            class="carousel-indicators"
+          >
+            <li
+              class="active"
+            />
+            <li />
+            <li />
+            <li />
+            <li />
+            <li />
+            <li />
+          </ol>
+          <div
+            class="carousel-inner"
+          >
+            <div
+              interval="2000"
+              class="active carousel-item"
+            >
+              <figure>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/03390/opgs/edr/fcam/FLB_698438687EDR_F0932080FHAZ00302M_.JPG"
+                >
+                  <img
+                    data-testid="image"
+                    class="w-100 h-100"
+                    src="https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/03390/opgs/edr/fcam/FLB_698438687EDR_F0932080FHAZ00302M_.JPG"
+                    alt="Mars captured by Curiosity rover's Front Hazard Avoidance Camera"
+                  />
+                </a>
+                <div
+                  class="carousel-caption"
+                >
+                  <button
+                    class="heartBtn"
+                    aria-label="Toggle like"
+                  >
+                    <svg
+                      stroke="currentColor"
+                      fill="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 512 512"
+                      height="1em"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M256 448a32 32 0 01-18-5.57c-78.59-53.35-112.62-89.93-131.39-112.8-40-48.75-59.15-98.8-58.61-153C48.63 114.52 98.46 64 159.08 64c44.08 0 74.61 24.83 92.39 45.51a6 6 0 009.06 0C278.31 88.81 308.84 64 352.92 64c60.62 0 110.45 50.52 111.08 112.64.54 54.21-18.63 104.26-58.61 153-18.77 22.87-52.8 59.45-131.39 112.8a32 32 0 01-18 5.56z"
+                      />
+                    </svg>
+                  </button>
+                  <figcaption
+                    class="slide-caption"
+                  >
+                    Front Hazard Avoidance Camera
+                  </figcaption>
+                </div>
+              </figure>
+            </div>
+            <div
+              interval="2000"
+              class="carousel-item"
+            >
+              <figure>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/03390/opgs/edr/fcam/FLB_698438687EDR_F0932080FHAZ00302M_.JPG"
+                >
+                  <img
+                    data-testid="image"
+                    class="w-100 h-100"
+                    src="https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/03390/opgs/edr/fcam/FLB_698438687EDR_F0932080FHAZ00302M_.JPG"
+                    alt="Mars captured by Curiosity rover's Front Hazard Avoidance Camera"
+                  />
+                </a>
+                <div
+                  class="carousel-caption"
+                >
+                  <button
+                    class="heartBtn"
+                    aria-label="Toggle like"
+                  >
+                    <svg
+                      stroke="currentColor"
+                      fill="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 512 512"
+                      height="1em"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M256 448a32 32 0 01-18-5.57c-78.59-53.35-112.62-89.93-131.39-112.8-40-48.75-59.15-98.8-58.61-153C48.63 114.52 98.46 64 159.08 64c44.08 0 74.61 24.83 92.39 45.51a6 6 0 009.06 0C278.31 88.81 308.84 64 352.92 64c60.62 0 110.45 50.52 111.08 112.64.54 54.21-18.63 104.26-58.61 153-18.77 22.87-52.8 59.45-131.39 112.8a32 32 0 01-18 5.56z"
+                      />
+                    </svg>
+                  </button>
+                  <figcaption
+                    class="slide-caption"
+                  >
+                    Front Hazard Avoidance Camera
+                  </figcaption>
+                </div>
+              </figure>
+            </div>
+            <div
+              interval="2000"
+              class="carousel-item"
+            >
+              <figure>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/03390/opgs/edr/fcam/FLB_698438687EDR_F0932080FHAZ00302M_.JPG"
+                >
+                  <img
+                    data-testid="image"
+                    class="w-100 h-100"
+                    src="https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/03390/opgs/edr/fcam/FLB_698438687EDR_F0932080FHAZ00302M_.JPG"
+                    alt="Mars captured by Curiosity rover's Front Hazard Avoidance Camera"
+                  />
+                </a>
+                <div
+                  class="carousel-caption"
+                >
+                  <button
+                    class="heartBtn"
+                    aria-label="Toggle like"
+                  >
+                    <svg
+                      stroke="currentColor"
+                      fill="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 512 512"
+                      height="1em"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M256 448a32 32 0 01-18-5.57c-78.59-53.35-112.62-89.93-131.39-112.8-40-48.75-59.15-98.8-58.61-153C48.63 114.52 98.46 64 159.08 64c44.08 0 74.61 24.83 92.39 45.51a6 6 0 009.06 0C278.31 88.81 308.84 64 352.92 64c60.62 0 110.45 50.52 111.08 112.64.54 54.21-18.63 104.26-58.61 153-18.77 22.87-52.8 59.45-131.39 112.8a32 32 0 01-18 5.56z"
+                      />
+                    </svg>
+                  </button>
+                  <figcaption
+                    class="slide-caption"
+                  >
+                    Front Hazard Avoidance Camera
+                  </figcaption>
+                </div>
+              </figure>
+            </div>
+            <div
+              interval="2000"
+              class="carousel-item"
+            >
+              <figure>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/03390/opgs/edr/fcam/FLB_698438687EDR_F0932080FHAZ00302M_.JPG"
+                >
+                  <img
+                    data-testid="image"
+                    class="w-100 h-100"
+                    src="https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/03390/opgs/edr/fcam/FLB_698438687EDR_F0932080FHAZ00302M_.JPG"
+                    alt="Mars captured by Curiosity rover's Front Hazard Avoidance Camera"
+                  />
+                </a>
+                <div
+                  class="carousel-caption"
+                >
+                  <button
+                    class="heartBtn"
+                    aria-label="Toggle like"
+                  >
+                    <svg
+                      stroke="currentColor"
+                      fill="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 512 512"
+                      height="1em"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M256 448a32 32 0 01-18-5.57c-78.59-53.35-112.62-89.93-131.39-112.8-40-48.75-59.15-98.8-58.61-153C48.63 114.52 98.46 64 159.08 64c44.08 0 74.61 24.83 92.39 45.51a6 6 0 009.06 0C278.31 88.81 308.84 64 352.92 64c60.62 0 110.45 50.52 111.08 112.64.54 54.21-18.63 104.26-58.61 153-18.77 22.87-52.8 59.45-131.39 112.8a32 32 0 01-18 5.56z"
+                      />
+                    </svg>
+                  </button>
+                  <figcaption
+                    class="slide-caption"
+                  >
+                    Front Hazard Avoidance Camera
+                  </figcaption>
+                </div>
+              </figure>
+            </div>
+            <div
+              interval="2000"
+              class="carousel-item"
+            >
+              <figure>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/03390/opgs/edr/fcam/FLB_698438687EDR_F0932080FHAZ00302M_.JPG"
+                >
+                  <img
+                    data-testid="image"
+                    class="w-100 h-100"
+                    src="https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/03390/opgs/edr/fcam/FLB_698438687EDR_F0932080FHAZ00302M_.JPG"
+                    alt="Mars captured by Curiosity rover's Front Hazard Avoidance Camera"
+                  />
+                </a>
+                <div
+                  class="carousel-caption"
+                >
+                  <button
+                    class="heartBtn"
+                    aria-label="Toggle like"
+                  >
+                    <svg
+                      stroke="currentColor"
+                      fill="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 512 512"
+                      height="1em"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M256 448a32 32 0 01-18-5.57c-78.59-53.35-112.62-89.93-131.39-112.8-40-48.75-59.15-98.8-58.61-153C48.63 114.52 98.46 64 159.08 64c44.08 0 74.61 24.83 92.39 45.51a6 6 0 009.06 0C278.31 88.81 308.84 64 352.92 64c60.62 0 110.45 50.52 111.08 112.64.54 54.21-18.63 104.26-58.61 153-18.77 22.87-52.8 59.45-131.39 112.8a32 32 0 01-18 5.56z"
+                      />
+                    </svg>
+                  </button>
+                  <figcaption
+                    class="slide-caption"
+                  >
+                    Front Hazard Avoidance Camera
+                  </figcaption>
+                </div>
+              </figure>
+            </div>
+            <div
+              interval="2000"
+              class="carousel-item"
+            >
+              <figure>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/03390/opgs/edr/fcam/FLB_698438687EDR_F0932080FHAZ00302M_.JPG"
+                >
+                  <img
+                    data-testid="image"
+                    class="w-100 h-100"
+                    src="https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/03390/opgs/edr/fcam/FLB_698438687EDR_F0932080FHAZ00302M_.JPG"
+                    alt="Mars captured by Curiosity rover's Front Hazard Avoidance Camera"
+                  />
+                </a>
+                <div
+                  class="carousel-caption"
+                >
+                  <button
+                    class="heartBtn"
+                    aria-label="Toggle like"
+                  >
+                    <svg
+                      stroke="currentColor"
+                      fill="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 512 512"
+                      height="1em"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M256 448a32 32 0 01-18-5.57c-78.59-53.35-112.62-89.93-131.39-112.8-40-48.75-59.15-98.8-58.61-153C48.63 114.52 98.46 64 159.08 64c44.08 0 74.61 24.83 92.39 45.51a6 6 0 009.06 0C278.31 88.81 308.84 64 352.92 64c60.62 0 110.45 50.52 111.08 112.64.54 54.21-18.63 104.26-58.61 153-18.77 22.87-52.8 59.45-131.39 112.8a32 32 0 01-18 5.56z"
+                      />
+                    </svg>
+                  </button>
+                  <figcaption
+                    class="slide-caption"
+                  >
+                    Front Hazard Avoidance Camera
+                  </figcaption>
+                </div>
+              </figure>
+            </div>
+            <div
+              interval="2000"
+              class="carousel-item"
+            >
+              <figure>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/03390/opgs/edr/fcam/FLB_698438687EDR_F0932080FHAZ00302M_.JPG"
+                >
+                  <img
+                    data-testid="image"
+                    class="w-100 h-100"
+                    src="https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/03390/opgs/edr/fcam/FLB_698438687EDR_F0932080FHAZ00302M_.JPG"
+                    alt="Mars captured by Curiosity rover's Front Hazard Avoidance Camera"
+                  />
+                </a>
+                <div
+                  class="carousel-caption"
+                >
+                  <button
+                    class="heartBtn"
+                    aria-label="Toggle like"
+                  >
+                    <svg
+                      stroke="currentColor"
+                      fill="currentColor"
+                      stroke-width="0"
+                      viewBox="0 0 512 512"
+                      height="1em"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M256 448a32 32 0 01-18-5.57c-78.59-53.35-112.62-89.93-131.39-112.8-40-48.75-59.15-98.8-58.61-153C48.63 114.52 98.46 64 159.08 64c44.08 0 74.61 24.83 92.39 45.51a6 6 0 009.06 0C278.31 88.81 308.84 64 352.92 64c60.62 0 110.45 50.52 111.08 112.64.54 54.21-18.63 104.26-58.61 153-18.77 22.87-52.8 59.45-131.39 112.8a32 32 0 01-18 5.56z"
+                      />
+                    </svg>
+                  </button>
+                  <figcaption
+                    class="slide-caption"
+                  >
+                    Front Hazard Avoidance Camera
+                  </figcaption>
+                </div>
+              </figure>
+            </div>
+          </div>
+          <a
+            class="carousel-control-prev"
+            role="button"
+            href="#"
+          >
+            <span
+              aria-hidden="true"
+              class="carousel-control-prev-icon"
+            />
+            <span
+              class="sr-only"
+            >
+              Previous
+            </span>
+          </a>
+          <a
+            class="carousel-control-next"
+            role="button"
+            href="#"
+          >
+            <span
+              aria-hidden="true"
+              class="carousel-control-next-icon"
+            />
+            <span
+              class="sr-only"
+            >
+              Next
+            </span>
+          </a>
+        </div>
+        <button
+          class="btn btn-dark border border-light popupBox "
+          aria-label="Undo deleted image"
+        >
+          Click to Undo
+        </button>
+      </div>
+      <time
+        data-testid="image-date"
+        class="h5 mt-3"
+        datetime="2033-06-30"
+      >
+        (
+        2033-06-30
+        )
+      </time>
+    </section>
+  </div>
+  <div
+    class="home-right"
+  >
+    <section
+      class="section news-section"
+    >
+      <h1
+        class="header"
+      >
+        FEBRUARY
+        NEWS
+      </h1>
+      <a
+        class="news-link"
+        href="https://www.newsurl.com"
+      >
+        <article
+          class="news-container"
+        >
+          <img
+            class="news-image"
+            src="https://mars.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/03390/opgs/edr/fcam/FLB_698438687EDR_F0932080FHAZ00302M_.JPG"
+            alt="Article 0"
+          />
+          <div
+            class="news-desc"
+          >
+            <h6
+              class="font-weight-bold"
+            >
+              News title
+            </h6>
+            <time
+              class="font-italic"
+              datetime="2033-06-30"
+            >
+              2033-06-30
+            </time>
+            <p>
+              News description.
+            </p>
+          </div>
+        </article>
+      </a>
+    </section>
+  </div>
+</main>
 `;

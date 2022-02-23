@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import * as ioIcons from "react-icons/io5";
-import * as func from "../helper";
+import * as helper from "../helper";
 import Carousel from "react-bootstrap/Carousel";
 
 export default function ImageCard({ images, renderLikesOnly, renderSlideOnly }) {
@@ -18,7 +18,7 @@ export default function ImageCard({ images, renderLikesOnly, renderSlideOnly }) 
 
   const toggleLike = (image, status) => {
     status === "unlike" && setLastDeleted([image]);
-    const newLikes = func.filterLikes(likes, image, status);
+    const newLikes = helper.filterLikes(likes, image, status);
     setLikes(newLikes);
     window.localStorage.setItem("likes", JSON.stringify(newLikes));
     removeBtn();
@@ -43,17 +43,27 @@ export default function ImageCard({ images, renderLikesOnly, renderSlideOnly }) 
       return (
         <figure key={index} className="imageCardBackground">
           <a target={"_blank"} rel={"noopener noreferrer"} href={img_src}>
-            <img className="slide" src={img_src} alt={`Mars captured with ${camera.full_name}`} />
+            <img
+              data-testid="image"
+              className="slide"
+              src={img_src}
+              alt={`Mars captured with ${camera.full_name}`}
+            />
           </a>
           <figcaption className="mt-3">
             <p>{rover.name} Rover</p>
             <p>{camera.full_name}</p>
             <p>{earth_date}</p>
-            <button className="heartBtn" aria-label="Toggle like">
+            <button data-testid="like-button" className="heartBtn" aria-label="Toggle like">
               {likes.some((like) => like.id === image.id) ? (
-                <ioIcons.IoHeart className="heartBtn" onClick={() => toggleLike(image, "unlike")} />
+                <ioIcons.IoHeart
+                  data-testid="like-icon"
+                  className="heartBtn"
+                  onClick={() => toggleLike(image, "unlike")}
+                />
               ) : (
                 <ioIcons.IoHeartOutline
+                  data-testid="unlike-icon"
                   className="heartBtn"
                   onClick={() => toggleLike(image, "like")}
                 />
@@ -71,13 +81,19 @@ export default function ImageCard({ images, renderLikesOnly, renderSlideOnly }) 
       return (
         <figure key={index} className="imageCardBackground">
           <a target={"_blank"} rel={"noopener noreferrer"} href={img_src}>
-            <img className="slide" src={img_src} alt={`Mars captured with ${camera.full_name}`} />
+            <img
+              data-testid="image"
+              className="slide"
+              src={img_src}
+              alt={`Mars captured with ${camera.full_name}`}
+            />
           </a>
           <figcaption className="mt-3">
             <p>{rover.name} Rover</p>
             <p>{camera.full_name}</p>
             <p>{earth_date}</p>
             <button
+              data-testid="like-button"
               className="heartBtn"
               aria-label="Toggle like"
               onClick={() => toggleLike(image, "unlike")}
@@ -125,7 +141,11 @@ export default function ImageCard({ images, renderLikesOnly, renderSlideOnly }) 
   };
 
   const renderMessage = () => {
-    return <h3 className="text-center m-5">Oops, no images to show.</h3>;
+    return (
+      <h3 data-testid="message-box" className="text-center m-5">
+        Oops, no images to show.
+      </h3>
+    );
   };
 
   return (

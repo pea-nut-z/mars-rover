@@ -2,7 +2,7 @@
 let testYear, testMonth, testDay;
 
 // CAMERAS
-export const getAllCamerasAbb = [
+export const allCamerasAbb = [
   "FHAZ",
   "RHAZ",
   "MAST",
@@ -14,7 +14,7 @@ export const getAllCamerasAbb = [
   "MINITES",
 ];
 
-export const getAllCameras = [
+export const allCameras = [
   "Front Hazard Avoidance Camera",
   "Rear Hazard Avoidance Camera",
   "Mast Camera",
@@ -32,15 +32,7 @@ export const getCamerasAvailable = {
   spirit: [1, 2, 7, 8, 9],
 };
 
-export const getCuriosityCamerasAbb = [
-  "FHAZ",
-  "RHAZ",
-  "MAST",
-  "CHEMCAM",
-  "MAHLI",
-  "MARDI",
-  "NAVCAM",
-];
+export const curiosityCamerasAbb = ["FHAZ", "RHAZ", "MAST", "CHEMCAM", "MAHLI", "MARDI", "NAVCAM"];
 
 // FUNCTIONS
 export const getTodayDate = () => {
@@ -75,18 +67,13 @@ export const convertCelToFah = (cel) => {
 
 export const validateOtherImgUrl = (url) => {
   const validUrls = [];
-  const validRHAZUrl = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?camera=RHAZ&earth_date=${testYear}-${testMonth}-${testDay}&page=1&api_key=${process.env.REACT_APP_NASA_API_KEY}`;
 
-  getCuriosityCamerasAbb.forEach((abbr) => {
-    if (abbr === "RHAZ") return;
+  for (let i = 1; i < curiosityCamerasAbb.length; i++) {
+    const abbr = curiosityCamerasAbb[i];
     const url = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?camera=${abbr}&earth_date=${testYear}-${testMonth}-${testDay}&page=1&api_key=${process.env.REACT_APP_NASA_API_KEY}`;
     validUrls.push(url);
-  });
-  const result = validUrls.includes(url)
-    ? "valid"
-    : validRHAZUrl === url
-    ? "valid & RHAZ"
-    : undefined;
+  }
+  const result = validUrls.includes(url);
   return result;
 };
 
@@ -113,11 +100,6 @@ export const getFtImgUrl = (dateArray) => {
   const url = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?camera=FHAZ&earth_date=${year}-${month}-${day}&page=1&api_key=${process.env.REACT_APP_NASA_API_KEY}`;
   return url;
 };
-// export const getOtherImgUrl = (cameraAbbr, dateArray) => {
-//   const [year, month, day] = dateArray;
-//   const url = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?camera=${cameraAbbr}&earth_date=${year}-${month}-${day}&page=1&api_key=${process.env.REACT_APP_NASA_API_KEY}`;
-//   return url;
-// };
 
 export const getFilteredImgUrl = (rover, camera, date) => {
   const url = `https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?camera=${camera}&earth_date=${date}&api_key=${process.env.REACT_APP_NASA_API_KEY}`;

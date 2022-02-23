@@ -5,7 +5,6 @@
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
-    "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.1",
     "bootstrap": "^3.4.1",
     "jest-console": "^0.1.0",
@@ -22,7 +21,6 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "coverage": "react-scripts test --coverage",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -43,6 +41,8 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/dom": "^8.11.3",
+    "@testing-library/user-event": "^13.5.0",
     "handlebars": "^4.5.0"
   }
 }

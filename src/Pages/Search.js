@@ -1,20 +1,22 @@
 import React, { useState } from "react";
 import axios from "axios";
-import * as func from "../helper";
+import * as helper from "../helper";
 import ImageCard from "../components/ImageCard";
 
 export default function Search() {
-  const [year, month, day] = func.getTodayDate();
+  const [year, month, day] = helper.getTodayDate();
   const [selectedRover, setSelectedRover] = useState();
   const [selectedCamera, setSelectedCamera] = useState();
-  const [selectedDate, setSelectedDate] = useState(`${year}-${month}-${day}`);
+  const [selectedDate, setSelectedDate] = useState(
+    `${year}-${month > 9 ? month : "0" + month}-${day > 9 ? day : "0" + day}`
+  );
   const [images, setImages] = useState([]);
   const [imagesFetched, setImagesFetched] = useState(false);
   const [showMsg, setShowMsg] = useState(false);
 
   const getFilteredImgs = () => {
-    const selectedCameraAbb = func.getAllCamerasAbb[selectedCamera];
-    const filteredImgs = func.getFilteredImgUrl(selectedRover, selectedCameraAbb, selectedDate);
+    const selectedCameraAbb = helper.allCamerasAbb[selectedCamera];
+    const filteredImgs = helper.getFilteredImgUrl(selectedRover, selectedCameraAbb, selectedDate);
     return axios
       .get(filteredImgs)
       .then((res) => {
@@ -22,7 +24,7 @@ export default function Search() {
         setImagesFetched(true);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   };
 
@@ -36,9 +38,10 @@ export default function Search() {
   };
 
   return (
-    <div className="search-container">
+    <div data-testid="search-container" className="search-container">
       <form className="filters">
         <select
+          data-testid="rover-dropdown"
           className="filter"
           aria-label="Select rover"
           onChange={(e) => {
@@ -46,12 +49,15 @@ export default function Search() {
           }}
         >
           <option hidden>Select Rover</option>
-          <option value="curiosity">Curiosity</option>
+          <option data-testid="curiosity" value="curiosity">
+            Curiosity
+          </option>
           <option value="opportunity">Opportunity</option>
           <option value="spirit">Spirit</option>
         </select>
 
         <select
+          data-testid="camera-dropdown"
           className="filter"
           aria-label="Select camera"
           defaultValue="Select camera"
@@ -61,11 +67,16 @@ export default function Search() {
           disabled={!selectedRover && true}
         >
           <option hidden>Select Camera</option>
-          {func.getAllCameras.map((camera, index) => {
-            const available = func.getCamerasAvailable[selectedRover] || [];
-            const disable = !available.includes(index + 1) && true;
+          {helper.allCameras.map((camera, index) => {
+            const camerasAvailable = helper.getCamerasAvailable[selectedRover] || [];
+            const disable = !camerasAvailable.includes(index + 1) && true;
             return (
-              <option key={index} value={index} disabled={disable}>
+              <option
+                data-testid={index === 0 ? "front-camera" : "camera-option"}
+                key={index}
+                value={index}
+                disabled={disable}
+              >
                 {camera}
               </option>
             );
@@ -73,17 +84,19 @@ export default function Search() {
         </select>
 
         <input
+          data-testid="date-picker"
           className="filter"
           aria-label="Select date"
           type="date"
           id="start"
           name="start"
-          defaultValue={`${year}-${month}-${day > 9 ? day : "0" + day}`}
+          value={selectedDate}
           onChange={(e) => {
             setSelectedDate(e.target.value);
           }}
         />
         <button
+          data-testid="search-button"
           type="button"
           className="searchBtn btn btn-dark"
           aria-label="search images"
@@ -93,6 +106,7 @@ export default function Search() {
         </button>
       </form>
       <div
+        data-testid="message-box"
         className={`btn btn-dark border border-light popupBox ${showMsg ? "active" : ""}`}
         aria-label="Empty field alert"
       >
