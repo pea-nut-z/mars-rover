@@ -172,7 +172,7 @@ export default function Home() {
           <input type="radio" id="fah" name="unit" checked={!cel && "checked"} readOnly />
         </div>
 
-        <div className="weather-container">
+        <div data-testid="weather-container" className="weather-container">
           <div className="text-right">
             <p className="sol display-4">Sol {sol}</p>
             <p className="h2 text-muted">
@@ -244,7 +244,7 @@ export default function Home() {
           const { title, description, url, urlToImage } = article;
           return (
             <a key={index} className="news-link" href={url}>
-              <article className="news-container">
+              <article data-testid="news-container" className="news-container">
                 <img className="news-image" src={urlToImage} alt={`Article ${index}`} />
                 <div className="news-desc">
                   <h6 className="font-weight-bold">{title}</h6>

@@ -54,16 +54,16 @@ export default function ImageCard({ images, renderLikesOnly, renderSlideOnly }) 
             <p>{rover.name} Rover</p>
             <p>{camera.full_name}</p>
             <p>{earth_date}</p>
-            <button data-testid="like-button" className="heartBtn" aria-label="Toggle like">
+            <button className="heartBtn" aria-label="Toggle like">
               {likes.some((like) => like.id === image.id) ? (
                 <ioIcons.IoHeart
-                  data-testid="like-icon"
+                  data-testid="unlike-button"
                   className="heartBtn"
                   onClick={() => toggleLike(image, "unlike")}
                 />
               ) : (
                 <ioIcons.IoHeartOutline
-                  data-testid="unlike-icon"
+                  data-testid="like-button"
                   className="heartBtn"
                   onClick={() => toggleLike(image, "like")}
                 />
@@ -93,9 +93,9 @@ export default function ImageCard({ images, renderLikesOnly, renderSlideOnly }) 
             <p>{camera.full_name}</p>
             <p>{earth_date}</p>
             <button
-              data-testid="like-button"
+              data-testid="unlike-button"
               className="heartBtn"
-              aria-label="Toggle like"
+              aria-label="unlike"
               onClick={() => toggleLike(image, "unlike")}
             >
               <ioIcons.IoHeart className="heartBtn" />
@@ -125,9 +125,15 @@ export default function ImageCard({ images, renderLikesOnly, renderSlideOnly }) 
                 <Carousel.Caption>
                   <button className="heartBtn" aria-label="Toggle like">
                     {likes.some((like) => like.id === image.id) ? (
-                      <ioIcons.IoHeart onClick={() => toggleLike(image, "unlike")} />
+                      <ioIcons.IoHeart
+                        data-testid="unlike-button"
+                        onClick={() => toggleLike(image, "unlike")}
+                      />
                     ) : (
-                      <ioIcons.IoHeartOutline onClick={() => toggleLike(image, "like")} />
+                      <ioIcons.IoHeartOutline
+                        data-testid="like-button"
+                        onClick={() => toggleLike(image, "like")}
+                      />
                     )}
                   </button>
                   <figcaption className="slide-caption">{camera}</figcaption>
@@ -158,6 +164,7 @@ export default function ImageCard({ images, renderLikesOnly, renderSlideOnly }) 
         ? renderImages()
         : renderMessage()}
       <button
+        data-testid="undo-button"
         className={`btn btn-dark border border-light popupBox ${
           lastDeleted.length > 0 ? "active" : ""
         }`}

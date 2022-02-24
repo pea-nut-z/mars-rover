@@ -58,7 +58,7 @@ describe("Help Functions", () => {
   });
 });
 
-describe("Home.js - Today's front camera image is available.", () => {
+describe("Home.js - All data is available.", () => {
   let axiosGetSpy;
   beforeEach(async () => {
     const dateArray = helper.getTodayDate();
@@ -95,17 +95,18 @@ describe("Home.js - Today's front camera image is available.", () => {
   });
 
   it("displays today's weather and news data.", async () => {
-    const container = screen.getByTestId("home-container");
-    expect(container).toMatchSnapshot();
+    const weatherContainer = screen.getByTestId("weather-container");
+    const newsContainer = screen.getByTestId("news-container");
+    expect(weatherContainer).toMatchSnapshot();
+    expect(newsContainer).toMatchSnapshot();
   });
 });
 
-describe("Home.js - Today is the first day of the month, front and rear images are unavailable.", () => {
+describe("Home.js - Today is the first day of the month. Front and rear images, and some weather data are missing", () => {
   let axiosGetSpy;
   beforeEach(async () => {
     const today = [2033, 7, 1];
     const yesterday = [2033, 6, 30];
-
     helper.getTodayDate = jest.fn(() => today);
     const ftImgUrlToday = helper.getFtImgUrl(today);
     const ftImgUrlYesterday = helper.getFtImgUrl(yesterday);
@@ -159,25 +160,23 @@ describe("Home.js - Today is the first day of the month, front and rear images a
     expect(date.textContent).toBe("(2033-06-30)");
   });
 
-  it("displays six images in as one of the image is missing.", () => {
+  it("displays six images as one of the image is missing.", () => {
     const container = screen.getAllByTestId("image");
     expect(container).toHaveLength(6);
   });
 });
 
-describe("Home.js - Today is the second day of the month and front camera image is UNAVAILABLE", () => {
+describe("Home.js - Today is the second day of the month. Front image is missing.", () => {
   let axiosGetSpy;
   beforeEach(async () => {
     const today = [2033, 7, 2];
     const yesterday = [2033, 7, 1];
-
     helper.getTodayDate = jest.fn(() => today);
     const ftImgUrlToday = helper.getFtImgUrl(today);
     const ftImgUrlYesterday = helper.getFtImgUrl(yesterday);
 
     axiosGetSpy = jest.spyOn(axios, "get").mockImplementation((url) => {
       url = helper.validateOtherImgUrl(url) ? "otherImgUrl" : url;
-
       switch (url) {
         case helper.getWeatherUrl:
           return Promise.resolve({ data: fake.weatherData1 });
@@ -192,7 +191,6 @@ describe("Home.js - Today is the second day of the month and front camera image 
           return Promise.reject(new Error("Test error - url not found."));
       }
     });
-
     await act(async () => {
       await render(<Home />);
     });
@@ -204,7 +202,7 @@ describe("Home.js - Today is the second day of the month and front camera image 
     cleanup();
   });
 
-  it("back tracks to first day of the month.", () => {
+  it("back tracks to first day of the month.", async () => {
     const date = screen.getByTestId("image-date");
     expect(date.textContent).toBe("(2033-07-01)");
   });
@@ -213,12 +211,16 @@ describe("Home.js - Today is the second day of the month and front camera image 
 describe("Home.js - Buttons", () => {
   let axiosGetSpy;
   beforeEach(async () => {
+    const dateArray = helper.getTodayDate();
+    const ftImgUrlToday = helper.getFtImgUrl(dateArray);
+
     axiosGetSpy = jest.spyOn(axios, "get").mockImplementation((url) => {
       url = helper.validateOtherImgUrl(url) ? "otherImgUrl" : url;
 
       switch (url) {
         case helper.getWeatherUrl:
           return Promise.resolve({ data: fake.weatherData1 });
+        case ftImgUrlToday:
         case "otherImgUrl":
           return Promise.resolve({ data: fake.junImgData });
         case helper.getNewsUrl:
@@ -267,6 +269,30 @@ describe("Home.js - Buttons", () => {
     const container = screen.getByTestId("home-container");
     expect(container).toMatchSnapshot();
   });
+
+  it("can unlike a slide image.", async () => {
+    const button = screen.getAllByTestId("unlike-button");
+    await fireEvent.click(button[0]);
+    const likeButton = screen.getAllByTestId("like-button");
+    expect(likeButton).toBeTruthy();
+  });
+
+  it("can like a slide image.", async () => {
+    const button = screen.getAllByTestId("like-button");
+    await fireEvent.click(button[0]);
+    const unlikeButton = screen.getAllByTestId("unlike-button");
+    expect(unlikeButton).toBeTruthy();
+  });
+
+  it("can open and close nav bar.", () => {
+    const button = screen.getByTestId("nav-button");
+    fireEvent.click(button);
+    const bar = screen.getByTestId("nav-bar");
+    expect(bar.classList.contains("active")).toBeTruthy();
+    const body = screen.getByTestId("home-container");
+    fireEvent.click(body);
+    expect(bar.classList.contains("active")).toBeFalsy();
+  });
 });
 
 describe("Home.js - Errors", () => {
@@ -285,11 +311,12 @@ describe("Home.js - Errors", () => {
 
   afterEach(() => {
     axiosGetSpy.mockRestore();
+    console.error.mockClear();
     cleanup();
   });
 
   it("handles fetching error.", () => {
-    expect(console.error).toHaveBeenCalledTimes(7);
+    expect(console.error).toHaveBeenCalledTimes(3);
   });
 });
 
@@ -307,10 +334,25 @@ describe("Likes.js - Render.", () => {
   });
 
   it("removes the image after it is unliked.", async () => {
-    const button = screen.getByTestId("like-button");
+    const button = screen.getByTestId("unlike-button");
     await fireEvent.click(button);
     const message = screen.getByTestId("message-box");
     expect(message).toHaveTextContent("Oops, no images to show.");
+  });
+
+  it("can undo the unlike.", async () => {
+    const undoButton = screen.getByTestId("undo-button");
+    await fireEvent.click(undoButton);
+    const images = screen.getAllByTestId("image");
+    expect(images).toHaveLength(1);
+  });
+
+  it("removes the undo button after 2 seconds.", async () => {
+    const unlikeButton = screen.getByTestId("unlike-button");
+    await fireEvent.click(unlikeButton);
+    await new Promise((r) => setTimeout(r, 2000));
+    const undoButton = screen.getByTestId("undo-button");
+    expect(undoButton.classList.contains("active")).toBeFalsy();
   });
 });
 
@@ -379,8 +421,9 @@ describe("Search.js - Fetch.", () => {
   });
 
   afterEach(() => {
-    cleanup();
     axiosGetSpy.mockRestore();
+    console.error.mockClear();
+    cleanup();
   });
 
   it("renders requested images.", async () => {
@@ -388,23 +431,16 @@ describe("Search.js - Fetch.", () => {
     expect(images).toHaveLength(1);
   });
 
-  it("can like and unlike an image.", async () => {
-    console.log(localStorage);
-    const button = screen.getByTestId("like-button");
-    await fireEvent.click(button);
-    // await fireEvent.click(button);
-
-    console.log(localStorage);
-
-    const likedIcon = await screen.getByTestId("like-icon");
-    expect(likedIcon).toBeTruthy();
-
-    // await fireEvent.click(button);
-    // const unlikedIcon = screen.getByTestId("unliked-heart");
-    // expect(unlikedIcon).toBeTruthy();
+  it("can like and unlike a filtered image.", async () => {
+    const likeButton = screen.getByTestId("like-button");
+    await fireEvent.click(likeButton);
+    const unlikeButton = screen.getByTestId("unlike-button");
+    expect(unlikeButton).toBeTruthy();
+    await fireEvent.click(unlikeButton);
+    expect(likeButton).toBeTruthy();
   });
 
   it("handles fetching error.", async () => {
-    expect(console.error).toHaveBeenCalledTimes(10);
+    expect(console.error).toHaveBeenCalledTimes(1);
   });
 });

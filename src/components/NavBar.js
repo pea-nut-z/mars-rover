@@ -18,10 +18,10 @@ export const NavBar = forwardRef(({}, ref) => {
     <IconContext.Provider value={{ color: "#fff" }}>
       <div className="navbar">
         <Link to="#" className="menu-bars">
-          <ioIcons.IoMenu onClick={toggleNavBar} />
+          <ioIcons.IoMenu data-testid="nav-button" onClick={toggleNavBar} />
         </Link>
       </div>
-      <nav className={navBar ? "nav-menu active" : "nav-menu"}>
+      <nav data-testid="nav-bar" className={navBar ? "nav-menu active" : "nav-menu"}>
         <ul className="nav-menu-items">
           <li className="navbar-toggle">
             <Link to="#" className="menu-bars">
