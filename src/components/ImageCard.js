@@ -27,7 +27,7 @@ export default function ImageCard({ images, renderLikesOnly, renderSlideOnly }) 
   const removeBtn = () => {
     setTimeout(() => {
       setLastDeleted([]);
-    }, 4000);
+    }, 5000);
   };
 
   const undo = () => {

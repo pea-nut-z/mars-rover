@@ -173,6 +173,7 @@ p {
   height: 335px;
   border: solid 2px white;
   border-radius: 5px;
+  z-index: 2;
 }
 
 .carousel-control-prev-icon,
@@ -285,11 +286,13 @@ button:focus {
   bottom: -100%;
   left: 37.5%;
   transition: 850ms;
+  /* z-index: 3; */
 }
 
 .popupBox.active {
   bottom: 50%;
   transition: 350ms;
+  z-index: 3;
 }
 
 /* SEARCH */
