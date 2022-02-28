@@ -41,7 +41,7 @@ export default function ImageCard({ images, renderLikesOnly, renderSlideOnly }) 
     return images.map((image, index) => {
       const { rover, img_src, camera, earth_date } = image;
       return (
-        <figure key={index} className="imageCardBackground">
+        <figure key={index} className="image-card-background">
           <a target={"_blank"} rel={"noopener noreferrer"} href={img_src}>
             <img
               data-testid="image"
@@ -54,17 +54,17 @@ export default function ImageCard({ images, renderLikesOnly, renderSlideOnly }) 
             <p>{rover.name} Rover</p>
             <p>{camera.full_name}</p>
             <p>{earth_date}</p>
-            <button className="heartBtn" aria-label="Toggle like">
+            <button className="heart-btn" aria-label="Toggle like">
               {likes.some((like) => like.id === image.id) ? (
                 <ioIcons.IoHeart
                   data-testid="unlike-button"
-                  className="heartBtn"
+                  className="heart-btn"
                   onClick={() => toggleLike(image, "unlike")}
                 />
               ) : (
                 <ioIcons.IoHeartOutline
                   data-testid="like-button"
-                  className="heartBtn"
+                  className="heart-btn"
                   onClick={() => toggleLike(image, "like")}
                 />
               )}
@@ -79,7 +79,7 @@ export default function ImageCard({ images, renderLikesOnly, renderSlideOnly }) 
     return likes.map((image, index) => {
       const { rover, img_src, camera, earth_date } = image;
       return (
-        <figure key={index} className="imageCardBackground">
+        <figure key={index} className="image-card-background">
           <a target={"_blank"} rel={"noopener noreferrer"} href={img_src}>
             <img
               data-testid="image"
@@ -94,11 +94,11 @@ export default function ImageCard({ images, renderLikesOnly, renderSlideOnly }) 
             <p>{earth_date}</p>
             <button
               data-testid="unlike-button"
-              className="heartBtn"
+              className="heart-btn"
               aria-label="unlike"
               onClick={() => toggleLike(image, "unlike")}
             >
-              <ioIcons.IoHeart className="heartBtn" />
+              <ioIcons.IoHeart className="heart-btn" />
             </button>
           </figcaption>
         </figure>
@@ -123,7 +123,7 @@ export default function ImageCard({ images, renderLikesOnly, renderSlideOnly }) 
                 </a>
 
                 <Carousel.Caption>
-                  <button className="heartBtn" aria-label="Toggle like">
+                  <button className="heart-btn" aria-label="Toggle like">
                     {likes.some((like) => like.id === image.id) ? (
                       <ioIcons.IoHeart
                         data-testid="unlike-button"
@@ -165,7 +165,7 @@ export default function ImageCard({ images, renderLikesOnly, renderSlideOnly }) 
         : renderMessage()}
       <button
         data-testid="undo-button"
-        className={`btn btn-dark border border-light popupBox ${
+        className={`btn btn-dark border border-light popup-box ${
           lastDeleted.length > 0 ? "active" : ""
         }`}
         aria-label="Undo deleted image"

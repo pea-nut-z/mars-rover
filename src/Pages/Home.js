@@ -180,7 +180,7 @@ export default function Home() {
             </p>
             <button
               data-testid="info"
-              className="openModalBtn h2 text-primary"
+              className="open-modal-btn h2 text-primary"
               aria-label="Open for more information"
               onClick={openModal}
             >
@@ -194,7 +194,7 @@ export default function Home() {
             >
               <div data-testid="modal">
                 <div className="filler" />
-                <button data-testid="closeModalBtn" className="closeModalBtn" onClick={closeModal}>
+                <button data-testid="closeModalBtn" className="close-modal-btn" onClick={closeModal}>
                   Close
                 </button>
                 {infoData.map((item, index) => {

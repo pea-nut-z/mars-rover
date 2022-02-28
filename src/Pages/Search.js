@@ -98,7 +98,7 @@ export default function Search() {
         <button
           data-testid="search-button"
           type="button"
-          className="searchBtn btn btn-dark"
+          className="search-btn btn btn-dark"
           aria-label="search images"
           onClick={checkFields}
         >
@@ -107,7 +107,7 @@ export default function Search() {
       </form>
       <div
         data-testid="message-box"
-        className={`btn btn-dark border border-light popupBox ${showMsg ? "active" : ""}`}
+        className={`btn btn-dark border border-light popup-box ${showMsg ? "active" : ""}`}
         aria-label="Empty field alert"
       >
         {!selectedRover ? "Select a rover!" : "Select a camera!"}

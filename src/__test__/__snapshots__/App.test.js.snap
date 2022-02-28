@@ -22,7 +22,7 @@ exports[`Home.js - All data is available. displays today's weather and news data
     </p>
     <button
       data-testid="info"
-      class="openModalBtn h2 text-primary"
+      class="open-modal-btn h2 text-primary"
       aria-label="Open for more information"
     >
       <svg
@@ -140,7 +140,7 @@ exports[`Home.js - Buttons displays a modal explaining each piece of weather inf
   />
   <button
     data-testid="closeModalBtn"
-    class="closeModalBtn"
+    class="close-modal-btn"
   >
     Close
   </button>
@@ -318,7 +318,7 @@ exports[`Home.js - Buttons returns to main page after clicking close modal. 1`] 
           </p>
           <button
             data-testid="info"
-            class="openModalBtn h2 text-primary"
+            class="open-modal-btn h2 text-primary"
             aria-label="Open for more information"
           >
             <svg
@@ -450,7 +450,7 @@ exports[`Home.js - Buttons returns to main page after clicking close modal. 1`] 
                   class="carousel-caption"
                 >
                   <button
-                    class="heartBtn"
+                    class="heart-btn"
                     aria-label="Toggle like"
                   >
                     <svg
@@ -497,7 +497,7 @@ exports[`Home.js - Buttons returns to main page after clicking close modal. 1`] 
                   class="carousel-caption"
                 >
                   <button
-                    class="heartBtn"
+                    class="heart-btn"
                     aria-label="Toggle like"
                   >
                     <svg
@@ -544,7 +544,7 @@ exports[`Home.js - Buttons returns to main page after clicking close modal. 1`] 
                   class="carousel-caption"
                 >
                   <button
-                    class="heartBtn"
+                    class="heart-btn"
                     aria-label="Toggle like"
                   >
                     <svg
@@ -591,7 +591,7 @@ exports[`Home.js - Buttons returns to main page after clicking close modal. 1`] 
                   class="carousel-caption"
                 >
                   <button
-                    class="heartBtn"
+                    class="heart-btn"
                     aria-label="Toggle like"
                   >
                     <svg
@@ -638,7 +638,7 @@ exports[`Home.js - Buttons returns to main page after clicking close modal. 1`] 
                   class="carousel-caption"
                 >
                   <button
-                    class="heartBtn"
+                    class="heart-btn"
                     aria-label="Toggle like"
                   >
                     <svg
@@ -685,7 +685,7 @@ exports[`Home.js - Buttons returns to main page after clicking close modal. 1`] 
                   class="carousel-caption"
                 >
                   <button
-                    class="heartBtn"
+                    class="heart-btn"
                     aria-label="Toggle like"
                   >
                     <svg
@@ -732,7 +732,7 @@ exports[`Home.js - Buttons returns to main page after clicking close modal. 1`] 
                   class="carousel-caption"
                 >
                   <button
-                    class="heartBtn"
+                    class="heart-btn"
                     aria-label="Toggle like"
                   >
                     <svg
@@ -792,7 +792,7 @@ exports[`Home.js - Buttons returns to main page after clicking close modal. 1`] 
         </div>
         <button
           data-testid="undo-button"
-          class="btn btn-dark border border-light popupBox "
+          class="btn btn-dark border border-light popup-box "
           aria-label="Undo deleted image"
         >
           Click to Undo

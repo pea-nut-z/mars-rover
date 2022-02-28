@@ -347,12 +347,15 @@ describe("Likes.js - Render.", () => {
     expect(images).toHaveLength(1);
   });
 
-  it("removes the undo button after 2 seconds.", async () => {
+  it("removes the undo button after 5 seconds.", async () => {
+    const originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000000;
     const unlikeButton = screen.getByTestId("unlike-button");
     await fireEvent.click(unlikeButton);
-    await new Promise((r) => setTimeout(r, 2000));
+    await new Promise((r) => setTimeout(r, 5000));
     const undoButton = screen.getByTestId("undo-button");
     expect(undoButton.classList.contains("active")).toBeFalsy();
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
   });
 });
 

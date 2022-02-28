@@ -79,12 +79,12 @@ p {
   background-color: var(--clr-accent);
 }
 
-.openModalBtn {
+.open-modal-btn {
   border: none;
   background-color: transparent;
 }
 
-.closeModalBtn {
+.close-modal-btn {
   background-color: var(--clr-accent);
   margin: 10px;
   border-radius: 10px;
@@ -238,14 +238,14 @@ p {
 }
 
 /* IMAGES */
-.heartBtn {
+.heart-btn {
   font-size: 2rem;
   border: none;
   background-color: transparent;
   color: var(--clr-accent);
 }
 
-.heartBtn:active {
+.heart-btn:active {
   animation: vibrate 0.8s infinite;
 }
 
@@ -263,7 +263,7 @@ button:focus {
   text-decoration: none;
 }
 
-.imageCardBackground {
+.image-card-background {
   background: var(--black-background);
   padding-left: var(--pad-half);
   padding-right: var(--pad-half);
@@ -280,7 +280,7 @@ button:focus {
   min-height: 425px;
 }
 
-.popupBox {
+.popup-box {
   width: 30%;
   position: fixed;
   bottom: -100%;
@@ -289,7 +289,7 @@ button:focus {
   /* z-index: 3; */
 }
 
-.popupBox.active {
+.popup-box.active {
   bottom: 50%;
   transition: 350ms;
   z-index: 3;
@@ -307,7 +307,7 @@ button:focus {
   margin-left: var(--margin-small);
 }
 
-.searchBtn {
+.search-btn {
   width: 25%;
   margin-left: var(--margin-small);
 }
@@ -367,7 +367,7 @@ button:focus {
     margin-bottom: var(--margin-small);
   }
 
-  .searchBtn {
+  .search-btn {
     width: 50%;
   }
 }
@@ -399,7 +399,7 @@ button:focus {
 
 @media (max-width: 320px) {
   /* LIKES */
-  .imageCardBackground {
+  .image-card-background {
     margin-left: 0;
     float: none;
   }
@@ -408,7 +408,7 @@ button:focus {
   .filter {
     width: 100%;
   }
-  .searchBtn {
+  .search-btn {
     width: 100%;
   }
 }
