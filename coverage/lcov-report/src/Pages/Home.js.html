@@ -1,0 +1,932 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/Pages/Home.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">All files</a> / <a href="index.html">src/Pages</a> Home.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">98.82% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>84/85</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">94.59% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>35/37</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>24/24</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>84/84</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">274x</span>
+<span class="cline-any cline-yes">274x</span>
+<span class="cline-any cline-yes">274x</span>
+<span class="cline-any cline-yes">274x</span>
+<span class="cline-any cline-yes">274x</span>
+<span class="cline-any cline-yes">274x</span>
+<span class="cline-any cline-yes">274x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">274x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">274x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">274x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">274x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">274x</span>
+<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">98x</span>
+<span class="cline-any cline-yes">98x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">98x</span>
+<span class="cline-any cline-yes">98x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">94x</span>
+<span class="cline-any cline-yes">94x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">98x</span>
+<span class="cline-any cline-yes">98x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">274x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">274x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">28x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">28x</span>
+<span class="cline-any cline-yes">28x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">274x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">259x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">259x</span>
+<span class="cline-any cline-yes">259x</span>
+<span class="cline-any cline-yes">259x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">259x</span>
+<span class="cline-any cline-yes">259x</span>
+<span class="cline-any cline-yes">259x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">259x</span>
+<span class="cline-any cline-yes">403x</span>
+<span class="cline-any cline-yes">259x</span>
+<span class="cline-any cline-yes">259x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">259x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2331x</span>
+<span class="cline-any cline-yes">2331x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">274x</span>
+<span class="cline-any cline-yes">231x</span>
+<span class="cline-any cline-yes">231x</span>
+<span class="cline-any cline-yes">231x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">231x</span>
+<span class="cline-any cline-yes">231x</span>
+<span class="cline-any cline-yes">231x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">274x</span>
+<span class="cline-any cline-yes">201x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">274x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useEffect, useState } from "react";
+import axios from "axios";
+import * as ioIcons from "react-icons/io5";
+import Modal from "react-modal";
+import * as helper from "../helper";
+import infoData from "../infoData";
+import ImageCard from "../components/ImageCard";
+&nbsp;
+const modalStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    color: "black",
+    transform: "translate(-50%, -50%)",
+    maxHeight: "100vh",
+  },
+};
+&nbsp;
+export default function Home() {
+  const [loading, setLoading] = useState(true);
+  const [images, setImages] = useState([]);
+  const [cameras, setCameras] = useState();
+  const [weather, setWeather] = useState();
+  const [news, setNews] = useState();
+  const [cel, setCel] = useState(true);
+  const [modalIsOpen, setIsOpen] = useState(false);
+&nbsp;
+  useEffect(() =&gt; {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (process.env.REACT_APP_TEST !== "TRUE") <span class="cstat-no" title="statement not covered" >Modal.setAppElement("#root");</span>
+    const todayDate = helper.getTodayDate();
+    getPhotos(todayDate);
+    getWeather();
+    getNews();
+  }, []);
+&nbsp;
+  const toggleUnit = () =&gt; {
+    setCel(!cel);
+  };
+&nbsp;
+  const openModal = () =&gt; {
+    setIsOpen(true);
+  };
+&nbsp;
+  const closeModal = () =&gt; {
+    setIsOpen(false);
+  };
+&nbsp;
+  const getPhotos = (dateArray) =&gt; {
+    let [year, month, day] = dateArray;
+    let selectedImages = [];
+    let selectedCameras = [];
+    const frontCameraImg = helper.getFtImgUrl(dateArray);
+    return axios
+      .get(frontCameraImg)
+      .then((res) =&gt; {
+        const imagesFetched = res.data.photos;
+        if (imagesFetched.length === 0) {
+          if (day === 1) {
+            const previousMonthDate = helper.getPreviousMonthDate(year, month);
+            getPhotos(previousMonthDate);
+          } else {
+            getPhotos([year, month, day - 1]);
+          }
+        } else {
+          helper.curiosityCamerasAbb.forEach((cameraAbbr) =&gt; {
+            const img = helper.getImgUrl(cameraAbbr, dateArray);
+            return axios
+              .get(img)
+              .then((res) =&gt; {
+                const imagesFetched = res.data.photos;
+                if (imagesFetched.length === 0) {
+                  return;
+                } else {
+                  selectedImages.push(imagesFetched[0]);
+                  selectedCameras.push(imagesFetched[0].camera.full_name);
+                }
+              })
+              .finally(() =&gt; {
+                setImages([...images, ...selectedImages]);
+                setCameras(selectedCameras);
+              });
+          });
+        }
+      })
+&nbsp;
+      .catch((error) =&gt; {
+        console.error(error);
+      });
+  };
+&nbsp;
+  const getWeather = () =&gt; {
+    return axios
+      .get(helper.getWeatherUrl)
+      .then((res) =&gt; {
+        setWeather(res.data);
+        setLoading(false);
+      })
+      .catch((error) =&gt; {
+        console.error(error);
+      });
+  };
+&nbsp;
+  const getNews = () =&gt; {
+    return axios
+      .get(helper.getNewsUrl)
+      .then((res) =&gt; {
+        const { articles } = res.data;
+        const selectedArticles = articles.reduce((arr, article) =&gt; {
+          const repeated = arr.some((obj) =&gt; {
+            return obj.title === article.title;
+          });
+          !repeated &amp;&amp; arr.push(article);
+          return arr;
+        }, []);
+        setNews(selectedArticles);
+        setLoading(false);
+      })
+      .catch((error) =&gt; {
+        console.error(error);
+      });
+  };
+&nbsp;
+  const renderWeather = () =&gt; {
+    const {
+      sol,
+      atmo_opacity,
+      local_uv_irradiance_index,
+      max_temp,
+      min_temp,
+      wind_speed,
+      wind_direction,
+      sunrise,
+      sunset,
+    } = weather;
+&nbsp;
+    let earthISOStr = weather.terrestrial_date.split("T")[0].replace(/-/g, "/");
+    let earthDate = new Date(earthISOStr).toString().split(" ");
+    const [_, earthMonth, earthDay] = earthDate;
+&nbsp;
+    const seasons = ["Autumn", "Winter", "Spring", "Summer"];
+    const marsSeasonsEnd = [3, 6, 9, 12];
+    const marsMonth = weather.season.split(" ")[1] * 1;
+    let marsSeason;
+&nbsp;
+    for (let [index, val] of marsSeasonsEnd.entries()) {
+      if (marsMonth &lt;= val) {
+        marsSeason = seasons[index];
+        break;
+      }
+    }
+&nbsp;
+    return (
+      &lt;section data-testid="weather-section" className="section weather-section"&gt;
+        &lt;h1 className="header"&gt;LATEST WEATHER AT ELYSIUM PLANTITIA&lt;/h1&gt;
+        &lt;div className="unit"&gt;
+          &lt;label htmlFor="cel" className="label h5"&gt;
+            °C
+          &lt;/label&gt;
+          &lt;input type="radio" id="cel" name="unit" checked={cel &amp;&amp; "checked"} readOnly /&gt;
+          &lt;button
+            data-testid="unit-toggle"
+            className="unit-toggle"
+            aria-label="Toggle unit"
+            onClick={toggleUnit}
+          &gt;&lt;/button&gt;
+          &lt;label htmlFor="fah" className="label h5"&gt;
+            °F
+          &lt;/label&gt;
+          &lt;input type="radio" id="fah" name="unit" checked={!cel &amp;&amp; "checked"} readOnly /&gt;
+        &lt;/div&gt;
+&nbsp;
+        &lt;div data-testid="weather-container" className="weather-container"&gt;
+          &lt;div className="text-right"&gt;
+            &lt;p className="sol display-4"&gt;Sol {sol}&lt;/p&gt;
+            &lt;p className="h2 text-muted"&gt;
+              {earthMonth} {earthDay}
+            &lt;/p&gt;
+            &lt;button
+              data-testid="info"
+              className="openModalBtn h2 text-primary"
+              aria-label="Open for more information"
+              onClick={openModal}
+            &gt;
+              &lt;ioIcons.IoInformationCircleSharp /&gt;
+            &lt;/button&gt;
+            &lt;Modal
+              isOpen={modalIsOpen}
+              onRequestClose={closeModal}
+              style={modalStyles}
+              ariaHideApp={process.env.REACT_APP_TEST === "TRUE" ? false : <span class="branch-1 cbranch-no" title="branch not covered" >undefined}</span>
+            &gt;
+              &lt;div data-testid="modal"&gt;
+                &lt;div className="filler" /&gt;
+                &lt;button data-testid="closeModalBtn" className="closeModalBtn" onClick={closeModal}&gt;
+                  Close
+                &lt;/button&gt;
+                {infoData.map((item, index) =&gt; {
+                  const details = item.split(":");
+                  return (
+                    &lt;p key={index} className="mt-3"&gt;
+                      &lt;span className="font-weight-bold"&gt;{details[0]}&lt;/span&gt;: {details[1]}
+                    &lt;/p&gt;
+                  );
+                })}
+              &lt;/div&gt;
+            &lt;/Modal&gt;
+          &lt;/div&gt;
+          &lt;div className="divider" /&gt;
+          &lt;div className="col"&gt;
+            &lt;p data-testid="temperature" className="h5 mt-3"&gt;
+              High: {cel ? max_temp + "°C" : helper.convertCelToFah(max_temp) + "°F"}
+            &lt;/p&gt;
+            &lt;p data-testid="temperature" className="h5"&gt;
+              Low: {cel ? min_temp + "°C" : helper.convertCelToFah(min_temp) + "°F"}
+            &lt;/p&gt;
+            &lt;p data-testid="windSpeed"&gt;Wind Speed: {wind_speed ? wind_speed : "N/A"}&lt;/p&gt;
+            &lt;p data-testid="windDirection"&gt;
+              Wind Direction: {wind_direction ? `${wind_direction} kph` : "N/A"}
+            &lt;/p&gt;
+          &lt;/div&gt;
+          &lt;div className="col text-right"&gt;
+            &lt;p className="h5 mt-3"&gt;{atmo_opacity}&lt;/p&gt;
+            &lt;p&gt;{marsSeason}&lt;/p&gt;
+            &lt;p&gt; UV Index: {local_uv_irradiance_index}&lt;/p&gt;
+            &lt;p&gt;Sunrise: {sunrise}&lt;/p&gt;
+            &lt;p&gt;Sunset: {sunset}&lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/section&gt;
+    );
+  };
+&nbsp;
+  const renderNews = () =&gt; {
+    const today = new Date();
+    const currentMonth = today.toLocaleString("default", { month: "long" }).toUpperCase();
+    return (
+      &lt;section className="section news-section"&gt;
+        &lt;h1 className="header"&gt;{currentMonth} NEWS&lt;/h1&gt;
+        {news.map((article, index) =&gt; {
+          let date = article.publishedAt.split("T")[0];
+          const { title, description, url, urlToImage } = article;
+          return (
+            &lt;a key={index} className="news-link" href={url}&gt;
+              &lt;article data-testid="news-container" className="news-container"&gt;
+                &lt;img className="news-image" src={urlToImage} alt={`Article ${index}`} /&gt;
+                &lt;div className="news-desc"&gt;
+                  &lt;h6 className="font-weight-bold"&gt;{title}&lt;/h6&gt;
+                  &lt;time className="font-italic" dateTime={date}&gt;
+                    {date}
+                  &lt;/time&gt;
+                  &lt;p&gt;{description}&lt;/p&gt;
+                &lt;/div&gt;
+              &lt;/article&gt;
+            &lt;/a&gt;
+          );
+        })}
+      &lt;/section&gt;
+    );
+  };
+&nbsp;
+  const renderImageSlide = () =&gt; {
+    return (
+      &lt;section className="section image-section"&gt;
+        &lt;h1 className="header"&gt;
+          &lt;p&gt;LATEST IMAGES CAPTURED BY&lt;/p&gt;
+          &lt;p&gt;CURIOSITY ROVER&lt;/p&gt;
+        &lt;/h1&gt;
+        &lt;ImageCard images={images} renderSlideOnly="true" /&gt;
+        &lt;time data-testid="image-date" className="h5 mt-3" dateTime={images[0].earth_date}&gt;
+          ({images[0].earth_date})
+        &lt;/time&gt;
+      &lt;/section&gt;
+    );
+  };
+&nbsp;
+  return (
+    &lt;main data-testid="home-container" className="home-container"&gt;
+      &lt;p className={loading ? "h3 text-center m-5" : undefined}&gt;{loading &amp;&amp; "Loading..."}&lt;/p&gt;
+      &lt;div className="home-left"&gt;
+        {weather &amp;&amp; renderWeather()}
+        {images.length !== 0 &amp;&amp; !modalIsOpen &amp;&amp; renderImageSlide()}
+      &lt;/div&gt;
+      &lt;div className="home-right"&gt;{news &amp;&amp; renderNews()}&lt;/div&gt;
+    &lt;/main&gt;
+  );
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Feb 23 2022 22:29:45 GMT-0500 (Eastern Standard Time)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>
