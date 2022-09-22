@@ -5,7 +5,7 @@ import "./Nav.css";
 import { IconContext } from "react-icons";
 import { Link } from "react-router-dom";
 
-export const NavBar = forwardRef(({}, ref) => {
+export const NavBar = forwardRef((props, ref) => {
   const [navBar, setNavBar] = useState(false);
   const toggleNavBar = () => setNavBar(!navBar);
 

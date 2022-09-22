@@ -22,7 +22,7 @@ const modalStyles = {
 export default function Home() {
   const [loading, setLoading] = useState(true);
   const [images, setImages] = useState([]);
-  const [cameras, setCameras] = useState();
+  const [, setCameras] = useState();
   const [weather, setWeather] = useState();
   const [news, setNews] = useState();
   const [cel, setCel] = useState(true);
@@ -85,7 +85,6 @@ export default function Home() {
           });
         }
       })
-
       .catch((error) => {
         console.error(error);
       });
@@ -138,7 +137,7 @@ export default function Home() {
 
     let earthISOStr = weather.terrestrial_date.split("T")[0].replace(/-/g, "/");
     let earthDate = new Date(earthISOStr).toString().split(" ");
-    const [_, earthMonth, earthDay] = earthDate;
+    const [, earthMonth, earthDay] = earthDate;
 
     const seasons = ["Autumn", "Winter", "Spring", "Summer"];
     const marsSeasonsEnd = [3, 6, 9, 12];
