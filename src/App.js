@@ -24,7 +24,6 @@ export default function App() {
     <div>
       <Router>
         <NavBar ref={ref} />
-        <div className="filler" />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/likes" component={Likes} />

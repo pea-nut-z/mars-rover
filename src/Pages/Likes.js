@@ -1,10 +1,10 @@
 import React from "react";
-import ImageCard from "../components/ImageCard";
+import ImageCards from "../components/ImageCards";
 
 export default function Likes() {
   return (
     <div className="image-gallery">
-      <ImageCard renderLikesOnly={"true"} />
+      <ImageCards renderLikesOnly={"true"} />
     </div>
   );
 }

@@ -468,8 +468,8 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/Users/paulinez/Documents/mars-rover/src/components/ImageCard.js
-FN:6,ImageCard
+SF:/Users/paulinez/Documents/mars-rover/src/components/ImageCards.js
+FN:6,ImageCards
 FN:10,(anonymous_1)
 FN:15,(anonymous_2)
 FN:19,(anonymous_3)
@@ -492,7 +492,7 @@ FN:135,(anonymous_19)
 FN:149,(anonymous_20)
 FNF:21
 FNH:21
-FNDA:131,ImageCard
+FNDA:131,ImageCards
 FNDA:18,(anonymous_1)
 FNDA:41,(anonymous_2)
 FNDA:6,(anonymous_3)

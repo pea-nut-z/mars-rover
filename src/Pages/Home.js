@@ -4,7 +4,7 @@ import * as ioIcons from "react-icons/io5";
 import Modal from "react-modal";
 import * as helper from "../helper";
 import infoData from "../infoData";
-import ImageCard from "../components/ImageCard";
+import ImageCards from "../components/ImageCards";
 
 const modalStyles = {
   content: {
@@ -267,7 +267,7 @@ export default function Home() {
           <p>LATEST IMAGES CAPTURED BY</p>
           <p>CURIOSITY ROVER</p>
         </h1>
-        <ImageCard images={images} renderSlideOnly="true" />
+        <ImageCards images={images} renderSlideOnly="true" />
         <time data-testid="image-date" className="h5 mt-3" dateTime={images[0].earth_date}>
           ({images[0].earth_date})
         </time>

@@ -627,7 +627,7 @@ import * as ioIcons from "react-icons/io5";
 import Modal from "react-modal";
 import * as helper from "../helper";
 import infoData from "../infoData";
-import ImageCard from "../components/ImageCard";
+import ImageCards from "../components/ImageCards";
 &nbsp;
 const modalStyles = {
   content: {
@@ -891,7 +891,7 @@ export default function Home() {
           &lt;p&gt;LATEST IMAGES CAPTURED BY&lt;/p&gt;
           &lt;p&gt;CURIOSITY ROVER&lt;/p&gt;
         &lt;/h1&gt;
-        &lt;ImageCard images={images} renderSlideOnly="true" /&gt;
+        &lt;ImageCards images={images} renderSlideOnly="true" /&gt;
         &lt;time data-testid="image-date" className="h5 mt-3" dateTime={images[0].earth_date}&gt;
           ({images[0].earth_date})
         &lt;/time&gt;

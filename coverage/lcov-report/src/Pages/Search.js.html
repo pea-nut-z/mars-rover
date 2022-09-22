@@ -282,7 +282,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { useState } from "react";
 import axios from "axios";
 import * as helper from "../helper";
-import ImageCard from "../components/ImageCard";
+import ImageCards from "../components/ImageCards";
 &nbsp;
 export default function Search() {
   const [year, month, day] = helper.getTodayDate();
@@ -393,7 +393,7 @@ export default function Search() {
       &gt;
         {!selectedRover ? "Select a rover!" : "Select a camera!"}
       &lt;/div&gt;
-      &lt;div className="image-gallery"&gt;{imagesFetched &amp;&amp; &lt;ImageCard images={images} /&gt;}&lt;/div&gt;
+      &lt;div className="image-gallery"&gt;{imagesFetched &amp;&amp; &lt;ImageCards images={images} /&gt;}&lt;/div&gt;
     &lt;/div&gt;
   );
 }

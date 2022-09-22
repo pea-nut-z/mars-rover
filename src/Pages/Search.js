@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import * as helper from "../helper";
-import ImageCard from "../components/ImageCard";
+import ImageCards from "../components/ImageCards";
 
 export default function Search() {
   const [year, month, day] = helper.getTodayDate();
@@ -39,6 +39,13 @@ export default function Search() {
 
   return (
     <div data-testid="search-container" className="search-container">
+      <div className="search-text-container">
+        <h2>Search For Images</h2>
+        <p>
+          *Note - NASA does not have images for every date. Try selecting Curiosity Rover / Front
+          Camera / 2022-09-20
+        </p>
+      </div>
       <form className="filters">
         <select
           data-testid="rover-dropdown"
@@ -112,7 +119,7 @@ export default function Search() {
       >
         {!selectedRover ? "Select a rover!" : "Select a camera!"}
       </div>
-      <div className="image-gallery">{imagesFetched && <ImageCard images={images} />}</div>
+      <div className="image-gallery">{imagesFetched && <ImageCards images={images} />}</div>
     </div>
   );
 }

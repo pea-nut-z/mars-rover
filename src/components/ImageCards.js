@@ -3,7 +3,7 @@ import * as ioIcons from "react-icons/io5";
 import * as helper from "../helper";
 import Carousel from "react-bootstrap/Carousel";
 
-export default function ImageCard({ images, renderLikesOnly, renderSlideOnly }) {
+export default function ImageCards({ images, renderLikesOnly, renderSlideOnly }) {
   const [likes, setLikes] = useState([]);
   const [lastDeleted, setLastDeleted] = useState([]);
 
@@ -149,7 +149,7 @@ export default function ImageCard({ images, renderLikesOnly, renderSlideOnly }) 
   const renderMessage = () => {
     return (
       <h3 data-testid="message-box" className="text-center m-5">
-        Oops, no images to show.
+        No images to show.
       </h3>
     );
   };

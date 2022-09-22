@@ -1,6 +1,6 @@
 ## Latest weather, images and news of Mars
 
-[Link to app](https://peanutz-mars.herokuapp.com/)
+[Link to app](https://latest-of-mars.netlify.app/)
 
 ### Context
 
