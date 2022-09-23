@@ -2,7 +2,7 @@
 
 https://user-images.githubusercontent.com/66141752/192033424-3db82b2b-b487-4ea8-ac7a-7d89ad78b57d.mp4
 
-### <p style="text-align: center;">[Link to app](https://latest-of-mars.netlify.app/)</p>
+<p style="text-align: center">### [Link to app](https://latest-of-mars.netlify.app/)</p>
 
 
 ### Context
