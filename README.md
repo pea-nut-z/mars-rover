@@ -2,8 +2,8 @@
 
 https://user-images.githubusercontent.com/66141752/192033424-3db82b2b-b487-4ea8-ac7a-7d89ad78b57d.mp4
 
-<a href="https://latest-of-mars.netlify.app/" target="_blank" ><h3>Link to app</h3></a>
 
+<a href="https://latest-of-mars.netlify.app/" aria-label="Project Link"><h3>Link to app</h3></a>
 
 ### Context
 
