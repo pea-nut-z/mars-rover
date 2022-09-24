@@ -24,6 +24,7 @@ export default function App() {
     <div>
       <Router>
         <NavBar ref={ref} />
+        <p className="corner-name">PAULINE ZHANG</p>
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/likes" component={Likes} />

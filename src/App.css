@@ -35,6 +35,23 @@ p {
   color: var(--clr-accent);
 }
 
+.corner-name{
+  position: fixed;
+  right: -9rem;
+  bottom:-9rem;
+  -webkit-transform:rotate(-45deg);
+  transform:rotate(-45deg);
+  background-color: var(--white);;
+  width: 15rem;
+  height: 15rem;
+  text-align: center;
+  z-index: 3;
+  font-size: 1rem;
+  color: black;
+  opacity:0.2;
+  z-index: 4;
+}
+
 ::-webkit-scrollbar {
   width: 20px;
 }
