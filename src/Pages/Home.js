@@ -103,23 +103,26 @@ export default function Home() {
   };
 
   const getNews = () => {
-    return axios
-      .get(helper.getNewsUrl)
-      .then((res) => {
-        const { articles } = res.data;
-        const selectedArticles = articles.reduce((arr, article) => {
-          const repeated = arr.some((obj) => {
-            return obj.title === article.title;
-          });
-          !repeated && arr.push(article);
-          return arr;
-        }, []);
-        setNews(selectedArticles);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    const options = {
+      method: 'GET',
+      url: 'https://bing-news-search1.p.rapidapi.com/news/search',
+      params: {
+        q: 'mars', freshness: 'Month',
+        category: 'ScienceAndTechnology',
+        setLang: 'EN',
+        textFormat: 'Raw', safeSearch: 'Off'
+      },
+      headers: {
+        'X-BingApis-SDK': 'true',
+        'X-RapidAPI-Key': 'b57e459df2mshf46f36117349b45p16e033jsn7007296963f1',
+        'X-RapidAPI-Host': 'bing-news-search1.p.rapidapi.com'
+      }
+    };
+   return axios.request(options).then(function (response) {
+      setNews(response.data.value);
+    }).catch(function (error) {
+      console.error(error);
+    });
   };
 
   const renderWeather = () => {
@@ -238,15 +241,15 @@ export default function Home() {
     return (
       <section className="section news-section">
         <h1 className="header">{currentMonth} NEWS</h1>
-        {news.map((article, index) => {
-          let date = article.publishedAt.split("T")[0];
-          const { title, description, url, urlToImage } = article;
+        {news.map((article) => {
+          let date = article.datePublished.split("T")[0];
+          const { name, description, url, image } = article;
           return (
-            <a key={index} className="news-link" href={url}>
+            <a key={name} className="news-link" href={url}>
               <article data-testid="news-container" className="news-container">
-                <img className="news-image" src={urlToImage} alt={`Article ${index}`} />
+                <img className="news-image" src={image.thumbnail.contentUrl} alt={name} />
                 <div className="news-desc">
-                  <h6 className="font-weight-bold">{title}</h6>
+                  <h6 className="font-weight-bold">{name}</h6>
                   <time className="font-italic" dateTime={date}>
                     {date}
                   </time>
