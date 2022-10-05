@@ -31,7 +31,7 @@ export default function App() {
           className="portfolio-link"
           aria-label="Porfolio Link"
           target="_blank"
-          rel="noreferrer"
+            rel="noopener noreferrer"
         >
           <title>Portfolio Link</title>
           <p>See more</p>
